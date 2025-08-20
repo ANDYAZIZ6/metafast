@@ -176,6 +176,17 @@ body {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
+.download .secondary-btn {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.download .secondary-btn:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
 /* Trust bar */
 .trust-bar {
   background-color: #efeff7;
