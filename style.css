@@ -187,6 +187,25 @@ body {
   color: #ebfdff;
 }
 
+/* Pricing: tampilkan tombol Paket Lite di kartu bg putih */
+.pricing .secondary-btn {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.pricing .secondary-btn:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+/* Biar tombol di kartu pricing melebar penuh */
+.pricing-card-new .btn,
+.pricing-card .btn {
+  width: 100%;
+}
+
+
 /* Trust bar */
 .trust-bar {
   background-color: #efeff7;
