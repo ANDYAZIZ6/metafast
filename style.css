@@ -607,3 +607,56 @@ body {
     transform: none;
   }
 }
+
+/* === Mobile polish (≤640px) — navbar & hero rapi di HP === */
+@media (max-width: 640px) {
+  /* Navbar lebih ringkas & boleh turun ke baris 2 */
+  .navbar .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .35rem;
+    padding: .6rem .75rem;
+  }
+  .navbar .logo { font-size: 1.35rem; }
+  .navbar .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem .8rem;     /* jarak antar menu */
+  }
+  .navbar .nav a {
+    margin: 0; 
+    font-size: .95rem;
+    line-height: 1.2;
+  }
+  .navbar .nav .cta-btn {
+    padding: .45rem .8rem;
+    border-radius: 10px;
+  }
+
+  /* Hero tidak kepanjangan & teks proporsional */
+  .hero {
+    height: auto;          /* jangan paksa 80vh di HP */
+    min-height: unset;
+    padding: 5rem 0 2.25rem; /* ruang ekstra karena navbar sticky */
+  }
+  .hero .hero-content { max-width: 92vw; }
+  .hero h1 {
+    font-size: 2rem;       /* dari 2.8rem -> 2rem */
+    line-height: 1.25;
+    letter-spacing: 0.2px;
+  }
+  .hero p { font-size: 1rem; }
+
+  /* Background sedikit digelapkan biar kontras teks mantap */
+  .hero .hero-bg { filter: brightness(0.65); }
+
+  /* Tombol ditumpuk & lebar nyaman disentuh */
+  .hero-buttons { flex-direction: column; }
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* Judul section lain sedikit dikecilkan */
+  .section-title { font-size: 1.75rem; }
+}
