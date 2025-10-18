@@ -1,153 +1,587 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kebijakan Privasi — MetaFast for Arabsstock</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9fafb;
-      color: #1f2937;
-      line-height: 1.6;
-    }
-    header {
-      background: linear-gradient(135deg, #2563eb, #1e3a8a);
-      color: #fff;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      font-weight: 600;
-    }
-    header p {
-      margin-top: .5rem;
-      font-size: 1rem;
-      opacity: 0.9;
-    }
-    main {
-      max-width: 850px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-    section {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid #e5e7eb;
-    }
-    section:last-child {
-      border-bottom: none;
-    }
-    h2 {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: .75rem;
-      color: #111827;
-    }
-    ul {
-      padding-left: 1.2rem;
-      margin-top: .5rem;
-    }
-    li {
-      margin-bottom: .4rem;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: .9rem;
-      color: #6b7280;
-    }
-    a {
-      color: #2563eb;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f0f23">
+    <title>Kebijakan Privasi — MetaFast for Arabsstock</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0f0f23;
+            --bg-secondary: #1a1a2e;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #e4e4e7;
+            --text-secondary: #a1a1aa;
+            --accent-1: #6366f1;
+            --accent-2: #8b5cf6;
+            --accent-3: #ec4899;
+            --shadow: rgba(99, 102, 241, 0.1);
+        }
+
+        .light-mode {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --shadow: rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+            min-height: 100dvh;
+        }
+
+        /* Animated Gradient Background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+            opacity: 0.1;
+            z-index: -1;
+            animation: gradient 15s ease infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: .3;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-1);
+            top: -200px;
+            right: -200px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: var(--accent-2);
+            bottom: -150px;
+            left: -150px;
+            animation-delay: 7s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent-3);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0); }
+            33% { transform: translate(50px, -50px) rotate(120deg); }
+            66% { transform: translate(-50px, 50px) rotate(240deg); }
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo i {
+            width: 32px;
+            height: 32px;
+            color: var(--accent-1);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 32px var(--shadow);
+        }
+
+        .theme-toggle i {
+            width: 20px;
+            height: 20px;
+            color: var(--text-primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px var(--shadow);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .section-icon i {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            margin: 1.5rem 0 1.5rem 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+        }
+
+        code {
+            background: var(--glass-bg);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            color: var(--accent-1);
+            border: 1px solid var(--glass-border);
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Contact Card */
+        .contact-card {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            margin-top: 3rem;
+        }
+
+        .contact-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .contact-card a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, background 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .contact-card a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+
+        .emoji {
+            font-size: 1.3em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .glass-card {
+                padding: 2rem 1.5rem;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            .header {
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Kebijakan Privasi</h1>
-    <p>MetaFast for Arabsstock</p>
-  </header>
+    <!-- Floating Orbs -->
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+    <div class="orb orb-3" aria-hidden="true"></div>
 
-  <main>
-    <section>
-      <h2>1. Data yang Dikumpulkan dan Disimpan</h2>
-      <p>Ekstensi ini hanya memproses informasi yang benar-benar diperlukan untuk berfungsi:</p>
-      <ul>
-        <li><strong>Data lokal:</strong> API key, preferensi pengguna, status lisensi (disimpan di <code>chrome.storage.local</code>).</li>
-        <li><strong>Data sementara:</strong> konten form (judul, tag, kategori) di halaman contributor Arab Stock.</li>
-        <li><strong>Tidak dikumpulkan:</strong> identitas pribadi, email, password, data keuangan, lokasi, atau riwayat browsing.</li>
-      </ul>
-    </section>
+    <!-- Header -->
+    <div class="header" role="banner">
+        <div class="header-content">
+            <div class="logo" aria-label="MetaFast">
+                <i data-lucide="shield-check" aria-hidden="true"></i>
+                <span>MetaFast</span>
+            </div>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Toggle theme">
+                <i data-lucide="sun" id="themeIcon" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
 
-    <section>
-      <h2>2. Cara Penggunaan Data</h2>
-      <ul>
-        <li>Mengisi otomatis metadata (judul, tag, kategori).</li>
-        <li>Menyimpan preferensi agar tidak perlu diatur ulang.</li>
-        <li>API key hanya digunakan untuk komunikasi langsung dengan Google Gemini atau OpenAI.</li>
-      </ul>
-    </section>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Kebijakan Privasi</h1>
+            <p style="font-size: 1.25rem; color: var(--text-primary); font-weight: 600;">MetaFast for Arabsstock</p>
+            <div class="badge" aria-label="Tanggal pembaruan kebijakan">
+                <i data-lucide="calendar" aria-hidden="true"></i>
+                Terakhir diperbarui: Oktober 2025
+            </div>
+        </div>
 
-    <section>
-      <h2>3. Pihak Ketiga</h2>
-      <p>Ekstensi dapat berinteraksi dengan:</p>
-      <ul>
-        <li>Google Gemini API (<code>generativelanguage.googleapis.com</code>)</li>
-        <li>OpenAI API (<code>api.openai.com</code>)</li>
-        <li>Google Apps Script (jika lisensi diaktifkan)</li>
-      </ul>
-      <p>Masing-masing memiliki kebijakan privasi sendiri yang disarankan untuk dibaca pengguna.</p>
-    </section>
+        <!-- Summary -->
+        <div class="glass-card">
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i data-lucide="file-text"></i></div>
+                    <h2>Ringkasan</h2>
+                </div>
+                <p>MetaFast for Arabsstock menghargai privasi pengguna dan berkomitmen melindungi data yang Anda masukkan saat menggunakan ekstensi ini. Dokumen ini menjelaskan jenis data apa yang diproses, bagaimana digunakan, serta hak-hak Anda sebagai pengguna.</p>
+            </div>
+        </div>
 
-    <section>
-      <h2>4. Keamanan Data</h2>
-      <ul>
-        <li>Data sensitif disimpan lokal, tidak dikirim ke server developer.</li>
-        <li>Kami tidak menjual atau membagikan data pengguna.</li>
-        <li>Disarankan menggunakan API key khusus untuk ekstensi ini.</li>
-      </ul>
-    </section>
+        <!-- Data Collection -->
+        <div class="glass-card">
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i data-lucide="database"></i></div>
+                    <h2>Data yang Dikumpulkan dan Disimpan</h2>
+                </div>
+                <p>Ekstensi ini dirancang dengan prinsip minimisasi data: hanya memproses informasi yang benar-benar diperlukan untuk menjalankan fungsinya.</p>
+                
+                <h3>Data yang disimpan secara lokal di browser Anda</h3>
+                <ul>
+                    <li>API key (Google Gemini / OpenAI) yang Anda masukkan.</li>
+                    <li>Preferensi pengguna: jumlah kata kunci, strategi kata kunci (single/two-word), blacklist, bahasa, delay, dan setelan lisensi.</li>
+                    <li>Status lisensi (aktivasi/reset perangkat).</li>
+                </ul>
+                <p>Semua data ini disimpan menggunakan <code>chrome.storage.local</code> dan tidak dikirim ke server developer.</p>
 
-    <section>
-      <h2>5. Hak Pengguna</h2>
-      <ul>
-        <li>Menghapus data dengan menghapus ekstensi atau membersihkan storage browser.</li>
-        <li>Mengganti/mencabut API key kapan saja.</li>
-        <li>Menolak memasukkan data opsional (blacklist kata atau lisensi).</li>
-      </ul>
-    </section>
+                <h3>Data yang diproses secara sementara</h3>
+                <ul>
+                    <li>Konten situs pada halaman contributor Arab Stock: teks judul, kata kunci, dan kategori.</li>
+                    <li>Gambar yang Anda pilih untuk diproses dapat diubah menjadi string base64 di sisi klien bila diperlukan untuk mengirim permintaan ke API AI (hanya jika Anda memilih menggunakan Gemini/OpenAI).</li>
+                </ul>
 
-    <section>
-      <h2>6. Pengungkapan Sesuai Chrome Web Store</h2>
-      <p>Ekstensi ini hanya mengakses <strong>konten situs</strong> pada halaman contributor Arab Stock. Tidak ada akses ke identitas pribadi, keuangan, kesehatan, autentikasi, komunikasi pribadi, lokasi, histori web, atau aktivitas pengguna di luar situs target.</p>
-    </section>
+                <h3>Data yang tidak dikumpulkan</h3>
+                <ul>
+                    <li>Tidak mengakses nama, email, password, alamat, atau informasi identitas pribadi.</li>
+                    <li>Tidak membaca data keuangan atau pembayaran.</li>
+                    <li>Tidak memantau riwayat browsing, klik, scroll, atau aktivitas pengguna di luar halaman contributor Arab Stock.</li>
+                    <li>Tidak mengakses lokasi, kamera, atau mikrofon Anda.</li>
+                </ul>
+            </div>
+        </div>
 
-    <section>
-      <h2>7. Perubahan Kebijakan</h2>
-      <p>Kami dapat memperbarui kebijakan ini sewaktu-waktu. Perubahan material akan diumumkan melalui halaman publik atau repositori ekstensi.</p>
-    </section>
+        <!-- Data Usage -->
+        <div class="glass-card">
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i data-lucide="settings"></i></div>
+                    <h2>Cara Penggunaan Data</h2>
+                </div>
+                <ul>
+                    <li><strong>Otomatisasi metadata:</strong> data teks pada halaman contributor digunakan untuk membuat judul, kata kunci, dan kategori secara otomatis sesuai pengaturan pengguna.</li>
+                    <li><strong>Penyimpanan preferensi:</strong> pengaturan disimpan secara lokal agar tidak perlu diatur ulang setiap kali.</li>
+                    <li><strong>API pihak ketiga:</strong> API key yang Anda masukkan digunakan hanya untuk memanggil layanan resmi Google Gemini atau OpenAI. Permintaan dikirim langsung dari browser Anda ke server resmi penyedia layanan.</li>
+                    <li><strong>Lisensi:</strong> jika fitur lisensi diaktifkan, ekstensi dapat mengirim request ke endpoint yang Anda pilih (misalnya Google Apps Script) untuk memvalidasi lisensi. Hanya data minimum (misalnya license key dan ID instalasi) yang dikirim.</li>
+                </ul>
+            </div>
+        </div>
 
-    <section>
-      <h2>8. Kontak</h2>
-      <p>Jika ada pertanyaan atau keluhan, silakan hubungi:</p>
-      <p>📧 <a href="mailto:andyazizchan@gmail.com">andyazizchan@gmail.com</a></p>
-    </section>
-  </main>
+        <!-- Third Party -->
+        <div class="glass-card">
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i data-lucide="users"></i></div>
+                    <h2>Pihak Ketiga</h2>
+                </div>
+                <p>Ekstensi ini dapat berinteraksi dengan layanan pihak ketiga berikut (jika pengguna mengaktifkan):</p>
+                <ul>
+                    <li>Google Gemini API (generativelanguage.googleapis.com).</li>
+                    <li>OpenAI API (api.openai.com).</li>
+                    <li>Google Apps Script (untuk validasi lisensi, opsional).</li>
+                </ul>
+                <p>Setiap layanan pihak ketiga tersebut memiliki kebijakan privasi masing-masing. Kami menganjurkan Anda membaca kebijakan privasi penyedia layanan tersebut.</p>
+            </div>
+        </div>
 
-  <footer>
-    © 2025 MetaFast for Arabsstock — Semua hak dilindungi
-  </footer>
+        <!-- Security -->
+        <div class="glass-card">
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i data-lucide="shield"></i></div>
+                    <h2>Keamanan Data</h2>
+                </div>
+                <ul>
+                    <li>Semua data sensitif (seperti API key) disimpan lokal di browser melalui <code>chrome.storage.local</code>.</li>
+                    <li>Data tidak pernah dikirim ke server developer tanpa persetujuan pengguna.</li>
+                    <li>Kami menyarankan pengguna untuk membuat API key khusus untuk ekstensi ini, bukan API key utama produksi.</li>
+                    <li>Kami tidak menjual, menyewakan, atau membagikan data pengguna kepada pihak ketiga untuk iklan, pemasaran, atau tujuan lain di luar fungsi utama ekstensi.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- User Rights -->
+        <div class="glass-card">
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i data-lucide="user-check"></i></div>
+                    <h2>Hak Pengguna</h2>
+                </div>
+                <p>Sebagai pengguna, Anda berhak untuk:</p>
+                <ul>
+                    <li>Menghapus data kapan saja dengan menghapus ekstensi atau membersihkan storage browser.</li>
+                    <li>Mengganti atau mencabut API key kapan saja.</li>
+                    <li>Menolak memasukkan data opsional seperti blacklist kata kunci atau lisensi.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Chrome Web Store -->
+        <div class="glass-card">
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i data-lucide="chrome"></i></div>
+                    <h2>Pengungkapan Sesuai Chrome Web Store</h2>
+                </div>
+                <p>Sesuai dengan kebijakan Chrome Web Store:</p>
+                <ul>
+                    <li>Ekstensi ini hanya mengakses konten situs pada halaman contributor Arab Stock (judul, tag, kategori).</li>
+                    <li>Ekstensi ini tidak mengakses identitas pribadi, keuangan, kesehatan, autentikasi, komunikasi pribadi, lokasi, histori web, maupun aktivitas pengguna di luar situs target.</li>
+                    <li>Pengungkapan ini sesuai dengan kategori "Konten situs" di form Chrome Web Store.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Policy Changes -->
+        <div class="glass-card">
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i data-lucide="refresh-cw"></i></div>
+                    <h2>Perubahan Kebijakan</h2>
+                </div>
+                <p>Kami dapat memperbarui kebijakan privasi ini dari waktu ke waktu. Jika ada perubahan material, akan kami umumkan melalui halaman publik atau repositori ekstensi sebelum diberlakukan.</p>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="contact-card">
+            <h2><span class="emoji">📧</span> Kontak</h2>
+            <p style="margin-bottom: 1.5rem; font-weight: 600; color: white;">Jika ada pertanyaan, permintaan akses, atau keluhan mengenai privasi, silakan hubungi kami melalui email:</p>
+            <a href="mailto:andyazizsaputra@gmail.com">
+                <i data-lucide="mail"></i>
+                andyazizsaputra@gmail.com
+            </a>
+        </div>
+
+        <!-- Final Note -->
+        <div class="glass-card" style="text-align: center;">
+            <p style="color: var(--text-primary); font-weight: 600;"><span class="emoji">👉</span> Dengan menginstal dan menggunakan MetaFast for Arabsstock, Anda menyatakan telah membaca, memahami, dan menyetujui kebijakan privasi ini.</p>
+        </div>
+    </div>
+
+    <script>
+        // Wait for Lucide DOM
+        window.addEventListener('DOMContentLoaded', function() {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            }
+
+            // Theme Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const html = document.documentElement;
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                html.classList.add('light-mode');
+                themeIcon.setAttribute('data-lucide', 'moon');
+                // Repaint icons after possible attribute change
+                if (window.lucide) window.lucide.createIcons();
+            }
+
+            themeToggle.addEventListener('click', () => {
+                html.classList.toggle('light-mode');
+                const isLight = html.classList.contains('light-mode');
+                themeToggle.setAttribute('aria-pressed', String(isLight));
+                themeIcon.setAttribute('data-lucide', isLight ? 'moon' : 'sun');
+                
+                if (window.lucide) window.lucide.createIcons();
+                localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            });
+        });
+    </script>
 </body>
 </html>
