@@ -1,0 +1,95 @@
+Kebijakan Privasi — MetaFast for Arabsstock
+
+MetaFast for Arabsstock menghargai privasi pengguna dan berkomitmen melindungi data yang Anda masukkan saat menggunakan ekstensi ini. Dokumen ini menjelaskan jenis data apa yang diproses, bagaimana digunakan, serta hak-hak Anda sebagai pengguna.
+
+1. Data yang Dikumpulkan dan Disimpan
+
+Ekstensi ini dirancang dengan prinsip minimisasi data: hanya memproses informasi yang benar-benar diperlukan untuk menjalankan fungsinya.
+
+Data yang disimpan secara lokal di browser Anda
+
+API key (Google Gemini / OpenAI) yang Anda masukkan.
+
+Preferensi pengguna: jumlah kata kunci, strategi kata kunci (single/two-word), blacklist, bahasa, delay, dan setelan lisensi.
+
+Status lisensi (aktivasi/reset perangkat).
+Semua data ini disimpan menggunakan chrome.storage.local dan tidak dikirim ke server developer.
+
+Data yang diproses secara sementara
+
+Konten situs pada halaman contributor Arab Stock: teks judul, kata kunci, dan kategori.
+
+Gambar yang Anda pilih untuk diproses dapat diubah menjadi string base64 di sisi klien bila diperlukan untuk mengirim permintaan ke API AI (hanya jika Anda memilih menggunakan Gemini/OpenAI).
+
+Data yang tidak dikumpulkan
+
+Tidak mengakses nama, email, password, alamat, atau informasi identitas pribadi.
+
+Tidak membaca data keuangan atau pembayaran.
+
+Tidak memantau riwayat browsing, klik, scroll, atau aktivitas pengguna di luar halaman contributor Arab Stock.
+
+Tidak mengakses lokasi, kamera, atau mikrofon Anda.
+
+2. Cara Penggunaan Data
+
+Otomatisasi metadata: data teks pada halaman contributor digunakan untuk membuat judul, kata kunci, dan kategori secara otomatis sesuai pengaturan pengguna.
+
+Penyimpanan preferensi: pengaturan disimpan secara lokal agar tidak perlu diatur ulang setiap kali.
+
+API pihak ketiga: API key yang Anda masukkan digunakan hanya untuk memanggil layanan resmi Google Gemini atau OpenAI. Permintaan dikirim langsung dari browser Anda ke server resmi penyedia layanan.
+
+Lisensi: jika fitur lisensi diaktifkan, ekstensi dapat mengirim request ke endpoint yang Anda pilih (misalnya Google Apps Script) untuk memvalidasi lisensi. Hanya data minimum (misalnya license key dan ID instalasi) yang dikirim.
+
+3. Pihak Ketiga
+
+Ekstensi ini dapat berinteraksi dengan layanan pihak ketiga berikut (jika pengguna mengaktifkan):
+
+Google Gemini API (generativelanguage.googleapis.com).
+
+OpenAI API (api.openai.com).
+
+Google Apps Script (untuk validasi lisensi, opsional).
+
+Setiap layanan pihak ketiga tersebut memiliki kebijakan privasi masing-masing. Kami menganjurkan Anda membaca kebijakan privasi penyedia layanan tersebut.
+
+4. Keamanan Data
+
+Semua data sensitif (seperti API key) disimpan lokal di browser melalui chrome.storage.local.
+
+Data tidak pernah dikirim ke server developer tanpa persetujuan pengguna.
+
+Kami menyarankan pengguna untuk membuat API key khusus untuk ekstensi ini, bukan API key utama produksi.
+
+Kami tidak menjual, menyewakan, atau membagikan data pengguna kepada pihak ketiga untuk iklan, pemasaran, atau tujuan lain di luar fungsi utama ekstensi.
+
+5. Hak Pengguna
+
+Sebagai pengguna, Anda berhak untuk:
+
+Menghapus data kapan saja dengan menghapus ekstensi atau membersihkan storage browser.
+
+Mengganti atau mencabut API key kapan saja.
+
+Menolak memasukkan data opsional seperti blacklist kata kunci atau lisensi.
+
+6. Pengungkapan Sesuai Chrome Web Store
+
+Sesuai dengan kebijakan Chrome Web Store:
+
+Ekstensi ini hanya mengakses konten situs pada halaman contributor Arab Stock (judul, tag, kategori).
+
+Ekstensi ini tidak mengakses identitas pribadi, keuangan, kesehatan, autentikasi, komunikasi pribadi, lokasi, histori web, maupun aktivitas pengguna di luar situs target.
+
+Pengungkapan ini sesuai dengan kategori “Konten situs” di form Chrome Web Store.
+
+7. Perubahan Kebijakan
+
+Kami dapat memperbarui kebijakan privasi ini dari waktu ke waktu. Jika ada perubahan material, akan kami umumkan melalui halaman publik atau repositori ekstensi sebelum diberlakukan.
+
+8. Kontak
+
+Jika ada pertanyaan, permintaan akses, atau keluhan mengenai privasi, silakan hubungi kami melalui email:
+📧 andyazizsaputra@gmail.com
+
+👉 Dengan menginstal dan menggunakan MetaFast for Arabsstock, Anda menyatakan telah membaca, memahami, dan menyetujui kebijakan privasi ini.
