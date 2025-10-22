@@ -618,6 +618,9 @@ body {
   .navbar .nav a {
     margin-left: 0.8rem;
   }
+  .hero {
+    padding-top: 6rem;
+  }
   .hero h1 {
     font-size: 2.2rem;
   }
