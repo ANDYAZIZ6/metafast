@@ -619,7 +619,7 @@ body {
     margin-left: 0.8rem;
   }
   .hero {
-    padding-top: 6rem;
+    padding-top: 8rem;
   }
   .hero h1 {
     font-size: 2.2rem;
@@ -631,6 +631,23 @@ body {
   }
   .pricing-card.featured {
     transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero .container {
+    width: 100%;
+    padding: 0 1.75rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
   }
 }
 
