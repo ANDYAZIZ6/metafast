@@ -185,15 +185,15 @@ body {
   background-color: var(--accent);
   color: var(--dark);
 }
-.primary-btn:hover {
-  background-color: #f8c53a;
-}
-.secondary-btn {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-}
+  .primary-btn:hover {
+    background-color: #f8c53a;
+  }
+  .secondary-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+  }
 .secondary-btn:hover {
   background-color: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.6);
@@ -217,10 +217,22 @@ body {
   border: 2px solid var(--primary);
 }
 
-.pricing .secondary-btn:hover {
-  background-color: var(--primary);
-  color: #fff;
-}
+  .pricing .secondary-btn:hover {
+    background-color: var(--primary);
+    color: #fff;
+  }
+
+  .hero .secondary-btn {
+    background-color: rgba(255, 255, 255, 0.92);
+    color: var(--primary);
+    border-color: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  }
+
+  .hero .secondary-btn:hover {
+    background-color: #fff;
+    border-color: #fff;
+  }
 
 /* Biar tombol di kartu pricing melebar penuh */
 .pricing-card-new .btn,
