@@ -54,18 +54,21 @@ body {
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 4px var(--shadow);
 }
+
 .navbar .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.8rem 0;
 }
+
 .navbar .logo {
   font-size: 1.6rem;
   font-weight: 700;
   color: var(--primary);
   text-decoration: none;
 }
+
 .navbar .nav a {
   margin-left: 1.2rem;
   color: var(--muted);
@@ -73,9 +76,11 @@ body {
   font-weight: 500;
   transition: color 0.2s ease;
 }
+
 .navbar .nav a:hover {
   color: var(--primary);
 }
+
 .navbar .nav .cta-btn {
   margin-left: 2rem;
   padding: 0.6rem 1.1rem;
@@ -86,6 +91,7 @@ body {
   text-decoration: none;
   transition: background-color 0.2s ease;
 }
+
 .navbar .nav .cta-btn:hover {
   background-color: var(--secondary);
 }
@@ -102,6 +108,7 @@ body {
   text-align: center;
   overflow: hidden;
 }
+
 .hero .hero-bg {
   position: absolute;
   top: 0;
@@ -112,6 +119,7 @@ body {
   animation: gradientShift 15s ease infinite;
   z-index: -2;
 }
+
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%;
@@ -123,6 +131,7 @@ body {
     background-position: 0% 50%;
   }
 }
+
 .hero::before {
   content: "";
   position: absolute;
@@ -133,11 +142,13 @@ body {
   background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.2) 100%);
   z-index: -1;
 }
+
 .hero .hero-content {
   max-width: 700px;
   padding: 0 1rem;
   animation: fadeInUp 1s ease-out;
 }
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -148,6 +159,7 @@ body {
     transform: translateY(0);
   }
 }
+
 .hero h1 {
   font-size: 2.8rem;
   font-weight: 700;
@@ -155,18 +167,21 @@ body {
   margin-bottom: 1rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
+
 .hero p {
   font-size: 1.2rem;
   margin-bottom: 2rem;
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
+
 .hero-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
 }
+
 .btn {
   display: inline-block;
   padding: 0.8rem 1.4rem;
@@ -177,23 +192,28 @@ body {
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
+
 .primary-btn {
   background-color: var(--accent);
   color: var(--dark);
 }
-  .primary-btn:hover {
-    background-color: #f8c53a;
-  }
-  .secondary-btn {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(10px);
-  }
+
+.primary-btn:hover {
+  background-color: #f8c53a;
+}
+
+.secondary-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+}
+
 .secondary-btn:hover {
   background-color: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.6);
@@ -217,29 +237,29 @@ body {
   border: 2px solid var(--primary);
 }
 
-  .pricing .secondary-btn:hover {
-    background-color: var(--primary);
-    color: #fff;
-  }
+.pricing .secondary-btn:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
 
-  .hero .secondary-btn {
-    background-color: rgba(255, 255, 255, 0.92);
-    color: var(--primary);
-    border-color: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-  }
+.hero .secondary-btn {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--primary);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+}
 
-  .hero .secondary-btn:hover {
-    background-color: #fff;
-    border-color: #fff;
-  }
+.hero .secondary-btn:hover {
+  background-color: #fff;
+  border-color: #fff;
+}
 
 /* Biar tombol di kartu pricing melebar penuh */
 .pricing-card-new .btn,
 .pricing-card .btn {
   width: 100%;
 }
-
 
 /* Trust bar */
 .trust-bar {
@@ -248,16 +268,19 @@ body {
   text-align: center;
   font-size: 0.95rem;
 }
+
 .trust-bar .trust-text {
   color: var(--muted);
   font-weight: 500;
   margin-bottom: 0.5rem;
 }
+
 .trust-avatars {
   display: flex;
   justify-content: center;
   gap: 0.6rem;
 }
+
 .trust-avatars .avatar {
   width: 22px;
   height: 22px;
@@ -278,12 +301,14 @@ body {
 .features {
   padding: 4rem 0;
 }
+
 .feature-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 1.8rem;
   justify-content: center;
 }
+
 .feature-item {
   flex: 1;
   min-width: 260px;
@@ -293,14 +318,17 @@ body {
   box-shadow: 0 4px 8px var(--shadow);
   transition: transform 0.2s ease;
 }
+
 .feature-item:hover {
   transform: translateY(-4px);
 }
+
 .feature-item h3 {
   font-size: 1.4rem;
   margin-bottom: 0.6rem;
   color: var(--primary);
 }
+
 .feature-item p {
   font-size: 0.95rem;
   color: var(--muted);
@@ -311,12 +339,14 @@ body {
   padding: 4rem 0;
   background-color: #f5f6fb;
 }
+
 .comparison-section table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
   box-shadow: 0 2px 4px var(--shadow);
 }
+
 .comparison-section th,
 .comparison-section td {
   padding: 0.9rem 0.6rem;
@@ -324,16 +354,20 @@ body {
   text-align: center;
   font-size: 0.95rem;
 }
+
 .comparison-section thead {
   background-color: var(--primary);
   color: #fff;
 }
+
 .comparison-section tbody tr:nth-child(even) {
   background-color: #ffffff;
 }
+
 .comparison-section tbody tr:nth-child(odd) {
   background-color: #fafafa;
 }
+
 .comparison-section td:first-child {
   font-weight: 500;
   text-align: left;
@@ -343,44 +377,53 @@ body {
 .demo {
   padding: 4rem 0;
 }
+
 .demo-grid {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 2rem;
 }
+
 .demo-image {
   flex: 1 1 400px;
   text-align: center;
 }
+
 .demo-image img {
   max-width: 100%;
   border-radius: var(--radius);
   box-shadow: 0 4px 8px var(--shadow);
 }
+
 .demo-content {
   flex: 1 1 400px;
 }
+
 .demo-content p {
   font-size: 1rem;
   color: var(--muted);
   margin-bottom: 1.5rem;
 }
+
 .demo-stats {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
 }
+
 .stat {
   flex: 1;
   min-width: 120px;
 }
+
 .stat-value {
   display: block;
   font-size: 2rem;
   font-weight: 700;
   color: var(--primary);
 }
+
 .stat-label {
   font-size: 0.85rem;
   color: var(--muted);
@@ -391,17 +434,20 @@ body {
   padding: 4rem 0;
   background-color: #f5f6fb;
 }
+
 .pricing-intro {
   text-align: center;
   color: var(--muted);
   margin-bottom: 2rem;
 }
+
 .pricing-cards {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
 }
+
 .pricing-card {
   background: #fff;
   padding: 2rem 1.5rem;
@@ -413,43 +459,53 @@ body {
   max-width: 320px;
   text-align: center;
 }
+
 .pricing-card.featured {
   background: linear-gradient(180deg, var(--secondary) 0%, var(--primary) 100%);
   color: #fff;
   transform: translateY(-10px);
 }
+
 .pricing-card.featured .plan-price,
 .pricing-card.featured .plan-features li {
   color: #fff;
 }
+
 .pricing-card h3 {
   margin-bottom: 0.5rem;
   font-size: 1.4rem;
 }
+
 .pricing-card .plan-price {
   font-size: 1.8rem;
   margin-bottom: 1rem;
   font-weight: 700;
   color: var(--primary);
 }
+
 .pricing-card.featured .plan-price {
   color: #fff;
 }
+
 .plan-features {
   list-style: none;
   margin-bottom: 1.5rem;
 }
+
 .plan-features li {
   margin: 0.5rem 0;
   font-size: 0.9rem;
   color: var(--muted);
 }
+
 .pricing-card.featured .plan-features li {
   color: #eae6ff;
 }
+
 .pricing-card .btn.small {
   margin-top: 0.5rem;
 }
+
 .badge {
   position: absolute;
   top: -12px;
@@ -467,25 +523,30 @@ body {
 .download {
   padding: 4rem 0;
 }
+
 .download-wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
 }
+
 .download-content {
   max-width: 500px;
 }
+
 .requirements {
   list-style: none;
   margin: 1rem 0 1.5rem 0;
 }
+
 .requirements li {
   padding-left: 1.2rem;
   margin-bottom: 0.4rem;
   position: relative;
   color: var(--muted);
 }
+
 .requirements li::before {
   content: "";
   position: absolute;
@@ -496,12 +557,14 @@ body {
   background-color: var(--primary);
   border-radius: 50%;
 }
+
 .download-links {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 1rem;
 }
+
 .version-info {
   font-size: 0.85rem;
   color: var(--muted);
@@ -512,22 +575,26 @@ body {
   padding: 4rem 0;
   background-color: #f5f6fb;
 }
+
 .faq-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
 }
+
 .faq-item {
   flex: 1;
   min-width: 260px;
   max-width: 480px;
 }
+
 .faq-item h4 {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
   color: var(--primary);
 }
+
 .faq-item p {
   font-size: 0.95rem;
   color: var(--muted);
@@ -537,12 +604,14 @@ body {
 .testimonials {
   padding: 4rem 0;
 }
+
 .testimonial-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
 }
+
 .testimonial-item {
   flex: 1;
   min-width: 260px;
@@ -552,6 +621,7 @@ body {
   border-radius: var(--radius);
   box-shadow: 0 4px 8px var(--shadow);
 }
+
 .testimonial-avatar {
   width: 50px;
   height: 50px;
@@ -559,16 +629,19 @@ body {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   margin-bottom: 0.8rem;
 }
+
 .testimonial-name {
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--dark);
 }
+
 .testimonial-title {
   font-size: 0.85rem;
   color: var(--muted);
   margin-bottom: 0.7rem;
 }
+
 .testimonial-quote {
   font-size: 0.95rem;
   color: var(--muted);
@@ -582,18 +655,22 @@ body {
   color: #fff;
   text-align: center;
 }
+
 .final-cta h2 {
   font-size: 2rem;
   margin-bottom: 0.6rem;
 }
+
 .final-cta p {
   font-size: 1rem;
   margin-bottom: 1.5rem;
 }
+
 .final-cta .primary-btn {
   background-color: #fff;
   color: var(--primary);
 }
+
 .final-cta .primary-btn:hover {
   background-color: #f3f3f3;
 }
@@ -604,23 +681,28 @@ body {
   padding: 2rem 0;
   font-size: 0.85rem;
 }
+
 .footer-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.8rem;
 }
+
 .footer-content p {
   color: var(--muted);
 }
+
 .footer-nav {
   display: flex;
   gap: 1rem;
 }
+
 .footer-nav a {
   color: var(--muted);
   text-decoration: none;
 }
+
 .footer-nav a:hover {
   color: var(--primary);
 }
@@ -630,19 +712,23 @@ body {
   .navbar .nav a {
     margin-left: 0.8rem;
   }
+
   .hero {
     padding-top: 9rem;
     padding-bottom: 4rem;
     min-height: 520px;
   }
+
   .hero h1 {
     font-size: 2.2rem;
   }
+
   .demo-grid,
   .pricing-cards {
     flex-direction: column;
     align-items: center;
   }
+
   .pricing-card.featured {
     transform: none;
   }
@@ -650,6 +736,10 @@ body {
 
 /* === Navbar: satukan "Mulai" di sebelah menu lainnya (mobile) === */
 @media (max-width: 640px) {
+  .navbar {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+
   .navbar .container {
     flex-direction: column;
     align-items: stretch;
@@ -660,6 +750,7 @@ body {
   .navbar .logo {
     font-size: 1.5rem;
     margin-bottom: 0.2rem;
+    text-align: center;
   }
 
   .navbar .nav {
@@ -667,16 +758,17 @@ body {
     align-items: center;
     flex-wrap: wrap;
     gap: 0.5rem;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .navbar .nav a {
     margin: 0;
     font-size: 0.9rem;
-    padding: 0.4rem 0.6rem;
+    padding: 0.5rem 0.8rem;
     line-height: 1.3;
     border-radius: 6px;
     transition: background-color 0.2s ease;
+    white-space: nowrap;
   }
 
   .navbar .nav a:not(.cta-btn):hover {
@@ -685,37 +777,106 @@ body {
 
   .navbar .nav .cta-btn {
     margin: 0;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
     border-radius: 6px;
     flex-shrink: 0;
+    min-width: fit-content;
   }
 
+  /* PERBAIKAN HERO UNTUK MOBILE */
   .hero {
     height: auto;
     min-height: 0;
     padding-top: calc(11rem + env(safe-area-inset-top, 0px));
+    padding-bottom: 4rem;
   }
 
   .hero .hero-content {
     padding: 0 1.5rem;
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  /* PERBAIKAN UTAMA: Container tombol hero */
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* PENTING: Tombol hero harus visible dan mudah diklik */
+  .hero-buttons .btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+    min-height: 48px;
+  }
+
+  /* Tombol primary (Grup Whatsapp) */
+  .hero .primary-btn {
+    background-color: var(--accent);
+    color: var(--dark);
+    border: 2px solid var(--accent);
+    order: 1;
+  }
+
+  /* Tombol secondary (Lihat Fitur) */
+  .hero .secondary-btn {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--primary);
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    order: 2;
+    font-weight: 600;
+  }
+
+  .hero .secondary-btn:hover {
+    background-color: #ffffff;
+    border-color: #ffffff;
   }
 }
 
+/* Untuk layar sangat kecil (iPhone SE, dll) */
 @media (max-width: 480px) {
-  .hero .hero-content {
-    width: 100%;
-    padding: 0 1.9rem;
+  .hero {
+    padding-top: calc(12rem + env(safe-area-inset-top, 0px));
+    padding-bottom: 3rem;
   }
 
-  .hero-buttons {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.75rem;
+  .hero .hero-content {
+    width: 100%;
+    padding: 0 1.2rem;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
   }
 
   .hero-buttons .btn {
-    width: 100%;
+    padding: 0.95rem 1.2rem;
+    font-size: 0.95rem;
+    min-height: 48px;
   }
 }
 
@@ -740,8 +901,16 @@ body {
   }
 }
 
-/* === BAGIAN ANIMASI BARU === */
+/* Untuk iPhone dengan notch (safe area) */
+@supports (padding: env(safe-area-inset-top)) {
+  @media (max-width: 640px) {
+    .hero {
+      padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+    }
+  }
+}
 
+/* === BAGIAN ANIMASI BARU === */
 /* Pengaturan umum untuk animasi saat scroll */
 .animate-on-scroll {
   opacity: 0;
@@ -767,31 +936,19 @@ body {
 
 /* Mencegah konflik pada kartu yang sudah memiliki style 'featured' */
 .pricing-card-new.featured:hover, .comparison-card.featured-new:hover {
-    transform: scale(1.02); /* Pertahankan efek scale asli */
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
+
 .pricing-card-new.featured, .comparison-card.featured-new {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-
-/* Animasi keyframe untuk efek fade-in dari bawah */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Terapkan animasi pada elemen di dalam hero section */
 .hero-content > * {
   animation-name: fadeInUp;
   animation-duration: 0.8s;
-  animation-fill-mode: both; /* Pertahankan state akhir animasi */
+  animation-fill-mode: both;
   animation-timing-function: ease-out;
 }
 
