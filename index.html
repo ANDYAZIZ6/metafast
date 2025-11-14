@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MetaFast – Metadata AI Otomatis untuk Kontributor Stok</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=2.1" />
     <link rel="icon" href="images/favicon.png" type="image/png">
     <style>
       .comparison-section-new {
         padding: 4rem 0;
-        background-color: #f5f6fb;
+        background: rgba(31, 41, 55, 0.3);
       }
       .comparison-grid {
         display: grid;
@@ -18,21 +18,29 @@
         align-items: stretch;
       }
       .comparison-card {
-        background: #fff;
+        background: rgba(31, 41, 55, 0.5);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(55, 65, 81, 0.5);
         padding: 2rem 1.5rem;
         border-radius: var(--radius);
         box-shadow: 0 4px 8px var(--shadow);
         display: flex;
         flex-direction: column;
+        transition: all 0.3s ease;
+      }
+      .comparison-card:hover {
+        border-color: rgba(16, 185, 129, 0.5);
+        box-shadow: var(--shadow-emerald);
+        transform: translateY(-4px);
       }
       .comparison-card h3 {
         font-size: 1.8rem;
-        color: var(--primary);
+        color: var(--primary-light);
         margin-bottom: 0.25rem;
       }
       .comparison-card .tagline-new {
         font-weight: 500;
-        color: var(--muted);
+        color: var(--primary-light);
         margin-bottom: 1.5rem;
         font-style: italic;
       }
@@ -48,11 +56,12 @@
       }
       .comparison-card ul li {
         margin-bottom: 0.75rem;
-        color: var(--muted);
+        color: var(--text-secondary);
         font-size: 0.95rem;
       }
       .comparison-card.featured-new {
         border: 2px solid var(--primary);
+        background: rgba(31, 41, 55, 0.7);
         transform: scale(1.02);
       }
       /* Styling untuk bagian harga yang baru */
@@ -64,21 +73,29 @@
         align-items: stretch;
       }
       .pricing-card-new {
-        background: #fff;
+        background: rgba(31, 41, 55, 0.5);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(55, 65, 81, 0.5);
         padding: 2rem;
         border-radius: var(--radius);
         box-shadow: 0 4px 8px var(--shadow);
         display: flex;
         flex-direction: column;
         position: relative;
+        transition: all 0.3s ease;
+      }
+      .pricing-card-new:hover {
+        border-color: rgba(16, 185, 129, 0.5);
+        box-shadow: var(--shadow-emerald);
       }
       .pricing-card-new.featured {
         border: 2px solid var(--primary);
+        background: rgba(31, 41, 55, 0.7);
         transform: scale(1.02);
       }
        .pricing-card-new h3 {
         font-size: 1.8rem;
-        color: var(--dark);
+        color: var(--text);
         margin-bottom: 1.5rem;
         text-align: center;
       }
@@ -88,7 +105,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 1rem 0;
-        border-bottom: 1px solid #e5e7f1;
+        border-bottom: 1px solid rgba(55, 65, 81, 0.5);
       }
        .pricing-tier:last-of-type {
         border-bottom: none;
@@ -96,7 +113,7 @@
       .tier-duration {
         font-weight: 600;
         font-size: 1.1rem;
-        color: var(--primary);
+        color: var(--primary-light);
       }
       .tier-price {
         font-weight: 500;
@@ -108,12 +125,12 @@
         text-align: right;
         font-size: 0.85rem;
         font-style: italic;
-        color: var(--accent);
+        color: var(--primary-light);
         font-weight: 600;
         padding-top: 0.25rem;
       }
       .pricing-card-new .btn {
-        margin-top: auto; /* Mendorong tombol ke bawah */
+        margin-top: auto;
         padding-top: 1rem;
         padding-bottom: 1rem;
       }
@@ -134,17 +151,20 @@
       .spotlight-image img {
         width: 100%;
         border-radius: var(--radius);
-        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        box-shadow: var(--shadow-emerald);
       }
       .spotlight-content h3 {
         font-size: 2rem;
-        color: var(--dark);
+        color: var(--text);
         margin-bottom: 1rem;
       }
       .spotlight-content p {
         font-size: 1.1rem;
-        color: var(--muted);
+        color: var(--text-secondary);
         margin-bottom: 1.5rem;
+      }
+      .spotlight-content .tagline {
+        color: var(--primary-light);
       }
 
       @media (max-width: 768px) {
