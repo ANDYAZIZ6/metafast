@@ -4,14 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MetaFast for Adobe Stock – Ekstensi Browser AI untuk Kontributor</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=2.1" />
     <link rel="icon" href="images/icon.png" type="image/png">
     <style>
       .extension-hero {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: transparent;
+        position: relative;
         color: white;
         padding: 5rem 0 4rem;
         text-align: center;
+        overflow: hidden;
+      }
+      .extension-hero::before,
+      .extension-hero::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.2;
+        animation: float 20s ease-in-out infinite;
+        z-index: -1;
+      }
+      .extension-hero::before {
+        top: -50px;
+        left: 10%;
+        width: 400px;
+        height: 400px;
+        background: var(--primary);
+      }
+      .extension-hero::after {
+        bottom: -50px;
+        right: 10%;
+        width: 500px;
+        height: 500px;
+        background: var(--secondary);
+        animation-delay: 5s;
       }
       .extension-hero h1 {
         font-size: 2.8rem;
@@ -20,19 +47,20 @@
       }
       .extension-hero .tagline {
         font-size: 1.3rem;
-        opacity: 0.95;
+        color: var(--primary-light);
         margin-bottom: 2rem;
+        font-weight: 600;
       }
       .extension-hero p {
         font-size: 1.1rem;
         max-width: 800px;
         margin: 0 auto 2rem;
-        opacity: 0.9;
+        color: var(--text-secondary);
       }
 
       .extension-features {
         padding: 4rem 0;
-        background-color: #fff;
+        background: transparent;
       }
 
       .feature-showcase {
@@ -55,7 +83,7 @@
       .feature-image {
         border-radius: var(--radius);
         overflow: hidden;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        box-shadow: var(--shadow-emerald);
       }
 
       .feature-image img {
@@ -65,13 +93,13 @@
 
       .feature-description h3 {
         font-size: 2rem;
-        color: var(--primary);
+        color: var(--primary-light);
         margin-bottom: 1rem;
       }
 
       .feature-description p {
         font-size: 1.1rem;
-        color: var(--muted);
+        color: var(--text-secondary);
         line-height: 1.7;
         margin-bottom: 1rem;
       }
@@ -96,7 +124,7 @@
       }
 
       .benefits-section {
-        background-color: #f5f6fb;
+        background: rgba(31, 41, 55, 0.3);
         padding: 4rem 0;
       }
 
@@ -108,11 +136,20 @@
       }
 
       .benefit-card {
-        background: white;
+        background: rgba(31, 41, 55, 0.5);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(55, 65, 81, 0.5);
         padding: 2rem;
         border-radius: var(--radius);
         box-shadow: 0 4px 8px var(--shadow);
         text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .benefit-card:hover {
+        border-color: rgba(16, 185, 129, 0.5);
+        box-shadow: var(--shadow-emerald);
+        transform: translateY(-4px);
       }
 
       .benefit-icon {
@@ -122,19 +159,19 @@
 
       .benefit-card h4 {
         font-size: 1.4rem;
-        color: var(--dark);
+        color: var(--text);
         margin-bottom: 0.75rem;
       }
 
       .benefit-card p {
-        color: var(--muted);
+        color: var(--text-secondary);
         font-size: 1rem;
         line-height: 1.6;
       }
 
       .how-it-works {
         padding: 4rem 0;
-        background-color: #fff;
+        background: transparent;
       }
 
       .steps-container {
@@ -164,17 +201,17 @@
 
       .step-card h4 {
         font-size: 1.3rem;
-        color: var(--dark);
+        color: var(--text);
         margin-bottom: 0.5rem;
       }
 
       .step-card p {
-        color: var(--muted);
+        color: var(--text-secondary);
         font-size: 1rem;
       }
 
       .cta-extension {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: transparent;
         color: white;
         padding: 4rem 0;
         text-align: center;
