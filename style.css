@@ -1063,11 +1063,11 @@ body {
   color: var(--text-secondary) !important;
 }
 
-/* === FIX LINK VISIBILITY - EMERALD THEME === */
-/* Override default browser link colors */
+/* === FIX LINK VISIBILITY - WHITE LINKS === */
+/* Override default browser link colors to WHITE */
 a:link,
 a:visited {
-  color: var(--primary-light) !important;
+  color: #ffffff !important;
 }
 
 a:hover,
@@ -1075,9 +1075,9 @@ a:active {
   color: var(--accent) !important;
 }
 
-/* Semua link harus terlihat dengan warna emerald terang */
+/* Semua link harus terlihat dengan warna PUTIH */
 a {
-  color: var(--primary-light) !important;
+  color: #ffffff !important;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -1097,7 +1097,7 @@ p a:visited,
 .feature-description a,
 .feature-description a:link,
 .feature-description a:visited {
-  color: var(--primary-light) !important;
+  color: #ffffff !important;
   font-weight: 600;
   text-decoration: underline;
 }
