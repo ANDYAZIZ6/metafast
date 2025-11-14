@@ -1062,3 +1062,60 @@ body {
 .trust-bar .trust-text {
   color: var(--text-secondary) !important;
 }
+
+/* === FIX LINK VISIBILITY === */
+/* Semua link harus terlihat dengan warna emerald terang */
+a {
+  color: var(--primary-light) !important;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent) !important;
+  text-decoration: underline;
+}
+
+/* Link di dalam paragraf dan text */
+p a,
+.step-card a,
+.feature-description a {
+  color: var(--primary-light) !important;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+p a:hover,
+.step-card a:hover,
+.feature-description a:hover {
+  color: var(--accent) !important;
+}
+
+/* Link di navbar tetap seperti sebelumnya */
+.navbar a {
+  color: var(--text-secondary) !important;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  color: var(--primary-light) !important;
+}
+
+/* Button links tetap dengan style button */
+.btn {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.btn.secondary-btn {
+  color: var(--primary-light) !important;
+}
+
+/* Footer links */
+.footer-nav a {
+  color: var(--text-secondary) !important;
+}
+
+.footer-nav a:hover {
+  color: var(--primary-light) !important;
+}
