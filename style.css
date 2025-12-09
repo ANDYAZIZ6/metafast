@@ -1063,89 +1063,59 @@ body {
   color: var(--text-secondary) !important;
 }
 
-/* === FIX LINK VISIBILITY - WHITE LINKS === */
-/* Override default browser link colors to WHITE */
-a:link,
-a:visited {
-  color: #ffffff !important;
-}
-
-a:hover,
-a:active {
-  color: var(--accent) !important;
-}
-
-/* Semua link harus terlihat dengan warna PUTIH */
+/* === LINK STYLES === */
+/* Default link styling */
 a {
-  color: #ffffff !important;
+  color: var(--primary-light);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: var(--accent) !important;
+  color: var(--secondary-light);
   text-decoration: underline;
 }
 
-/* Link di dalam paragraf dan text - EXTRA SPECIFIC */
+/* Links inside paragraphs should be more distinct */
 p a,
-p a:link,
-p a:visited,
 .step-card p a,
-.step-card p a:link,
-.step-card p a:visited,
-.feature-description a,
-.feature-description a:link,
-.feature-description a:visited {
-  color: #ffffff !important;
+.feature-description a {
   font-weight: 600;
   text-decoration: underline;
 }
 
-p a:hover,
-p a:active,
-.step-card p a:hover,
-.step-card p a:active,
-.feature-description a:hover,
-.feature-description a:active {
-  color: var(--accent) !important;
+/* Override for specific components */
+.navbar .nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
 }
 
-/* Link di navbar tetap seperti sebelumnya */
-.navbar a,
-.navbar a:link,
-.navbar a:visited {
-  color: var(--text-secondary) !important;
+.navbar .nav a:hover,
+.navbar .nav a.active {
+  color: var(--primary-light);
 }
 
-.navbar a:hover,
-.navbar a:active,
-.navbar a.active {
-  color: var(--primary-light) !important;
-}
-
-/* Button links tetap dengan style button */
 .btn,
-.btn:link,
-.btn:visited {
-  color: #fff !important;
-  text-decoration: none !important;
+.btn:hover {
+  color: #fff;
+  text-decoration: none;
 }
 
-.btn.secondary-btn,
-.btn.secondary-btn:link,
-.btn.secondary-btn:visited {
-  color: var(--primary-light) !important;
+.secondary-btn,
+.secondary-btn:hover {
+  color: var(--primary-light);
 }
 
-/* Footer links */
-.footer-nav a,
-.footer-nav a:link,
-.footer-nav a:visited {
-  color: var(--text-secondary) !important;
+.hero .secondary-btn,
+.hero .secondary-btn:hover {
+    color: var(--primary);
 }
 
-.footer-nav a:hover,
-.footer-nav a:active {
-  color: var(--primary-light) !important;
+.footer-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  color: var(--primary);
 }
