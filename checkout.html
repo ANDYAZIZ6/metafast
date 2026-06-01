@@ -242,6 +242,291 @@
       pointer-events: none;
     }
 
+    body.checkout-busy {
+      overflow: hidden;
+    }
+
+    .checkout-loading-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top, rgba(82, 224, 185, 0.18), transparent 28%),
+        rgba(6, 16, 30, 0.84);
+      backdrop-filter: blur(18px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+      z-index: 1200;
+    }
+
+    .checkout-loading-overlay.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .checkout-loading-card {
+      width: min(100%, 560px);
+      padding: 28px 26px 24px;
+      border-radius: 28px;
+      border: 1px solid rgba(138, 255, 222, 0.16);
+      background:
+        linear-gradient(180deg, rgba(14, 31, 55, 0.96), rgba(9, 21, 39, 0.96));
+      box-shadow:
+        0 34px 120px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      color: #eafaf6;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .checkout-loading-card::before,
+    .checkout-loading-card::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .checkout-loading-card::before {
+      width: 220px;
+      height: 220px;
+      right: -80px;
+      top: -88px;
+      background: radial-gradient(circle, rgba(76, 225, 188, 0.24), transparent 68%);
+    }
+
+    .checkout-loading-card::after {
+      width: 180px;
+      height: 180px;
+      left: -90px;
+      bottom: -94px;
+      background: radial-gradient(circle, rgba(94, 129, 255, 0.18), transparent 68%);
+    }
+
+    .checkout-loading-kicker {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(79, 219, 184, 0.12);
+      border: 1px solid rgba(119, 244, 213, 0.16);
+      color: #9ef5dc;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .checkout-loading-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #62e9c1;
+      box-shadow: 0 0 0 0 rgba(98, 233, 193, 0.42);
+      animation: loadingPulse 1.45s ease-in-out infinite;
+    }
+
+    .checkout-robot {
+      position: relative;
+      z-index: 1;
+      width: 176px;
+      margin: 0 auto 18px;
+    }
+
+    .checkout-robot-antenna {
+      width: 14px;
+      height: 30px;
+      margin: 0 auto;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #91f8df, #4bcfad);
+      transform-origin: bottom center;
+      animation: antennaWave 2.2s ease-in-out infinite;
+    }
+
+    .checkout-robot-antenna::before {
+      content: "";
+      display: block;
+      width: 26px;
+      height: 26px;
+      margin: -10px auto 0;
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, #ffffff, #85eed1 45%, #34b291 100%);
+      box-shadow: 0 0 22px rgba(109, 255, 216, 0.36);
+    }
+
+    .checkout-robot-head {
+      position: relative;
+      margin-top: 8px;
+      padding: 24px 24px 26px;
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, rgba(25, 49, 83, 0.98), rgba(16, 34, 58, 0.98));
+      border: 1px solid rgba(140, 224, 255, 0.22);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 18px 34px rgba(0, 0, 0, 0.24);
+    }
+
+    .checkout-robot-face {
+      position: relative;
+      padding: 18px 18px 20px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(9, 20, 37, 0.92), rgba(5, 14, 27, 0.94));
+      border: 1px solid rgba(113, 175, 255, 0.14);
+    }
+
+    .checkout-robot-eyes {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+
+    .checkout-robot-eye {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #f7fffd, #dbf9f0);
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 -5px 10px rgba(44, 120, 95, 0.12);
+    }
+
+    .checkout-robot-pupil {
+      position: absolute;
+      inset: 10px;
+      margin: auto;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, #9ffce0, #35ca97 70%, #1a6f57 100%);
+      transform: translate(calc(var(--robot-look-x, 0px) * 0.65), calc(var(--robot-look-y, 0px) * 0.65));
+      transition: transform 0.12s linear;
+      box-shadow: 0 0 0 3px rgba(63, 198, 150, 0.16);
+    }
+
+    .checkout-robot-mouth {
+      width: 64px;
+      height: 14px;
+      margin: 0 auto;
+      border-radius: 999px 999px 20px 20px;
+      border: 3px solid rgba(120, 244, 206, 0.78);
+      border-top: 0;
+      animation: mouthBounce 1.8s ease-in-out infinite;
+    }
+
+    .checkout-loading-title,
+    .checkout-loading-copy,
+    .checkout-loading-status,
+    .checkout-loading-tip {
+      position: relative;
+      z-index: 1;
+    }
+
+    .checkout-loading-title {
+      margin: 0 0 10px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.55rem, 3vw, 2.1rem);
+      color: #ffffff;
+    }
+
+    .checkout-loading-copy {
+      margin: 0 auto 14px;
+      max-width: 430px;
+      color: rgba(228, 241, 255, 0.78);
+      line-height: 1.72;
+      font-size: 0.96rem;
+    }
+
+    .checkout-loading-status {
+      min-height: 24px;
+      margin-bottom: 14px;
+      color: #8ef2d4;
+      font-weight: 700;
+      font-size: 0.96rem;
+    }
+
+    .checkout-loading-progress {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .checkout-loading-progress-bar {
+      width: 42%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #4fdab8, #8ef5dd, #5cb6ff);
+      animation: progressSlide 1.15s ease-in-out infinite alternate;
+      box-shadow: 0 0 30px rgba(79, 218, 184, 0.42);
+    }
+
+    .checkout-loading-tip {
+      margin: 0;
+      color: rgba(205, 224, 240, 0.7);
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+
+    @keyframes loadingPulse {
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(98, 233, 193, 0.42);
+      }
+
+      50% {
+        transform: scale(1.12);
+        box-shadow: 0 0 0 10px rgba(98, 233, 193, 0);
+      }
+    }
+
+    @keyframes antennaWave {
+      0%,
+      100% {
+        transform: rotate(-8deg);
+      }
+
+      50% {
+        transform: rotate(10deg);
+      }
+    }
+
+    @keyframes mouthBounce {
+      0%,
+      100% {
+        transform: scaleX(0.96);
+      }
+
+      50% {
+        transform: scaleX(1.05) translateY(1px);
+      }
+    }
+
+    @keyframes progressSlide {
+      from {
+        transform: translateX(-8%);
+      }
+
+      to {
+        transform: translateX(140%);
+      }
+    }
+
     .summary-package {
       padding: 22px;
       border-radius: var(--radius-lg);
@@ -427,6 +712,14 @@
       .checkout-summary-card {
         padding: 24px;
       }
+
+      .checkout-loading-card {
+        padding: 24px 20px 22px;
+      }
+
+      .checkout-robot {
+        width: 152px;
+      }
     }
 
     @media (max-width: 640px) {
@@ -449,6 +742,21 @@
 
       .summary-package-price {
         text-align: left;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .checkout-loading-overlay,
+      .checkout-loading-dot,
+      .checkout-robot-antenna,
+      .checkout-robot-mouth,
+      .checkout-loading-progress-bar {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .checkout-robot-pupil {
+        transform: translate(0, 0) !important;
       }
     }
   </style>
@@ -646,6 +954,40 @@
     </div>
   </footer>
 
+  <div class="checkout-loading-overlay" id="loadingOverlay" aria-hidden="true">
+    <div class="checkout-loading-card" role="status" aria-live="polite" aria-atomic="true">
+      <div class="checkout-loading-kicker">
+        <span class="checkout-loading-dot"></span>
+        Menyiapkan pembayaran
+      </div>
+
+      <div class="checkout-robot" aria-hidden="true">
+        <div class="checkout-robot-antenna"></div>
+        <div class="checkout-robot-head">
+          <div class="checkout-robot-face">
+            <div class="checkout-robot-eyes">
+              <div class="checkout-robot-eye"><span class="checkout-robot-pupil"></span></div>
+              <div class="checkout-robot-eye"><span class="checkout-robot-pupil"></span></div>
+            </div>
+            <div class="checkout-robot-mouth"></div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="checkout-loading-title">Robot checkout lagi siap-siap.</h2>
+      <p class="checkout-loading-copy">
+        Mohon tunggu bentar ya. Kami lagi menyiapkan jalur aman ke Midtrans, mengecek paket yang kamu pilih, dan membuka halaman pembayaran secepat mungkin.
+      </p>
+      <div class="checkout-loading-status" id="loadingStatus">Menghubungkan ke gerbang pembayaran...</div>
+      <div class="checkout-loading-progress" aria-hidden="true">
+        <div class="checkout-loading-progress-bar"></div>
+      </div>
+      <p class="checkout-loading-tip">
+        Kalau kursor kamu digerakkan, robotnya ikut nengok. Tenang, ini cuma hiburan kecil sambil pembayaran diproses.
+      </p>
+    </div>
+  </div>
+
   <script>
     const DEFAULT_PAYMENT_API_BASE = "https://metafast-payment.andydandelion6.workers.dev";
     const runtimeApiBase = (window.METAFAST_PAYMENT_API_BASE || "").trim();
@@ -682,6 +1024,94 @@
     const summaryPackageName = document.getElementById("summaryPackageName");
     const summaryPackageBonus = document.getElementById("summaryPackageBonus");
     const summaryPackagePrice = document.getElementById("summaryPackagePrice");
+    const loadingOverlay = document.getElementById("loadingOverlay");
+    const loadingStatus = document.getElementById("loadingStatus");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const loadingMessages = [
+      "Menghubungkan ke gerbang pembayaran...",
+      "Merapikan detail paket supaya tidak keliru...",
+      "Membuka halaman Midtrans dengan aman...",
+      "Sebentar lagi kamu lanjut ke pilihan metode bayar..."
+    ];
+    let loadingMessageTimer = null;
+    let loadingMessageIndex = 0;
+    let robotAnimationFrame = null;
+    let robotLookCurrent = { x: 0, y: 0 };
+    let robotLookTarget = { x: 0, y: 0 };
+
+    function setRobotLook(x, y) {
+      document.documentElement.style.setProperty("--robot-look-x", `${x}px`);
+      document.documentElement.style.setProperty("--robot-look-y", `${y}px`);
+    }
+
+    function stopRobotTracking() {
+      if (robotAnimationFrame) {
+        cancelAnimationFrame(robotAnimationFrame);
+        robotAnimationFrame = null;
+      }
+
+      document.removeEventListener("pointermove", handleRobotPointerMove);
+      robotLookCurrent = { x: 0, y: 0 };
+      robotLookTarget = { x: 0, y: 0 };
+      setRobotLook(0, 0);
+    }
+
+    function tickRobotLook() {
+      robotLookCurrent.x += (robotLookTarget.x - robotLookCurrent.x) * 0.16;
+      robotLookCurrent.y += (robotLookTarget.y - robotLookCurrent.y) * 0.16;
+      setRobotLook(robotLookCurrent.x, robotLookCurrent.y);
+      robotAnimationFrame = requestAnimationFrame(tickRobotLook);
+    }
+
+    function handleRobotPointerMove(event) {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const offsetX = Math.max(-8, Math.min(8, (event.clientX - centerX) / 38));
+      const offsetY = Math.max(-6, Math.min(6, (event.clientY - centerY) / 42));
+      robotLookTarget = { x: offsetX, y: offsetY };
+    }
+
+    function showLoadingOverlay() {
+      loadingMessageIndex = 0;
+      loadingStatus.textContent = loadingMessages[loadingMessageIndex];
+      loadingOverlay.classList.add("is-visible");
+      loadingOverlay.setAttribute("aria-hidden", "false");
+      document.body.classList.add("checkout-busy");
+
+      loadingMessageTimer = window.setInterval(() => {
+        loadingMessageIndex = (loadingMessageIndex + 1) % loadingMessages.length;
+        loadingStatus.textContent = loadingMessages[loadingMessageIndex];
+      }, 1600);
+
+      if (!prefersReducedMotion.matches) {
+        document.addEventListener("pointermove", handleRobotPointerMove);
+        tickRobotLook();
+      }
+    }
+
+    function hideLoadingOverlay() {
+      loadingOverlay.classList.remove("is-visible");
+      loadingOverlay.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("checkout-busy");
+
+      if (loadingMessageTimer) {
+        clearInterval(loadingMessageTimer);
+        loadingMessageTimer = null;
+      }
+
+      stopRobotTracking();
+    }
+
+    async function readResponsePayload(response) {
+      const raw = await response.text();
+      if (!raw) return null;
+
+      try {
+        return JSON.parse(raw);
+      } catch {
+        return { error: "Server mengirim respons yang belum bisa dibaca. Coba segarkan halaman lalu ulangi." };
+      }
+    }
 
     function updateSummary(packageKey) {
       const currentPackage = packageCatalog[packageKey] || packageCatalog["3month"];
@@ -742,6 +1172,7 @@
 
       submitBtn.textContent = "Membuka halaman pembayaran...";
       form.classList.add("loading");
+      showLoadingOverlay();
 
       try {
         const checkoutEndpoint = `${API_BASE.replace(/\/$/, "")}/api/checkout`;
@@ -755,13 +1186,13 @@
           })
         });
 
-        const data = await response.json();
+        const data = await readResponsePayload(response);
 
         if (!response.ok) {
-          throw new Error(data.error || "Pembelian belum dapat diproses saat ini.");
+          throw new Error(data?.error || "Pembelian belum dapat diproses saat ini.");
         }
 
-        const paymentUrl = (data.redirect_url || data.invoice_url || "").trim();
+        const paymentUrl = ((data && (data.redirect_url || data.invoice_url)) || "").trim();
 
         if (!paymentUrl) {
           throw new Error("URL pembayaran dari Midtrans tidak ditemukan.");
@@ -769,6 +1200,7 @@
 
         window.location.href = paymentUrl;
       } catch (error) {
+        hideLoadingOverlay();
         errorMsg.textContent = error.message || "Gagal membuat pembayaran. Silakan coba lagi.";
         errorMsg.classList.add("show");
         submitBtn.textContent = "Lanjutkan Pembayaran";
