@@ -1,581 +1,1107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MetaFast – Metadata AI Otomatis untuk Kontributor Stok</title>
-    <link rel="stylesheet" href="style.css?v=2.1" />
-    <link rel="icon" href="images/favicon.png" type="image/png">
-    <style>
-      .comparison-section-new {
-        padding: 4rem 0;
-        background: rgba(31, 41, 55, 0.3);
-      }
-      .comparison-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        align-items: stretch;
-      }
-      .comparison-card {
-        background: rgba(31, 41, 55, 0.5);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(55, 65, 81, 0.5);
-        padding: 2rem 1.5rem;
-        border-radius: var(--radius);
-        box-shadow: 0 4px 8px var(--shadow);
-        display: flex;
-        flex-direction: column;
-        transition: all 0.3s ease;
-      }
-      .comparison-card:hover {
-        border-color: rgba(16, 185, 129, 0.5);
-        box-shadow: var(--shadow-emerald);
-        transform: translateY(-4px);
-      }
-      .comparison-card h3 {
-        font-size: 1.8rem;
-        color: var(--primary-light);
-        margin-bottom: 0.25rem;
-      }
-      .comparison-card .tagline-new {
-        font-weight: 500;
-        color: var(--primary-light);
-        margin-bottom: 1.5rem;
-        font-style: italic;
-      }
-      .comparison-card .includes-text {
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: var(--text);
-      }
-      .comparison-card ul {
-        list-style: none;
-        padding-left: 0;
-        flex-grow: 1;
-      }
-      .comparison-card ul li {
-        margin-bottom: 0.75rem;
-        color: var(--text-secondary);
-        font-size: 0.95rem;
-      }
-      .comparison-card.featured-new {
-        border: 2px solid var(--primary);
-        background: rgba(31, 41, 55, 0.7);
-        transform: scale(1.02);
-      }
-      /* Styling untuk bagian harga yang baru */
-      .pricing-grid-new {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        margin-top: 2rem;
-        align-items: stretch;
-      }
-      .pricing-card-new {
-        background: rgba(31, 41, 55, 0.5);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(55, 65, 81, 0.5);
-        padding: 2rem;
-        border-radius: var(--radius);
-        box-shadow: 0 4px 8px var(--shadow);
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        transition: all 0.3s ease;
-      }
-      .pricing-card-new:hover {
-        border-color: rgba(16, 185, 129, 0.5);
-        box-shadow: var(--shadow-emerald);
-      }
-      .pricing-card-new.featured {
-        border: 2px solid var(--primary);
-        background: rgba(31, 41, 55, 0.7);
-        transform: scale(1.02);
-      }
-       .pricing-card-new h3 {
-        font-size: 1.8rem;
-        color: var(--text);
-        margin-bottom: 1.5rem;
-        text-align: center;
-      }
-      .pricing-tier {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 0;
-        border-bottom: 1px solid rgba(55, 65, 81, 0.5);
-      }
-       .pricing-tier:last-of-type {
-        border-bottom: none;
-      }
-      .tier-duration {
-        font-weight: 600;
-        font-size: 1.1rem;
-        color: var(--primary-light);
-      }
-      .tier-price {
-        font-weight: 500;
-        font-size: 1rem;
-        color: var(--text);
-      }
-      .tier-bonus {
-        width: 100%;
-        text-align: right;
-        font-size: 0.85rem;
-        font-style: italic;
-        color: var(--primary-light);
-        font-weight: 600;
-        padding-top: 0.25rem;
-      }
-      .pricing-card-new .btn {
-        margin-top: auto;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-      }
-
-      /* CSS untuk tata letak fitur baru yang disorot */
-      .feature-spotlight {
-        display: flex;
-        gap: 3rem;
-        align-items: center;
-        padding: 3rem 0;
-      }
-      .feature-spotlight:nth-child(even) {
-        flex-direction: row-reverse;
-      }
-      .spotlight-image, .spotlight-content {
-        flex: 1;
-      }
-      .spotlight-image img {
-        width: 100%;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-emerald);
-      }
-      .spotlight-content h3 {
-        font-size: 2rem;
-        color: var(--text);
-        margin-bottom: 1rem;
-      }
-      .spotlight-content p {
-        font-size: 1.1rem;
-        color: var(--text-secondary);
-        margin-bottom: 1.5rem;
-      }
-      .spotlight-content .tagline {
-        color: var(--primary-light);
-      }
-
-      @media (max-width: 768px) {
-        .comparison-grid, .pricing-grid-new {
-          grid-template-columns: 1fr;
-        }
-        .comparison-card.featured-new, .pricing-card-new.featured {
-          transform: none;
-        }
-        .feature-spotlight, .feature-spotlight:nth-child(even) {
-          flex-direction: column;
-          text-align: center;
-        }
-      }
-    </style>
+    <meta name="color-scheme" content="light dark" />
+    <title>MetaFast | Bantu beresin metadata stock dengan lebih cepat</title>
+    <meta
+      name="description"
+      content="MetaFast membantu kontributor stock menyiapkan metadata, merapikan kata kunci, mengecek aset, dan menjalankan proses kerja dari satu aplikasi desktop."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="images/favicon.ico?v=2" sizes="any" />
+    <link rel="icon" href="images/favicon.png?v=2" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("metafast-theme");
+        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
+        document.documentElement.dataset.theme = initialTheme;
+      })();
+    </script>
   </head>
   <body>
-    <header class="navbar">
-      <div class="container">
-        <a href="#home" class="logo">MetaFast</a>
-        <nav class="nav">
-          <a href="adobe-stock-extension.html">Ekstensi Adobe Stock</a>
-          <a href="arabsstock-extension.html">Ekstensi Arabsstock</a>
+    <svg class="icon-sprite" aria-hidden="true" focusable="false">
+      <symbol id="icon-spark" viewBox="0 0 24 24">
+        <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z" />
+        <path d="M19 3v4" />
+        <path d="M21 5h-4" />
+      </symbol>
+      <symbol id="icon-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+      </symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <path d="M20 6 9 17l-5-5" />
+      </symbol>
+      <symbol id="icon-folder-sync" viewBox="0 0 24 24">
+        <path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v1" />
+        <path d="M4 10h12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7Z" />
+        <path d="M20 14v6" />
+        <path d="M17 17h6" />
+      </symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24">
+        <path d="M12 3 5 6v6c0 5 3.4 8.7 7 9 3.6-.3 7-4 7-9V6l-7-3Z" />
+        <path d="m9.5 12 1.7 1.7 3.8-3.8" />
+      </symbol>
+      <symbol id="icon-chart" viewBox="0 0 24 24">
+        <path d="M4 20V8" />
+        <path d="M10 20V4" />
+        <path d="M16 20v-9" />
+        <path d="M22 20v-5" />
+      </symbol>
+      <symbol id="icon-file-stack" viewBox="0 0 24 24">
+        <path d="M8 3h8l4 4v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" />
+        <path d="M16 3v5h5" />
+        <path d="M4 7v12a2 2 0 0 0 2 2h10" />
+      </symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" />
+        <path d="m20 20-3.5-3.5" />
+      </symbol>
+      <symbol id="icon-sliders" viewBox="0 0 24 24">
+        <path d="M4 6h10" />
+        <path d="M18 6h2" />
+        <path d="M10 12h10" />
+        <path d="M4 12h2" />
+        <path d="M4 18h6" />
+        <path d="M14 18h6" />
+        <circle cx="16" cy="6" r="2" />
+        <circle cx="8" cy="12" r="2" />
+        <circle cx="12" cy="18" r="2" />
+      </symbol>
+      <symbol id="icon-wand" viewBox="0 0 24 24">
+        <path d="m4 20 10-10" />
+        <path d="m14 5 5 5" />
+        <path d="m12 7 1-4 1 4 4 1-4 1-1 4-1-4-4-1 4-1Z" />
+      </symbol>
+      <symbol id="icon-rocket" viewBox="0 0 24 24">
+        <path d="M5 19c2.5 0 4-1 5-3l6-6c1.5-1.5 2.3-3.5 2.5-6-2.5.2-4.5 1-6 2.5l-6 6c-2 1-3 2.5-3 5Z" />
+        <path d="M9 15 5 19" />
+        <path d="m15 9 4-4" />
+        <circle cx="14" cy="10" r="1.4" />
+      </symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24">
+        <path d="M12 3v12" />
+        <path d="m7 10 5 5 5-5" />
+        <path d="M4 20h16" />
+      </symbol>
+      <symbol id="icon-quote" viewBox="0 0 24 24">
+        <path d="M8 11H5v8h6v-5a3 3 0 0 0-3-3Z" />
+        <path d="M19 11h-3v8h6v-5a3 3 0 0 0-3-3Z" />
+      </symbol>
+      <symbol id="icon-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14" />
+        <path d="m13 5 7 7-7 7" />
+      </symbol>
+      <symbol id="icon-moon" viewBox="0 0 24 24">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+      </symbol>
+      <symbol id="icon-sun" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2.5" />
+        <path d="M12 19.5V22" />
+        <path d="M4.93 4.93 6.7 6.7" />
+        <path d="m17.3 17.3 1.77 1.77" />
+        <path d="M2 12h2.5" />
+        <path d="M19.5 12H22" />
+        <path d="m4.93 19.07 1.77-1.77" />
+        <path d="M17.3 6.7 19.07 4.93" />
+      </symbol>
+    </svg>
+
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a href="#home" class="brand-mark">
+          <img src="images/logo-nav.png" alt="Logo MetaFast" class="brand-logo brand-logo-light" />
+          <img src="images/logo-nav-dark.png" alt="Logo MetaFast" class="brand-logo brand-logo-dark" />
+          <span>MetaFast</span>
+        </a>
+        <nav class="site-nav">
+          <a href="ekstensi.html">Ekstensi Browser</a>
+          <a href="fitur.html">Fitur Lengkap</a>
+          <a href="#workflow">Alur Kerja</a>
           <a href="#features">Fitur</a>
-          <a href="#comparison">Perbandingan</a>
+          <a href="#comparison">Keunggulan</a>
           <a href="#pricing">Harga</a>
-          <a href="#download" class="cta-btn">Mulai</a>
+          <a href="#faq">FAQ</a>
+          <button type="button" class="theme-toggle" id="themeToggle" aria-label="Ganti tema tampilan">
+            <svg class="ui-icon theme-toggle-icon theme-icon-dark"><use href="#icon-moon"></use></svg>
+            <svg class="ui-icon theme-toggle-icon theme-icon-light"><use href="#icon-sun"></use></svg>
+            <span id="themeToggleLabel">Tema Gelap</span>
+          </button>
+          <a href="#download" class="nav-cta">Mulai</a>
         </nav>
       </div>
     </header>
 
-    <section class="hero" id="home">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <div class="container hero-content">
-        <p class="tagline">⚡ Stop Buang Waktu!</p>
-        <h1>Metadata Aset Digital Beres dalam Sekejap dengan MetaFast!</h1>
-        <p>
-          Capek mengetik judul, deskripsi, dan kata kunci satu per satu untuk ratusan file?
-          Ingin semua aset digital Anda (JPG, video, vektor) siap diunggah dengan metadata profesional
-          dan bebas masalah? Kenali MetaFast!
-        </p>
-        <div class="hero-buttons">
-          <a href="https://chat.whatsapp.com/K0Yl9qLy53QE7jjUahXqme" target="_blank" class="btn primary-btn">Grup Whatsapp</a>
-          <a href="#features" class="btn secondary-btn">Lihat Fitur</a>
-        </div>
-      </div>
-    </section>
+    <main>
+      <section class="hero-section" id="home">
+        <div class="hero-noise"></div>
+        <div class="hero-orb hero-orb-a"></div>
+        <div class="hero-orb hero-orb-b"></div>
+        <div class="container hero-layout">
+          <div class="hero-copy">
+            <div class="eyebrow-pill animate-on-scroll">
+              <svg class="ui-icon"><use href="#icon-spark"></use></svg>
+              Dibuat untuk kontributor stock yang ingin kerja lebih rapi dan tidak ribet
+            </div>
+            <h1 class="hero-title animate-on-scroll">
+              Satu tempat untuk beresin judul, kata kunci, cek aset, dan lanjut proses stock dengan lebih nyaman.
+            </h1>
+            <p class="hero-description animate-on-scroll">
+              MetaFast cocok untuk kreator yang ngurus aset banyak dan ingin proses metadata yang lebih cepat, lebih tertata, dan lebih gampang dipegang.
+              Dari gambar, video, sampai vektor, semuanya bisa kamu urus di satu aplikasi desktop tanpa bolak-balik alat.
+            </p>
+            <div class="hero-actions animate-on-scroll">
+              <a href="https://wa.me/6287823047486?text=Halo%2C%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20MetaFast." target="_blank" class="btn btn-primary">
+                Tanya & Pesan
+              </a>
+              <a href="#pricing" class="btn btn-secondary">Lihat Paket</a>
+            </div>
+            <div class="hero-meta animate-on-scroll">
+              <div class="hero-meta-item">
+                <strong>Untuk Windows</strong>
+                <span>Nyaman dipakai langsung dari komputer kerja kamu</span>
+              </div>
+              <div class="hero-meta-item">
+                <strong>Hasil lebih rapi</strong>
+                <span>Metadata lebih enak dicek sebelum dipakai</span>
+              </div>
+              <div class="hero-meta-item">
+                <strong>Siap untuk koleksi besar</strong>
+                <span>Cocok buat kerja banyak aset dan proses berulang</span>
+              </div>
+            </div>
+          </div>
 
-    <section class="demo" id="demo">
-      <div class="container demo-grid animate-on-scroll">
-        <div class="demo-image">
-          <img src="images/metafast-review.png" alt="Tampilan antarmuka MetaFast Review & Edit" />
+          <div class="hero-visual animate-on-scroll">
+            <div class="hero-panel hero-panel-main">
+              <div class="panel-chip-row">
+                <span class="panel-chip">Metadata AI</span>
+                <span class="panel-chip">Tinjau & rapikan</span>
+                <span class="panel-chip">Ekspor data</span>
+              </div>
+              <img src="images/metafast-review.png" alt="Tampilan ruang kerja MetaFast untuk peninjauan metadata" data-zoomable="true" />
+            </div>
+            <div class="hero-panel hero-panel-floating">
+              <div class="floating-header">
+                <svg class="ui-icon"><use href="#icon-chart"></use></svg>
+                <span>Hal yang paling cepat terasa</span>
+              </div>
+              <ul class="floating-list">
+                <li>Metadata antar aset jadi lebih konsisten</li>
+                <li>Waktu cek ulang jadi lebih singkat</li>
+                <li>Proses lanjut ke tahap berikutnya terasa lebih rapi</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="demo-content">
-          <h2 class="section-title">Alur Kerja Profesional di Ujung Jari Anda</h2>
+      </section>
+
+      <section class="trust-strip">
+        <div class="container trust-grid animate-on-scroll">
+          <div class="trust-card">
+            <span class="trust-value">JPG / PNG / WEBP</span>
+            <span class="trust-label">Format gambar yang paling sering dipakai kontributor</span>
+          </div>
+          <div class="trust-card">
+            <span class="trust-value">MP4 / MOV</span>
+            <span class="trust-label">Video juga bisa diproses di tempat yang sama</span>
+          </div>
+          <div class="trust-card">
+            <span class="trust-value">AI / EPS / SVG</span>
+            <span class="trust-label">Aset vektor tetap masuk ke alur yang sama</span>
+          </div>
+          <div class="trust-card">
+            <span class="trust-value">Tinjau / Ekspor / Otomasi</span>
+            <span class="trust-label">Bukan cuma generator, tapi ruang kerja metadata di desktop</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="value-section" id="workflow">
+        <div class="container">
+          <div class="section-heading animate-on-scroll">
+            <p class="section-kicker">Kenapa MetaFast terasa beda</p>
+            <h2 class="section-title">Bukan cuma kelihatan bagus, tapi memang enak dipakai buat kerja.</h2>
+            <p class="section-description">
+              MetaFast dibuat supaya manfaatnya langsung kerasa. Dari awal kamu bisa paham ini dipakai buat apa, tanpa harus nebak-nebak cara kerjanya.
+            </p>
+          </div>
+
+          <div class="value-grid">
+            <article class="value-card animate-on-scroll">
+              <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-wand"></use></svg></div>
+              <h3>Hasil AI langsung siap dicek</h3>
+              <p>
+                Judul, kata kunci, dan deskripsi tidak berhenti di hasil awal saja. Semuanya masuk ke alur yang memudahkan kamu cek dan rapikan sebelum aset dianggap siap.
+              </p>
+            </article>
+            <article class="value-card animate-on-scroll" style="transition-delay: 100ms">
+              <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-sliders"></use></svg></div>
+              <h3>Kamu tetap pegang kendali</h3>
+              <p>
+                Kamu tetap bisa atur kata kunci, ubah urutannya, pilih kategori, dan menyesuaikan hasil sesuai kebutuhan pasar dan gaya kerja kamu sendiri.
+              </p>
+            </article>
+            <article class="value-card animate-on-scroll" style="transition-delay: 200ms">
+              <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-folder-sync"></use></svg></div>
+              <h3>Otomatis untuk kerja yang berulang</h3>
+              <p>
+                Saat aset mulai banyak, kerja manual biasanya mulai terasa capek. MetaFast bantu lewat pemantauan folder, proses koleksi, dan alur lanjutan supaya kerja berulang jadi lebih tertata.
+              </p>
+            </article>
+            <article class="value-card animate-on-scroll" style="transition-delay: 300ms">
+              <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-shield"></use></svg></div>
+              <h3>Lebih aman sebelum lanjut upload</h3>
+              <p>
+                Pemeriksaan kualitas, deteksi duplikat, pembersihan metadata, dan data pendukung membantu mengurangi revisi yang biasanya baru ketahuan setelah aset telanjur lanjut.
+              </p>
+            </article>
+          </div>
+
+          <div class="workflow-board animate-on-scroll">
+            <div class="workflow-step">
+              <span class="workflow-number">01</span>
+              <h3>Masukkan aset</h3>
+              <p>Masukkan gambar, video, atau vektor ke satu tempat kerja yang sama tanpa pindah-pindah aplikasi.</p>
+            </div>
+            <div class="workflow-step">
+              <span class="workflow-number">02</span>
+              <h3>Susun & cek</h3>
+              <p>Biarkan AI menyiapkan metadata awal, lalu cek hasilnya di panel yang enak dipakai buat koreksi cepat.</p>
+            </div>
+            <div class="workflow-step">
+              <span class="workflow-number">03</span>
+              <h3>Rapikan & pastikan</h3>
+              <p>Atur ulang kata kunci, cek isi aset, saring masalah kualitas, lalu pastikan semuanya siap lanjut.</p>
+            </div>
+            <div class="workflow-step">
+              <span class="workflow-number">04</span>
+              <h3>Simpan & lanjutkan</h3>
+              <p>Simpan hasil, siapkan data pendukung, lanjutkan pekerjaan, atau jalankan proses otomatis tanpa mulai dari nol lagi.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="showcase-section" id="features">
+        <div class="container">
+          <div class="section-heading animate-on-scroll">
+            <p class="section-kicker">Fitur utama</p>
+            <h2 class="section-title">Semua yang kamu butuhkan untuk beresin metadata dengan lebih gampang.</h2>
+            <p class="section-description">
+              Bagian ini dibuat lebih lengkap supaya kamu bisa langsung lihat fungsi MetaFast, manfaat utamanya, dan fitur mana yang paling cocok buat kerja harianmu.
+            </p>
+          </div>
+
+          <div class="showcase-row animate-on-scroll">
+            <div class="showcase-media">
+              <img src="images/metafast-review.png" alt="Panel peninjauan dan perapihan metadata di MetaFast" data-zoomable="true" />
+            </div>
+            <div class="showcase-copy">
+              <span class="showcase-tag">Ruang cek utama</span>
+              <h3>Satu tempat untuk baca, rapikan, dan bereskan metadata sampai siap.</h3>
+              <p>
+                MetaFast kasih ruang buat cek hasil dengan lebih nyaman. Kamu bisa lihat judul, urutan kata kunci, deskripsi, dan kategori, lalu putuskan sendiri kapan hasilnya sudah siap.
+              </p>
+              <ul class="bullet-list">
+                <li>Urutan kata kunci bisa diubah supaya yang paling penting tampil duluan.</li>
+                <li>Judul, kata kunci, dan deskripsi bisa langsung dirapikan di halaman yang sama.</li>
+                <li>Kalau asetnya banyak, proses cek jadi tetap rapi dan nggak bikin bingung.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="showcase-row reverse animate-on-scroll">
+            <div class="showcase-media">
+              <img src="images/metafast-inspeksi.png" alt="Inspeksi konten dan pemeriksaan kualitas di MetaFast" data-zoomable="true" />
+            </div>
+            <div class="showcase-copy">
+              <span class="showcase-tag">Pemeriksaan kualitas</span>
+              <h3>Bantu saring masalah sebelum aset keburu lanjut terlalu jauh.</h3>
+              <p>
+                Di kerja stock, cepat saja belum cukup. MetaFast bantu kasih lapisan cek tambahan supaya aset yang lanjut tetap lebih terjaga, terutama kalau koleksinya besar dan banyak yang mirip.
+              </p>
+              <ul class="bullet-list">
+                <li>Pencari duplikat bantu nandai aset yang terlalu mirip.</li>
+                <li>Inspeksi konten bantu ngurangin aset yang berpotensi bikin revisi.</li>
+                <li>Seleksi jadi lebih rapi karena yang dicek bukan metadata saja, tapi juga kesiapan asetnya.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="showcase-row animate-on-scroll">
+            <div class="showcase-media">
+              <img src="images/metafast-prompt.png" alt="Fitur pembentuk arahan visual di MetaFast" data-zoomable="true" />
+            </div>
+            <div class="showcase-copy">
+              <span class="showcase-tag">Bantu cari ide</span>
+              <h3>Fitur pembentuk arahan visual buat bantu cari ide lanjutan.</h3>
+              <p>
+                Buat kreator yang kerja dengan bantuan AI, ide baru sering lahir dari aset yang sudah ada. Fitur ini bantu ubah visual lama jadi arahan yang lebih siap dipakai buat lanjut eksplorasi.
+              </p>
+              <ul class="bullet-list">
+                <li>Bisa bantu bikin variasi ide dari aset yang performanya sudah bagus.</li>
+                <li>Nggak perlu nulis ulang arahan visual dari nol tiap kali mau eksperimen.</li>
+                <li>Cocok buat kamu yang suka lanjut cepat dari hasil lama ke konsep baru.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="showcase-row reverse animate-on-scroll">
+            <div class="showcase-media">
+              <img src="images/metafast-remover.png" alt="Pembersihan metadata dan utilitas file di MetaFast" data-zoomable="true" />
+            </div>
+            <div class="showcase-copy">
+              <span class="showcase-tag">Persiapan aset</span>
+              <h3>Bersihin aset dulu supaya proses berikutnya lebih enak.</h3>
+              <p>
+                Kadang masalah sudah muncul bahkan sebelum metadata mulai disusun. MetaFast bantu lewat pembersihan metadata lama dan utilitas lain supaya aset masuk ke proses dalam kondisi yang lebih rapi.
+              </p>
+              <ul class="bullet-list">
+                <li>Bantu hapus metadata lama supaya aset siap diproses ulang.</li>
+                <li>Ngurangin risiko info lama ikut kebawa ke koleksi baru.</li>
+                <li>Bikin langkah cek, simpan, dan ekspor sesudahnya terasa lebih bersih.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="capability-grid">
+            <article class="capability-card animate-on-scroll">
+              <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-spark"></use></svg></div>
+              <h3>Metadata AI</h3>
+              <p>Siapkan judul, kata kunci, dan deskripsi awal lebih cepat dari satu tempat kerja yang sama.</p>
+            </article>
+            <article class="capability-card animate-on-scroll" style="transition-delay: 80ms">
+              <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-grid"></use></svg></div>
+              <h3>Kelola banyak aset</h3>
+              <p>Kerja banyak aset sekaligus tanpa kehilangan jejak proses dan hasil tiap file.</p>
+            </article>
+            <article class="capability-card animate-on-scroll" style="transition-delay: 160ms">
+              <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-folder-sync"></use></svg></div>
+              <h3>Pantau folder otomatis</h3>
+              <p>Biarkan aset baru masuk ke alur yang sudah kamu siapkan tanpa ditambah manual satu per satu.</p>
+            </article>
+            <article class="capability-card animate-on-scroll" style="transition-delay: 240ms">
+              <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-search"></use></svg></div>
+              <h3>Cari aset mirip</h3>
+              <p>Bantu tandai aset yang terlalu mirip supaya koleksi tetap rapi dan seleksi lebih gampang.</p>
+            </article>
+            <article class="capability-card animate-on-scroll">
+              <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-shield"></use></svg></div>
+              <h3>Cek isi aset</h3>
+              <p>Bantu lihat potensi masalah kualitas sebelum aset keburu lanjut terlalu jauh.</p>
+            </article>
+            <article class="capability-card animate-on-scroll" style="transition-delay: 80ms">
+              <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-file-stack"></use></svg></div>
+              <h3>Ekspor data pendukung</h3>
+              <p>Siapkan data yang dibutuhkan untuk langkah lanjut dengan lebih rapi.</p>
+            </article>
+            <article class="capability-card animate-on-scroll" style="transition-delay: 160ms">
+              <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-sliders"></use></svg></div>
+              <h3>Atur kata kunci</h3>
+              <p>Ubah urutan keyword, hapus istilah yang kurang pas, dan rapikan hasil sesuai kebutuhan.</p>
+            </article>
+            <article class="capability-card animate-on-scroll" style="transition-delay: 240ms">
+              <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-rocket"></use></svg></div>
+              <h3>Lanjutkan pekerjaan</h3>
+              <p>Lanjut kapan saja tanpa kehilangan konteks saat proses harus berhenti di tengah jalan.</p>
+            </article>
+          </div>
+
+          <div class="feature-catalog">
+            <article class="feature-group animate-on-scroll">
+              <div class="feature-group-head">
+                <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-spark"></use></svg></div>
+                <div>
+                  <span class="showcase-tag">Produksi metadata</span>
+                  <h3>Fitur inti buat nyiapin metadata dengan lebih cepat dan tetap terarah.</h3>
+                </div>
+              </div>
+              <ul class="feature-detail-list">
+                <li><strong>Judul, keyword, dan deskripsi:</strong> bantu siapkan metadata awal untuk gambar, video, dan vektor dalam alur yang tetap rapi.</li>
+                <li><strong>Pilihan layanan AI:</strong> kamu bisa sesuaikan dengan kebutuhan hasil, biaya, dan cara kerja kamu.</li>
+                <li><strong>Panduan akses AI:</strong> bantu tim lebih cepat paham langkah pengaturannya.</li>
+                <li><strong>Cek koneksi dan mutu hasil:</strong> memastikan layanan siap dipakai sebelum jalanin koleksi besar.</li>
+                <li><strong>Konteks global dan per aset:</strong> bantu hasil metadata tetap nyambung dengan seri, koleksi, atau arah kreatif tertentu.</li>
+                <li><strong>Pengaturan jumlah keyword:</strong> kasih kendali atas seberapa banyak informasi yang ingin dihasilkan.</li>
+                <li><strong>Panel deskripsi visual:</strong> bantu nulis uraian aset saat kamu butuh arahan yang lebih fokus.</li>
+              </ul>
+            </article>
+
+            <article class="feature-group animate-on-scroll" style="transition-delay: 80ms">
+              <div class="feature-group-head">
+                <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-sliders"></use></svg></div>
+                <div>
+                  <span class="showcase-tag">Cek dan rapikan</span>
+                  <h3>Fitur untuk beresin hasil AI sebelum benar-benar dipakai.</h3>
+                </div>
+              </div>
+              <ul class="feature-detail-list">
+                <li><strong>Ruang peninjauan:</strong> satu tempat buat cek dan rapikan judul, keyword, kategori, dan deskripsi.</li>
+                <li><strong>Prioritas keyword:</strong> bantu taruh istilah penting di urutan yang lebih pas.</li>
+                <li><strong>Per aset atau per koleksi:</strong> enak buat koreksi cepat tanpa ganggu aset lain.</li>
+                <li><strong>Daftar istilah yang dihindari:</strong> bantu mencegah kata yang nggak diinginkan muncul terus.</li>
+                <li><strong>Rapikan per bagian:</strong> kamu bisa fokus ubah keyword saja atau judul saja tanpa ngulang semua.</li>
+                <li><strong>Batalkan dan ulangi:</strong> bikin proses edit terasa lebih aman.</li>
+              </ul>
+            </article>
+
+            <article class="feature-group animate-on-scroll" style="transition-delay: 160ms">
+              <div class="feature-group-head">
+                <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-shield"></use></svg></div>
+                <div>
+                  <span class="showcase-tag">Jaga kualitas</span>
+                  <h3>Fitur untuk bantu jaga kualitas koleksi sebelum lanjut distribusi.</h3>
+                </div>
+              </div>
+              <ul class="feature-detail-list">
+                <li><strong>Inspeksi konten:</strong> bantu saring aset yang perlu perhatian lebih.</li>
+                <li><strong>Deteksi duplikat dan kemiripan:</strong> kurangi risiko koleksi berisi aset yang terlalu mirip.</li>
+                <li><strong>Bersihkan metadata lama:</strong> rapikan info lama saat aset mau diproses ulang.</li>
+                <li><strong>Jaga kestabilan proses:</strong> bantu alur kerja tetap aman saat aset dipindah, disimpan ulang, atau diproses bertahap.</li>
+              </ul>
+            </article>
+
+            <article class="feature-group animate-on-scroll">
+              <div class="feature-group-head">
+                <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-folder-sync"></use></svg></div>
+                <div>
+                  <span class="showcase-tag">Otomatisasi kerja</span>
+                  <h3>Fitur untuk kerja banyak, kerja berulang, dan proses yang ingin jalan lebih mandiri.</h3>
+                </div>
+              </div>
+              <ul class="feature-detail-list">
+                <li><strong>Proses koleksi otomatis:</strong> bantu jalanin banyak aset dengan ritme yang lebih stabil.</li>
+                <li><strong>Pantau folder tertentu:</strong> aset baru bisa langsung masuk ke proses tanpa ditambah manual satu-satu.</li>
+                <li><strong>Lanjutkan pekerjaan:</strong> pekerjaan besar tetap bisa diteruskan tanpa kehilangan konteks.</li>
+                <li><strong>Status per aset dan per antrean:</strong> gampang buat lihat mana yang sudah selesai dan mana yang masih perlu tindakan.</li>
+                <li><strong>Log aplikasi:</strong> bantu lihat progres, peringatan, dan kendala tanpa menebak-nebak.</li>
+              </ul>
+            </article>
+
+            <article class="feature-group animate-on-scroll" style="transition-delay: 80ms">
+              <div class="feature-group-head">
+                <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-file-stack"></use></svg></div>
+                <div>
+                  <span class="showcase-tag">Hasil akhir dan distribusi</span>
+                  <h3>Fitur untuk bikin hasil kerja lebih siap disimpan dan dikirim.</h3>
+                </div>
+              </div>
+              <ul class="feature-detail-list">
+                <li><strong>Simpan metadata ke aset:</strong> hasil akhir bisa langsung ditulis ke file yang diproses.</li>
+                <li><strong>Ekspor data pendukung:</strong> bantu siapkan info yang dibutuhkan untuk langkah distribusi berikutnya.</li>
+                <li><strong>Kirim ke server kerja:</strong> cocok buat yang butuh pengiriman langsung dari desktop.</li>
+                <li><strong>Pantau hasil dengan cepat:</strong> bantu jaga alur tetap lancar dari proses sampai hasil akhir.</li>
+              </ul>
+            </article>
+
+            <article class="feature-group animate-on-scroll" style="transition-delay: 160ms">
+              <div class="feature-group-head">
+                <div class="icon-wrap"><svg class="ui-icon"><use href="#icon-wand"></use></svg></div>
+                <div>
+                  <span class="showcase-tag">Fitur tambahan</span>
+                  <h3>Fitur pendukung yang bikin MetaFast terasa lebih lengkap dari sekadar alat metadata biasa.</h3>
+                </div>
+              </div>
+              <ul class="feature-detail-list">
+                <li><strong>Bentuk arahan visual dari gambar:</strong> bantu ubah aset lama jadi bahan eksplorasi ide baru.</li>
+                <li><strong>Lihat tren pasar:</strong> bantu baca arah tren dan peluang keyword.</li>
+                <li><strong>Ide musiman dan kalender tema:</strong> pas buat yang ingin respon momen tertentu dengan lebih rapi.</li>
+                <li><strong>Konversi PNG ke PSD batch:</strong> tambah nilai buat pengguna yang juga urus aset kreatif lain.</li>
+                <li><strong>Asisten MetaFast:</strong> bantu pengguna lebih cepat paham pengaturan AI dan fitur penting.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="comparison-section" id="comparison">
+        <div class="container">
+          <div class="section-heading animate-on-scroll">
+            <p class="section-kicker">Keunggulan utama</p>
+            <h2 class="section-title">MetaFast dibuat sebagai ruang kerja desktop yang lengkap buat urusan metadata stock.</h2>
+            <p class="section-description">
+              Fokusnya sederhana: semua proses penting dikumpulkan di satu tempat supaya susun metadata, cek hasil, jaga kualitas, dan lanjut distribusi terasa lebih rapi.
+            </p>
+          </div>
+
+          <div class="comparison-grid">
+            <article class="comparison-card featured animate-on-scroll comparison-card-single">
+              <div class="featured-badge">Cocok untuk kerja yang serius</div>
+              <p class="comparison-label">MetaFast</p>
+              <h3>Dibuat buat kamu yang butuh kontrol lebih, kerja lebih rapi, dan siap jalan di skala besar.</h3>
+              <p class="comparison-summary">
+                MetaFast menyatukan kebutuhan utama dan kebutuhan lanjut di satu tempat, jadi kamu tidak perlu pecah kerja metadata ke banyak aplikasi.
+              </p>
+              <ul class="comparison-list">
+                <li><svg class="inline-icon"><use href="#icon-check"></use></svg> Bisa cek dan rapikan metadata sebelum dianggap final</li>
+                <li><svg class="inline-icon"><use href="#icon-check"></use></svg> Bisa pantau folder otomatis untuk kerja berulang</li>
+                <li><svg class="inline-icon"><use href="#icon-check"></use></svg> Ada pencari duplikat dan aset yang terlalu mirip</li>
+                <li><svg class="inline-icon"><use href="#icon-check"></use></svg> Ada pemeriksaan konten dan penyaring kualitas</li>
+                <li><svg class="inline-icon"><use href="#icon-check"></use></svg> Ada pembentuk arahan visual dan alat bantu kreatif</li>
+                <li><svg class="inline-icon"><use href="#icon-check"></use></svg> Bisa lanjut kerja, atur istilah yang dihindari, dan pakai pengaturan lanjutan</li>
+                <li><svg class="inline-icon"><use href="#icon-check"></use></svg> Ada tren pasar, ide tema, pengiriman ke server kerja, dan utilitas produksi lain</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="pricing-section" id="pricing">
+        <div class="container">
+          <div class="section-heading animate-on-scroll">
+            <p class="section-kicker">Harga tetap</p>
+            <h2 class="section-title">Pilih durasi langganan yang paling pas buat cara kerja kamu.</h2>
+            <p class="section-description">
+              Semua harga ditampilkan dalam Rupiah. Pilih durasi yang paling sesuai dengan kebutuhan, lalu selesaikan pembayaran dengan aman melalui Midtrans.
+            </p>
+          </div>
+
+          <div class="pricing-grid">
+            <article class="pricing-card featured animate-on-scroll pricing-card-single">
+              <div class="featured-badge">Paling sering dipilih</div>
+              <p class="pricing-plan">MetaFast</p>
+              <h3>Buat kerja yang ingin lebih rapi dan tetap enak dikontrol</h3>
+              <div class="pricing-tier">
+                <span>1 Bulan</span>
+                <strong>Rp 55.000</strong>
+              </div>
+              <div class="pricing-tier">
+                <span>3 Bulan</span>
+                <strong>Rp 150.000</strong>
+                <small>Bonus 2 minggu</small>
+              </div>
+              <div class="pricing-tier">
+                <span>6 Bulan</span>
+                <strong>Rp 300.000</strong>
+                <small>Bonus 1 bulan</small>
+              </div>
+              <div class="pricing-tier">
+                <span>1 Tahun</span>
+                <strong>Rp 600.000</strong>
+                <small>Bonus 2 bulan</small>
+              </div>
+              <div class="pricing-note">
+                Lisensi dikirim ke email setelah pembayaran berhasil dikonfirmasi dan dapat langsung digunakan di aplikasi desktop MetaFast sesuai paket yang dipilih.
+              </div>
+              <a href="checkout.html?package=3month" class="btn btn-primary">
+                Pilih Paket
+              </a>
+            </article>
+          </div>
+
+          <div class="pricing-support-grid">
+            <article class="support-card animate-on-scroll">
+              <p class="support-kicker">Produk yang dijual</p>
+              <h3>Langganan MetaFast untuk aplikasi desktop</h3>
+              <ul class="support-list">
+                <li><svg class="inline-icon"><use href="#icon-check"></use></svg> Produk yang dibeli adalah akses langganan MetaFast untuk pengelolaan metadata stock.</li>
+                <li><svg class="inline-icon"><use href="#icon-check"></use></svg> Paket tersedia dalam durasi 1 bulan, 3 bulan, 6 bulan, dan 1 tahun.</li>
+                <li><svg class="inline-icon"><use href="#icon-check"></use></svg> Setelah pembayaran berhasil, lisensi dikirim ke email pelanggan.</li>
+              </ul>
+            </article>
+
+            <article class="support-card animate-on-scroll" style="transition-delay: 80ms">
+              <p class="support-kicker">Metode pembayaran</p>
+              <h3>Metode pembayaran tersedia melalui Midtrans</h3>
+              <div class="payment-tag-row">
+                <span class="payment-tag">QRIS</span>
+                <span class="payment-tag">Virtual Account</span>
+                <span class="payment-tag">Transfer Bank</span>
+                <span class="payment-tag">GoPay</span>
+                <span class="payment-tag">OVO</span>
+                <span class="payment-tag">ShopeePay</span>
+              </div>
+              <p class="support-copy">
+                Setelah memilih paket, pelanggan dapat melanjutkan pembayaran melalui Midtrans dengan QRIS, transfer bank, virtual account, atau e-wallet yang tersedia.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="payment-flow-section" id="payment-flow">
+        <div class="container">
+          <div class="section-heading animate-on-scroll">
+            <p class="section-kicker">Alur pembayaran</p>
+            <h2 class="section-title">Pembelian MetaFast dibuat singkat dan mudah diikuti.</h2>
+            <p class="section-description">
+              Di bawah ini adalah tahapan pembelian mulai dari memilih paket hingga lisensi diterima melalui email.
+            </p>
+          </div>
+
+          <div class="payment-flow-grid">
+            <article class="flow-step-card animate-on-scroll">
+              <span class="flow-step-number">01</span>
+              <h3>Pilih paket</h3>
+              <p>Pelanggan membuka halaman harga, membaca detail paket, lalu memilih durasi langganan MetaFast sesuai kebutuhan.</p>
+            </article>
+            <article class="flow-step-card animate-on-scroll" style="transition-delay: 60ms">
+              <span class="flow-step-number">02</span>
+              <h3>Lengkapi data pembelian</h3>
+              <p>Pelanggan mengisi nama lengkap dan email aktif, lalu memeriksa kembali paket yang dipilih sebelum melanjutkan pembayaran.</p>
+            </article>
+            <article class="flow-step-card animate-on-scroll" style="transition-delay: 120ms">
+              <span class="flow-step-number">03</span>
+              <h3>Selesaikan pembayaran</h3>
+              <p>Pelanggan memilih cara pembayaran yang tersedia di Midtrans, seperti QRIS, transfer bank, virtual account, atau e-wallet.</p>
+            </article>
+            <article class="flow-step-card animate-on-scroll" style="transition-delay: 180ms">
+              <span class="flow-step-number">04</span>
+              <h3>Lisensi diterima</h3>
+              <p>Setelah pembayaran dikonfirmasi, lisensi dikirim ke email dan dapat langsung digunakan di aplikasi desktop MetaFast.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="testimonials-section">
+        <div class="container">
+          <div class="section-heading animate-on-scroll">
+            <p class="section-kicker">Cerita penggunaan</p>
+            <h2 class="section-title">Hal yang paling sering dirasa setelah pakai MetaFast.</h2>
+            <p class="section-description">
+              Biar lebih kebayang, ini beberapa cerita yang terasa dekat dengan cara kerja pengguna stock yang beda-beda.
+            </p>
+          </div>
+
+          <div class="testimonial-grid">
+            <article class="testimonial-card animate-on-scroll">
+              <svg class="quote-icon"><use href="#icon-quote"></use></svg>
+              <p>"Dulu saya bolak-balik buka banyak jendela cuma buat beresin satu batch. Sekarang rasanya lebih enteng. Kerjaan tetap jalan, kepala juga tidak cepat penuh."</p>
+              <strong>Nadira Aulia</strong>
+              <span>Microstocker foto komersial</span>
+            </article>
+            <article class="testimonial-card animate-on-scroll" style="transition-delay: 70ms">
+              <svg class="quote-icon"><use href="#icon-quote"></use></svg>
+              <p>"Bagian review keyword-nya enak dipakai. Saya bisa atur prioritas istilah yang paling penting tanpa ribet pindah layar, jadi hasil editorialnya terasa lebih pas."</p>
+              <strong>Raka Pradana</strong>
+              <span>Kontributor editorial</span>
+            </article>
+            <article class="testimonial-card animate-on-scroll" style="transition-delay: 140ms">
+              <svg class="quote-icon"><use href="#icon-quote"></use></svg>
+              <p>"Yang saya apresiasi, aset vektor tidak lagi berjalan sendiri. Dari pratinjau, file EPS, hingga data pendukung, semuanya masuk ke alur yang sama dan lebih mudah diawasi."</p>
+              <strong>Salsa Maheswari</strong>
+              <span>Ilustrator vektor microstock</span>
+            </article>
+            <article class="testimonial-card animate-on-scroll">
+              <svg class="quote-icon"><use href="#icon-quote"></use></svg>
+              <p>"Yang paling saya suka, file baru tinggal masuk ke alur yang sudah saya set. Jadi saya bisa fokus produksi, sementara urusan rutinnya tidak perlu diulang dari nol terus."</p>
+              <strong>Dimas Alfarez</strong>
+              <span>Produser koleksi harian</span>
+            </article>
+            <article class="testimonial-card animate-on-scroll" style="transition-delay: 70ms">
+              <svg class="quote-icon"><use href="#icon-quote"></use></svg>
+              <p>"Fitur pemeriksaan konten dan pencari duplikat membantu sekali di tahap seleksi. Tim kami jadi lebih tenang karena aset yang kurang layak bisa disaring sebelum masuk distribusi akhir."</p>
+              <strong>Fikri Ramadhan</strong>
+              <span>Koordinator studio microstock</span>
+            </article>
+            <article class="testimonial-card animate-on-scroll" style="transition-delay: 140ms">
+              <svg class="quote-icon"><use href="#icon-quote"></use></svg>
+              <p>"Buat saya ini bukan cuma alat otomatis. Lebih terasa seperti meja kerja metadata yang bikin proses ngebut, tapi keputusan akhirnya tetap aman di tangan kita."</p>
+              <strong>Keanu Prasetyo</strong>
+              <span>Creative operator aset stock</span>
+            </article>
+            <article class="testimonial-card animate-on-scroll">
+              <svg class="quote-icon"><use href="#icon-quote"></use></svg>
+              <p>"Sesudah pindah ke MetaFast, alurnya terasa lebih nyambung. Aset, keyword, dan data pendukung jadi lebih sinkron saat harus saya bawa ke beberapa marketplace sekaligus."</p>
+              <strong>Alea Putri</strong>
+              <span>Kontributor multi-platform</span>
+            </article>
+            <article class="testimonial-card animate-on-scroll" style="transition-delay: 70ms">
+              <svg class="quote-icon"><use href="#icon-quote"></use></svg>
+              <p>"Kalau lagi cari ide lanjutan dari aset yang performanya bagus, fitur arahan visual ini kepakai banget. Eksplorasinya jadi lebih cepat, tapi tetap ada arah yang jelas."</p>
+              <strong>Zivana Ayesha</strong>
+              <span>Kreator visual berbasis AI</span>
+            </article>
+            <article class="testimonial-card animate-on-scroll" style="transition-delay: 140ms">
+              <svg class="quote-icon"><use href="#icon-quote"></use></svg>
+              <p>"Saya lumayan sering lanjut kerja malam atau besok paginya. Fitur melanjutkan pekerjaan ini simpel, tapi kerasa banget manfaatnya karena konteks prosesnya tetap kebawa."</p>
+              <strong>Bagas Elvano</strong>
+              <span>Operator produksi aset bertahap</span>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="faq-section" id="faq">
+        <div class="container">
+          <div class="section-heading animate-on-scroll">
+            <p class="section-kicker">Pertanyaan yang sering ditanya</p>
+            <h2 class="section-title">Jawaban singkat buat hal yang biasanya ingin dipastikan dulu.</h2>
+          </div>
+
+          <div class="faq-grid">
+            <article class="faq-item animate-on-scroll">
+              <h3>Sebenarnya MetaFast dipakai buat apa?</h3>
+              <p>
+                MetaFast adalah aplikasi desktop untuk bantu beresin metadata aset stock lebih cepat. Di dalamnya ada penyusunan metadata dengan AI, ruang cek manual, pengaturan kata kunci, pemeriksaan aset, ekspor data pendukung, dan fitur lain buat bantu proses kerja.
+              </p>
+            </article>
+            <article class="faq-item animate-on-scroll" style="transition-delay: 80ms">
+              <h3>MetaFast cuma untuk gambar?</h3>
+              <p>
+                Tidak. MetaFast bisa dipakai untuk gambar, video, dan aset vektor yang umum dipakai kreator stock. Jadi walau jenis asetmu campur, prosesnya tetap bisa jalan di alur yang sama.
+              </p>
+            </article>
+            <article class="faq-item animate-on-scroll" style="transition-delay: 160ms">
+              <h3>Hasil AI-nya masih bisa diedit manual?</h3>
+              <p>
+                Bisa. Justru itu salah satu bagian pentingnya. Hasil AI dipakai sebagai titik awal yang cepat, lalu kamu tetap bisa cek, ubah, susun ulang, dan finalkan sendiri.
+              </p>
+            </article>
+            <article class="faq-item animate-on-scroll">
+              <h3>Siapa yang paling cocok pakai MetaFast?</h3>
+              <p>
+                MetaFast cocok untuk kontributor stock, studio kreatif kecil, pengelola koleksi besar, dan tim produksi aset yang ingin proses metadata lebih rapi. Manfaatnya paling terasa saat aset mulai banyak dan kerja manual sudah terasa melelahkan.
+              </p>
+            </article>
+            <article class="faq-item animate-on-scroll" style="transition-delay: 80ms">
+              <h3>Perlu punya akses AI sendiri?</h3>
+              <p>
+                Iya. MetaFast bekerja dengan menghubungkan aset kamu ke layanan AI pilihanmu. Dengan akses sendiri, kamu jadi lebih jelas dalam mengatur hasil dan biayanya.
+              </p>
+            </article>
+            <article class="faq-item animate-on-scroll" style="transition-delay: 160ms">
+              <h3>File asli saya dikirim ke server MetaFast?</h3>
+              <p>
+                Tidak. Proses MetaFast tetap berpusat di komputer kamu. File asli tidak dipindah ke server MetaFast untuk disimpan seperti perpustakaan cloud, jadi alurnya tetap lokal dan lebih gampang kamu pegang.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="download-section" id="download">
+        <div class="container download-shell animate-on-scroll">
+          <div class="download-copy">
+            <p class="section-kicker">Unduh aplikasi</p>
+            <h2 class="section-title section-title-left">MetaFast siap dipakai di Windows buat bantu kerja desktop kamu.</h2>
+            <p class="section-description section-description-left">
+              MetaFast cocok buat pengguna yang ingin satu tempat untuk susun metadata, cek hasil, jaga kualitas koleksi, dan menyiapkan aset sampai siap lanjut.
+            </p>
+            <div class="download-actions">
+              <a href="https://www.dropbox.com/scl/fo/hq1o46r97jf88jlujwl6j/AIWtusfdFkfVyMTrNFWm8Jg?rlkey=deanbl3g0xwi1bd30urwxkoyq&st=4g2cypoh&dl=0" class="btn btn-primary">
+                <svg class="inline-icon"><use href="#icon-download"></use></svg>
+                Unduh MetaFast
+              </a>
+            </div>
+          </div>
+
+          <div class="system-card">
+            <h3>Syarat sistem</h3>
+            <div class="system-group">
+              <p class="system-label">Minimum</p>
+              <ul>
+                <li>Windows 10/11 64-bit</li>
+                <li>CPU 2-core 2.0 GHz</li>
+                <li>RAM 4 GB</li>
+                <li>Ruang kosong minimal 1,5 GB</li>
+                <li>Koneksi internet stabil untuk layanan AI</li>
+              </ul>
+            </div>
+            <div class="system-group">
+              <p class="system-label">Lebih nyaman kalau</p>
+              <ul>
+                <li>CPU 4-core atau lebih baik</li>
+                <li>RAM 8-16 GB</li>
+                <li>SSD untuk baca/tulis lebih cepat</li>
+                <li>Koneksi 10 Mbps atau lebih</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta">
+        <div class="container animate-on-scroll">
+          <p class="section-kicker center">Langkah berikutnya</p>
+          <h2>Kalau kamu ingin proses metadata yang lebih rapi, lebih ringan, dan lebih enak dijalani, mulai dari sini.</h2>
           <p>
-            MetaFast bukan sekadar generator biasa. Ini adalah pusat kendali untuk semua kebutuhan metadata Anda. Proses ratusan file, review hasilnya, edit sesuai selera, inspeksi kualitas, dan ekspor ke berbagai platform—semua dalam satu aplikasi yang intuitif.
+            MetaFast dibuat buat kreator yang tidak mau terlalu banyak energi habis di pekerjaan metadata yang itu-itu saja. Pilih paketnya, unduh aplikasinya, lalu mulai bangun alur kerja yang lebih enak dari desktop kamu sendiri.
           </p>
-          <div class="demo-stats">
-            <div class="stat">
-              <span class="stat-value">100+</span>
-              <span class="stat-label">File per Batch</span>
-            </div>
-            <div class="stat">
-              <span class="stat-value">99%</span>
-              <span class="stat-label">Akurasi Metadata</span>
-            </div>
-            <div class="stat">
-              <span class="stat-value">24/7</span>
-              <span class="stat-label">Otomatis Tanpa Henti</span>
-            </div>
+          <div class="hero-actions centered">
+            <a href="#pricing" class="btn btn-primary">Pilih Paket</a>
+            <a href="https://wa.me/6287823047486?text=Halo%2C%20saya%20ingin%20diskusi%20tentang%20MetaFast." target="_blank" class="btn btn-secondary">
+              Tanya via WhatsApp
+            </a>
           </div>
         </div>
+      </section>
+    </main>
+
+    <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+      <div class="image-lightbox-toolbar">
+        <div class="image-lightbox-zoom" aria-label="Kontrol zoom gambar">
+          <button type="button" class="image-lightbox-icon-btn" id="imageZoomOut" aria-label="Perkecil gambar">-</button>
+          <span class="image-lightbox-zoom-value" id="imageZoomValue">100%</span>
+          <button type="button" class="image-lightbox-icon-btn" id="imageZoomIn" aria-label="Perbesar gambar">+</button>
+        </div>
+        <button type="button" class="image-lightbox-close" id="imageLightboxClose" aria-label="Tutup pratinjau gambar">&times;</button>
       </div>
-    </section>
-
-    <section class="features" id="features">
-        <div class="container">
-            <h2 class="section-title animate-on-scroll">Fitur Canggih untuk Hasil Maksimal</h2>
-            
-            <div class="feature-spotlight-container">
-
-                <div class="feature-spotlight animate-on-scroll">
-                    <div class="spotlight-image">
-                        <img src="images/metafast-prompt.png" alt="Fitur Image to Prompt MetaFast">
-                    </div>
-                    <div class="spotlight-content">
-                        <h3>Generator Image-to-Prompt</h3>
-                        <p class="tagline">Ubah Gambar Jadi Inspirasi</p>
-                        <p>
-                            Buntu cari ide? Ubah gambar apa pun menjadi beberapa variasi prompt deskriptif untuk AI Art Generator seperti Midjourney. MetaFast secara cerdas menganalisis visual dan menambahkan parameter teknis seperti rasio aspek (`--ar`) secara otomatis.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="feature-spotlight animate-on-scroll">
-                    <div class="spotlight-image">
-                        <img src="images/metafast-inspeksi.png" alt="Fitur Inspeksi Konten MetaFast">
-                    </div>
-                    <div class="spotlight-content">
-                        <h3>Inspeksi Konten & Pencari Duplikat</h3>
-                        <p class="tagline">Jaminan Kualitas Sebelum Unggah</p>
-                        <p>
-                            AI Quality Control kami akan memindai setiap gambar untuk mendeteksi cacat anatomi, logo tersembunyi, atau potensi masalah IP lainnya. Fitur pencari duplikat juga akan menyaring file yang mirip secara visual, menghemat waktu dan biaya proses Anda.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="feature-spotlight animate-on-scroll">
-                    <div class="spotlight-image">
-                        <img src="images/metafast-remover.png" alt="Fitur Penghapus Metadata MetaFast">
-                    </div>
-                    <div class="spotlight-content">
-                        <h3>Alat Bantu Profesional</h3>
-                        <p class="tagline">Lengkapi Alur Kerja Anda</p>
-                        <p>
-                            MetaFast versi Lengkap hadir dengan berbagai alat bantu, termasuk Penghapus Metadata untuk membersihkan file sebelum diproses, dan kemampuan untuk menyimpan semua hasil prompt ke dalam satu file `.txt` yang rapi.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    
-    <section class="comparison-section-new" id="comparison">
-      <div class="container">
-        <h2 class="section-title animate-on-scroll">MetaFast vs MetaFast Lite</h2>
-        <p class="pricing-intro animate-on-scroll" style="transition-delay: 100ms;">
-            Dua versi hebat untuk kebutuhan yang berbeda. Pilih yang paling cocok untuk Anda.
-        </p>
-        <div class="comparison-grid">
-          <div class="comparison-card animate-on-scroll" style="transition-delay: 200ms;">
-            <h3>🚀 MetaFast Lite</h3>
-            <p class="tagline-new">Cepat & Esensial</p>
-            <p class="includes-text">Sempurna untuk memproses file dengan cepat tanpa banyak pengaturan tambahan. Fitur utamanya:</p>
-            <ul>
-              <li>✔️ Analisis AI (Judul, Keyword, Deskripsi)</li>
-              <li>✔️ Metadata langsung tertanam di file</li>
-              <li>✔️ Dukungan Semua Format (JPG, PNG, Video, AI, SVG, EPS)</li>
-              <li>✔️ Opsi Ekspor CSV untuk Platform Populer</li>
-              <li>✔️ Kontrol Dasar (Start, Stop, Pause, Auto-Retry)</li>
-            </ul>
-          </div>
-          <div class="comparison-card featured-new animate-on-scroll" style="transition-delay: 300ms;">
-            <h3>✨ MetaFast (Versi Lengkap)</h3>
-            <p class="tagline-new">Powerfull & Penuh Fitur</p>
-            <p class="includes-text">Semua fitur dari versi Lite, ditambah:</p>
-            <ul>
-              <li>✨ Deteksi File Duplikat & Gambar Mirip</li>
-              <li>✨ Pemantauan Folder Otomatis (Folder Watcher)</li>
-              <li>✨ Fitur Lanjutkan Sesi (Resume Session)</li>
-              <li>✨ Editor Metadata Interaktif (Review & Edit)</li>
-              <li>✨ Inspeksi & Filter Konten Bermasalah</li>
-              <li>✨ Fitur "Image-to-Prompt" Kreatif</li>
-              <li>✨ Filter Keyword Negatif & Prompt Kustom</li>
-              <li>✨ Dukungan Platform Ekspor Lebih Luas</li>
-              <li>✨ Penghapus Metadata Bawaan</li>
-              <li>✨ ...dan banyak fitur canggih lainnya.</li>
-            </ul>
-          </div>
-        </div>
-
-        </div>
+      <div class="image-lightbox-stage" id="imageLightboxStage">
+        <img src="" alt="" id="imageLightboxPreview" />
       </div>
-    </section>
-
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <h2 class="section-title animate-on-scroll">Pilihan Paket Langganan</h2>
-            <p class="pricing-intro animate-on-scroll" style="transition-delay: 100ms;">
-                Pilih durasi langganan yang paling sesuai dengan alur kerja Anda.
-            </p>
-            <div class="pricing-grid-new">
-                <div class="pricing-card-new animate-on-scroll" style="transition-delay: 200ms;">
-                    <h3>🚀 MetaFast Lite</h3>
-                    <div class="pricing-tier">
-                        <span class="tier-duration">1 Bulan</span>
-                        <span class="tier-price">Rp 45.000</span>
-                    </div>
-                    <div class="pricing-tier">
-                        <span class="tier-duration">3 Bulan</span>
-                        <span class="tier-price">Rp 120.000</span>
-                        <span class="tier-bonus">✨ Bonus 1 minggu</span>
-                    </div>
-                    <div class="pricing-tier">
-                        <span class="tier-duration">6 Bulan</span>
-                        <span class="tier-price">Rp 250.000</span>
-                        <span class="tier-bonus">✨ Bonus 2 minggu</span>
-                    </div>
-                    <div class="pricing-tier">
-                        <span class="tier-duration">1 Tahun</span>
-                        <span class="tier-price">Rp 500.000</span>
-                        <span class="tier-bonus">✨ Bonus 1 bulan</span>
-                    </div>
-                    <a href="https://wa.link/heu9hg" target="_blank" class="btn secondary-btn">Pilih Paket Lite</a>
-                </div>
-                <div class="pricing-card-new featured animate-on-scroll" style="transition-delay: 300ms;">
-                    <span class="badge">PALING POPULER</span>
-                    <h3>✨ MetaFast (Lengkap)</h3>
-                    <div class="pricing-tier">
-                        <span class="tier-duration">1 Bulan</span>
-                        <span class="tier-price">Rp 55.000</span>
-                    </div>
-                    <div class="pricing-tier">
-                        <span class="tier-duration">3 Bulan</span>
-                        <span class="tier-price">Rp 150.000</span>
-                        <span class="tier-bonus">✨ Bonus 2 minggu</span>
-                    </div>
-                    <div class="pricing-tier">
-                        <span class="tier-duration">6 Bulan</span>
-                        <span class="tier-price">Rp 300.000</span>
-                        <span class="tier-bonus">✨ Bonus 1 bulan</span>
-                    </div>
-                    <div class="pricing-tier">
-                        <span class="tier-duration">1 Tahun</span>
-                        <span class="tier-price">Rp 600.000</span>
-                        <span class="tier-bonus">✨ Bonus 2 bulan</span>
-                    </div>
-                    <a href="https://wa.link/i28lck" target="_blank" class="btn primary-btn">Pilih Paket Lengkap</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="download" id="download">
-      <div class="container download-wrapper">
-        <div class="download-content animate-on-scroll">
-        <h2 class="section-title">Unduh MetaFast</h2>
-          <p>Tersedia untuk Windows saja.</p>
-          <h4>Persyaratan Sistem</h4>
-
-          <h5>Minimum (bisa jalan)</h5>
-          <ul class="requirements">
-            <li>Windows 10/11 64-bit</li>
-            <li>CPU 2-core 2.0 GHz (Intel/AMD)</li>
-            <li>RAM 4 GB</li>
-            <li>Penyimpanan kosong ≥ 1,5 GB untuk instalasi (+ ruang kerja file)</li>
-            <li>Koneksi internet stabil (dipakai untuk API AI)</li>
-          </ul>
-
-          <h5>Direkomendasikan</h5>
-          <ul class="requirements">
-            <li>CPU 4-core atau lebih cepat (Core i5/Ryzen 3 ke atas)</li>
-            <li>RAM 8–16 GB</li>
-            <li>SSD untuk baca/tulis lebih cepat</li>
-            <li>Kecepatan internet ≥ 10 Mbps</li>
-          </ul>
-
-          <div class="download-links">
-            <a href="https://www.dropbox.com/scl/fo/hq1o46r97jf88jlujwl6j/AIWtusfdFkfVyMTrNFWm8Jg?rlkey=deanbl3g0xwi1bd30urwxkoyq&st=4g2cypoh&dl=0" class="btn primary-btn">Unduh MetaFast (Lengkap)</a>
-            <a href="https://www.dropbox.com/scl/fo/93ry4q4mccv18wtw511vd/ADzev5uF91dpPfbwEBdnA6E?rlkey=gryz7x5ja5c6eopnmq2c7oj28&st=y81vplr2&dl=0" class="btn secondary-btn">Unduh MetaFast Lite</a>
-          </div>
-          <p class="version-info">
-            Versi Lengkap • Lite
+    </div>
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <div>
+          <a href="#home" class="brand-mark footer-brand">
+            <img src="images/logo-nav.png" alt="Logo MetaFast" class="brand-logo brand-logo-light" />
+            <img src="images/logo-nav-dark.png" alt="Logo MetaFast" class="brand-logo brand-logo-dark" />
+            <span>MetaFast</span>
+          </a>
+          <p class="footer-copy">
+            &copy; 2026 MetaFast. Seluruh hak cipta dilindungi. Materi, tampilan, dan isi situs ini merupakan bagian dari informasi resmi MetaFast.
           </p>
         </div>
-      </div>
-    </section>
-
-    <section class="faq-section" id="faq">
-      <div class="container">
-        <h2 class="section-title animate-on-scroll">Frequently Asked Questions</h2>
-        <div class="faq-grid">
-          <div class="faq-item animate-on-scroll" style="transition-delay: 100ms;">
-            <h4>Apa saja format file yang didukung MetaFast?</h4>
-            <p>
-              MetaFast dirancang untuk menangani hampir semua aset digital Anda, termasuk format gambar (JPG, PNG), video (MP4, MOV), dan bahkan file vektor yang rumit seperti Adobe Illustrator (.AI), .EPS, dan .SVG.
-            </p>
-          </div>
-          <div class="faq-item animate-on-scroll" style="transition-delay: 200ms;">
-            <h4>Apakah saya butuh kunci API AI sendiri untuk menggunakannya?</h4>
-            <p>
-              Ya. MetaFast berfungsi sebagai alat alur kerja (workflow) yang canggih untuk menghubungkan file Anda dengan penyedia AI pilihan Anda (Gemini, OpenAI, dll). Dengan kunci API Anda sendiri, Anda punya kontrol penuh atas penggunaan dan biaya.
-            </p>
-          </div>
-          <div class="faq-item animate-on-scroll" style="transition-delay: 300ms;">
-            <h4>Bisakah saya mengedit hasil dari AI sebelum disimpan?</h4>
-            <p>
-              Tentu! Ini adalah fitur andalan <strong>MetaFast versi Lengkap</strong>. Anda akan mendapatkan tab "Review & Edit" di mana Anda bisa meninjau dan menyempurnakan setiap judul, deskripsi, dan kata kunci sebelum file akhir disimpan.
-            </p>
-          </div>
-          <div class="faq-item animate-on-scroll" style="transition-delay: 100ms;">
-            <h4>Apa perbedaan utama antara versi Lite dan Lengkap?</h4>
-            <p>
-              <strong>Versi Lite</strong> fokus pada kecepatan dan fungsi esensial: analisis dan penanaman metadata. <strong>Versi Lengkap</strong> adalah solusi total untuk alur kerja profesional, menambahkan fitur seperti pencari file duplikat, pemantauan folder, inspeksi konten, dan editor interaktif.
-            </p>
-          </div>
-          <div class="faq-item animate-on-scroll" style="transition-delay: 200ms;">
-            <h4>Apakah file asli saya diunggah ke server MetaFast?</h4>
-            <p>
-              <strong>Tidak pernah.</strong> Keamanan Anda adalah prioritas. MetaFast berjalan 100% lokal di komputer Anda. Hanya thumbnail gambar terkompresi dan beresolusi sangat rendah yang dikirim ke penyedia AI untuk dianalisis. File asli Anda tidak pernah meninggalkan komputer Anda.
-            </p>
-          </div>
-          <div class="faq-item animate-on-scroll" style="transition-delay: 300ms;">
-            <h4>Apakah MetaFast bisa berjalan di Mac atau Linux?</h4>
-            <p>
-              Untuk saat ini, MetaFast hanya tersedia secara eksklusif untuk <strong>Windows 10 dan Windows 11 (64-bit)</strong>.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="testimonials">
-      <div class="container">
-        <h2 class="section-title animate-on-scroll">Apa kata pengguna kami</h2>
-        <div class="testimonial-grid">
-          <div class="testimonial-item animate-on-scroll" style="transition-delay: 100ms;">
-            <div class="testimonial-avatar"></div>
-            <h4 class="testimonial-name">Budi Santoso</h4>
-            <p class="testimonial-title">Kontributor Stok Foto</p>
-            <p class="testimonial-quote">
-              “Dulu, setengah hari bisa habis cuma buat mikirin keyword dan judul. Sejak pakai MetaFast, ratusan foto beres metadatanya sambil saya ngopi. Bener-bener <em>game-changer</em> buat alur kerja saya.”
-            </p>
-          </div>
-          <div class="testimonial-item animate-on-scroll" style="transition-delay: 200ms;">
-            <div class="testimonial-avatar"></div>
-            <h4 class="testimonial-name">Rina Wijaya</h4>
-            <p class="testimonial-title">Ilustrator & Seniman Vektor</p>
-            <p class="testimonial-quote">
-              “Sebagai ilustrator, saya paling suka karena MetaFast bisa handle file AI dan EPS. Nggak perlu pusing lagi bikin file .xmp manual. Prosesnya jadi cepet banget dari Adobe Illustrator sampai siap di-upload.”
-            </p>
-          </div>
-          <div class="testimonial-item animate-on-scroll" style="transition-delay: 300ms;">
-            <div class="testimonial-avatar"></div>
-            <h4 class="testimonial-name">Aditya Pratama</h4>
-            <p class="testimonial-title">AI Artist & Kreator Digital</p>
-            <p class="testimonial-quote">
-             “Fitur Inspeksi Konten-nya luar biasa. Bisa nemuin cacat anatomi AI yang sering kelewat mata. Ditambah fitur 'Image-to-Prompt'-nya, bener-bener ngebantu buat cari inspirasi baru.”
-            </p>
-          </div>
-          <div class="testimonial-item animate-on-scroll" style="transition-delay: 100ms;">
-            <div class="testimonial-avatar"></div>
-            <h4 class="testimonial-name">Dewi Lestari</h4>
-            <p class="testimonial-title">Pemilik Agensi Kreatif</p>
-            <p class="testimonial-quote">
-              “Untuk agensi, efisiensi itu kunci. MetaFast nggak cuma mempercepat proses, tapi fitur ekspor CSV-nya bikin proses unggah ke banyak platform jadi ringkes. Sangat membantu tim kami.”
-            </p>
-          </div>
-          <div class="testimonial-item animate-on-scroll" style="transition-delay: 200ms;">
-            <div class="testimonial-avatar"></div>
-            <h4 class="testimonial-name">Gilang Permana</h4>
-            <p class="testimonial-title">Videografer & Konten Kreator</p>
-            <p class="testimonial-quote">
-              “Akhirnya ada software yang ngerti kebutuhan metadata untuk video! Prosesnya sama mudahnya kayak foto. Tinggal masukin video MP4, dan semua judul serta keyword langsung tertanam. Hemat waktu banget.”
-            </p>
-          </div>
-          <div class="testimonial-item animate-on-scroll" style="transition-delay: 300ms;">
-            <div class="testimonial-avatar"></div>
-            <h4 class="testimonial-name">Siti Aminah</h4>
-            <p class="testimonial-title">Kontributor Microstock Volume Tinggi</p>
-            <p class="testimonial-quote">
-             “Fitur 'Folder Watcher' itu penyelamat. Saya tinggal render gambar ke satu folder, dan MetaFast otomatis proses semuanya di latar belakang. Nggak perlu lagi drag-and-drop manual.”
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="final-cta" id="cta">
-      <div class="container animate-on-scroll">
-        <h2>Siap mengotomatiskan alur kerja metadata Anda?</h2>
-        <p>
-          Bergabunglah dengan ribuan pengguna yang telah meningkatkan bisnis mereka dengan
-          otomatisasi AI. Unduh MetaFast hari ini dan mulai hemat waktu!
-        </p>
-        <a href="#download" class="btn primary-btn">Mulai</a>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container footer-content">
-        <p>&copy; 2025 MetaFast. All rights reserved.</p>
         <nav class="footer-nav">
+          <a href="#workflow">Alur Kerja</a>
           <a href="#features">Fitur</a>
-          <a href="#comparison">Perbandingan</a>
+          <a href="#comparison">Keunggulan</a>
           <a href="#pricing">Harga</a>
           <a href="#faq">FAQ</a>
           <a href="#download">Unduh</a>
         </nav>
       </div>
     </footer>
-    
+
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    
-        if (!animatedElements) {
-          return;
-        }
-    
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            // Saat elemen masuk ke viewport
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              // Hentikan pengamatan setelah animasi berjalan agar lebih efisien
-              observer.unobserve(entry.target);
-            }
+      document.addEventListener("DOMContentLoaded", () => {
+        const root = document.documentElement;
+        const themeToggle = document.getElementById("themeToggle");
+        const themeToggleLabel = document.getElementById("themeToggleLabel");
+
+        const updateThemeLabel = () => {
+          const isDark = root.dataset.theme === "dark";
+          if (themeToggleLabel) {
+            themeToggleLabel.textContent = isDark ? "Tema Terang" : "Tema Gelap";
+          }
+          if (themeToggle) {
+            themeToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+          }
+        };
+
+        updateThemeLabel();
+
+        themeToggle?.addEventListener("click", () => {
+          const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+          root.dataset.theme = nextTheme;
+          localStorage.setItem("metafast-theme", nextTheme);
+          updateThemeLabel();
+        });
+
+        const animatedElements = document.querySelectorAll(".animate-on-scroll");
+        const zoomableImages = document.querySelectorAll("img[data-zoomable='true']");
+        const lightbox = document.getElementById("imageLightbox");
+        const lightboxStage = document.getElementById("imageLightboxStage");
+        const lightboxPreview = document.getElementById("imageLightboxPreview");
+        const lightboxClose = document.getElementById("imageLightboxClose");
+        const zoomInButton = document.getElementById("imageZoomIn");
+        const zoomOutButton = document.getElementById("imageZoomOut");
+        const zoomValue = document.getElementById("imageZoomValue");
+        let lightboxScale = 1;
+        const minLightboxScale = 1;
+        const maxLightboxScale = 4;
+        let lightboxTranslateX = 0;
+        let lightboxTranslateY = 0;
+        let isDraggingLightbox = false;
+        let dragStartX = 0;
+        let dragStartY = 0;
+
+        const clampLightboxPosition = () => {
+          if (!lightboxPreview || !lightboxStage || lightboxScale <= 1) {
+            lightboxTranslateX = 0;
+            lightboxTranslateY = 0;
+            return;
+          }
+
+          const stageRect = lightboxStage.getBoundingClientRect();
+          const scaledWidth = lightboxPreview.offsetWidth * lightboxScale;
+          const scaledHeight = lightboxPreview.offsetHeight * lightboxScale;
+          const maxX = Math.max(0, (scaledWidth - stageRect.width) / 2);
+          const maxY = Math.max(0, (scaledHeight - stageRect.height) / 2);
+
+          lightboxTranslateX = Math.min(maxX, Math.max(-maxX, lightboxTranslateX));
+          lightboxTranslateY = Math.min(maxY, Math.max(-maxY, lightboxTranslateY));
+        };
+
+        const applyLightboxTransform = () => {
+          if (!lightboxPreview || !lightboxStage) return;
+          clampLightboxPosition();
+          lightboxPreview.style.transform = `translate(${lightboxTranslateX}px, ${lightboxTranslateY}px) scale(${lightboxScale})`;
+          if (zoomValue) {
+            zoomValue.textContent = `${Math.round(lightboxScale * 100)}%`;
+          }
+          lightboxStage.classList.toggle("is-draggable", lightboxScale > 1 && !isDraggingLightbox);
+          lightboxStage.classList.toggle("is-dragging", isDraggingLightbox);
+          if (zoomOutButton) {
+            zoomOutButton.disabled = lightboxScale <= minLightboxScale;
+          }
+          if (zoomInButton) {
+            zoomInButton.disabled = lightboxScale >= maxLightboxScale;
+          }
+        };
+
+        const resetLightboxTransform = () => {
+          lightboxScale = 1;
+          lightboxTranslateX = 0;
+          lightboxTranslateY = 0;
+          isDraggingLightbox = false;
+          applyLightboxTransform();
+        };
+
+        const setLightboxScale = (nextScale, clientX, clientY) => {
+          if (!lightboxPreview || !lightboxStage) return;
+          const clampedScale = Math.min(maxLightboxScale, Math.max(minLightboxScale, Number(nextScale.toFixed(2))));
+          if (clampedScale === lightboxScale) return;
+
+          const previousScale = lightboxScale;
+          const stageRect = lightboxStage.getBoundingClientRect();
+          const anchorX = typeof clientX === "number" ? clientX - stageRect.left - stageRect.width / 2 : 0;
+          const anchorY = typeof clientY === "number" ? clientY - stageRect.top - stageRect.height / 2 : 0;
+          const scaleRatio = clampedScale / previousScale;
+
+          lightboxTranslateX = (lightboxTranslateX - anchorX) * scaleRatio + anchorX;
+          lightboxTranslateY = (lightboxTranslateY - anchorY) * scaleRatio + anchorY;
+          lightboxScale = clampedScale;
+          if (lightboxScale <= minLightboxScale) {
+            lightboxTranslateX = 0;
+            lightboxTranslateY = 0;
+          }
+          applyLightboxTransform();
+        };
+
+        const closeLightbox = () => {
+          if (!lightbox || !lightboxPreview) return;
+          lightbox.classList.remove("is-open");
+          lightbox.setAttribute("aria-hidden", "true");
+          lightboxPreview.src = "";
+          lightboxPreview.alt = "";
+          resetLightboxTransform();
+          document.body.classList.remove("lightbox-open");
+        };
+
+        zoomableImages.forEach((image) => {
+          image.addEventListener("click", () => {
+            if (!lightbox || !lightboxPreview) return;
+            lightboxPreview.src = image.getAttribute("src") || "";
+            lightboxPreview.alt = image.getAttribute("alt") || "Pratinjau gambar";
+            resetLightboxTransform();
+            lightbox.classList.add("is-open");
+            lightbox.setAttribute("aria-hidden", "false");
+            document.body.classList.add("lightbox-open");
           });
-        }, {
-          threshold: 0.1 // Picu animasi saat 10% elemen terlihat
         });
-    
-        // Mulai amati setiap elemen yang memiliki kelas .animate-on-scroll
-        animatedElements.forEach(element => {
-          observer.observe(element);
+
+        lightboxStage?.addEventListener(
+          "wheel",
+          (event) => {
+            if (!lightbox?.classList.contains("is-open")) return;
+            event.preventDefault();
+            const delta = event.deltaY < 0 ? 0.2 : -0.2;
+            setLightboxScale(lightboxScale + delta, event.clientX, event.clientY);
+          },
+          { passive: false }
+        );
+
+        lightboxStage?.addEventListener("dblclick", (event) => {
+          if (!lightbox?.classList.contains("is-open")) return;
+          const nextScale = lightboxScale > 1 ? 1 : 2;
+          setLightboxScale(nextScale, event.clientX, event.clientY);
         });
+
+        lightboxStage?.addEventListener("mousedown", (event) => {
+          if (lightboxScale <= 1) return;
+          event.preventDefault();
+          isDraggingLightbox = true;
+          dragStartX = event.clientX - lightboxTranslateX;
+          dragStartY = event.clientY - lightboxTranslateY;
+          applyLightboxTransform();
+        });
+
+        document.addEventListener("mousemove", (event) => {
+          if (!isDraggingLightbox) return;
+          lightboxTranslateX = event.clientX - dragStartX;
+          lightboxTranslateY = event.clientY - dragStartY;
+          applyLightboxTransform();
+        });
+
+        document.addEventListener("mouseup", () => {
+          if (!isDraggingLightbox) return;
+          isDraggingLightbox = false;
+          applyLightboxTransform();
+        });
+
+        zoomInButton?.addEventListener("click", () => {
+          const stageRect = lightboxStage?.getBoundingClientRect();
+          setLightboxScale(
+            lightboxScale + 0.25,
+            stageRect ? stageRect.left + stageRect.width / 2 : undefined,
+            stageRect ? stageRect.top + stageRect.height / 2 : undefined
+          );
+        });
+
+        zoomOutButton?.addEventListener("click", () => {
+          const stageRect = lightboxStage?.getBoundingClientRect();
+          setLightboxScale(
+            lightboxScale - 0.25,
+            stageRect ? stageRect.left + stageRect.width / 2 : undefined,
+            stageRect ? stageRect.top + stageRect.height / 2 : undefined
+          );
+        });
+
+        lightboxClose?.addEventListener("click", closeLightbox);
+        lightbox?.addEventListener("click", (event) => {
+          if (event.target === lightbox) {
+            closeLightbox();
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && lightbox?.classList.contains("is-open")) {
+            closeLightbox();
+          } else if ((event.key === "+" || event.key === "=") && lightbox?.classList.contains("is-open")) {
+            setLightboxScale(lightboxScale + 0.25);
+          } else if (event.key === "-" && lightbox?.classList.contains("is-open")) {
+            setLightboxScale(lightboxScale - 0.25);
+          } else if (event.key === "0" && lightbox?.classList.contains("is-open")) {
+            resetLightboxTransform();
+          }
+        });
+
+        window.addEventListener("resize", () => {
+          if (lightbox?.classList.contains("is-open")) {
+            applyLightboxTransform();
+          }
+        });
+        if (animatedElements.length) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+          );
+
+          animatedElements.forEach((element) => observer.observe(element));
+        }
       });
     </script>
-
-    </body>
+  </body>
 </html>
