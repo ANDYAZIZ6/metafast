@@ -647,9 +647,10 @@
   </footer>
 
   <script>
+    const DEFAULT_PAYMENT_API_BASE = "https://metafast-payment.andydandelion6.workers.dev";
     const runtimeApiBase = (window.METAFAST_PAYMENT_API_BASE || "").trim();
     const queryApiBase = (new URLSearchParams(window.location.search).get("apiBase") || "").trim();
-    const API_BASE = queryApiBase || runtimeApiBase || window.location.origin;
+    const API_BASE = queryApiBase || runtimeApiBase || DEFAULT_PAYMENT_API_BASE;
 
     const packageCatalog = {
       "1month": {
