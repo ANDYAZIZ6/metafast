@@ -1,533 +1,881 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0f0f23" />
-  <title>Kebijakan Privasi – MetaFast for Adobe Stock</title>
-  <meta name="description" content="Kebijakan Privasi MetaFast for Adobe Stock." />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-
-  <!-- Lucide UMD build (global `lucide`) -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
-
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg-primary: #0f0f23;
-      --bg-secondary: #1a1a2e;
-      --glass-bg: rgba(255, 255, 255, 0.05);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --text-primary: #e4e4e7;
-      --text-secondary: #a1a1aa;
-      --accent-1: #6366f1;
-      --accent-2: #8b5cf6;
-      --accent-3: #ec4899;
-      --shadow: rgba(99, 102, 241, 0.1);
-    }
-
-    .light-mode {
-      --bg-primary: #f8fafc;
-      --bg-secondary: #ffffff;
-      --glass-bg: rgba(255, 255, 255, 0.7);
-      --glass-border: rgba(0, 0, 0, 0.1);
-      --text-primary: #1e293b;
-      --text-secondary: #64748b;
-      --shadow: rgba(0, 0, 0, 0.05);
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.7;
-      overflow-x: hidden;
-      transition: background 0.3s ease, color 0.3s ease;
-      min-height: 100dvh;
-    }
-
-    /* Animated Gradient Background */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
-      opacity: 0.1; z-index: -1;
-      animation: gradient 15s ease infinite; background-size: 400% 400%;
-    }
-
-    @keyframes gradient { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
-
-    /* Floating orbs */
-    .orb { position: fixed; border-radius: 50%; filter: blur(80px); opacity: .3; z-index: -1; animation: float 20s ease-in-out infinite; }
-    .orb-1 { width: 400px; height: 400px; background: var(--accent-1); top: -200px; right: -200px; animation-delay: 0s; }
-    .orb-2 { width: 350px; height: 350px; background: var(--accent-2); bottom: -150px; left: -150px; animation-delay: 7s; }
-    .orb-3 { width: 300px; height: 300px; background: var(--accent-3); top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 14s; }
-    @keyframes float { 0%,100%{transform:translate(0,0) rotate(0)} 33%{transform:translate(50px,-50px) rotate(120deg)} 66%{transform:translate(-50px,50px) rotate(240deg)} }
-
-    /* Header */
-    .header { position: sticky; top: 0; z-index: 100; background: var(--glass-bg);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--glass-border); padding: 1rem 2rem; }
-    .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .logo { display: flex; align-items: center; gap: .75rem; font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .logo i { width: 32px; height: 32px; color: var(--accent-1); }
-
-    /* Theme Toggle */
-    .theme-toggle { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 50px; padding: .5rem; cursor: pointer; display: flex; align-items: center; gap: .5rem; transition: transform .3s ease, box-shadow .3s ease; }
-    .theme-toggle:hover { transform: scale(1.05); box-shadow: 0 8px 32px var(--shadow); }
-    .theme-toggle i { width: 20px; height: 20px; color: var(--text-primary); }
-
-    /* Container */
-    .container { max-width: 900px; margin: 3rem auto; padding: 0 2rem; }
-
-    /* Glass Card */
-    .glass-card { background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 24px; padding: 3rem; margin-bottom: 2rem; box-shadow: 0 8px 32px var(--shadow); transition: transform .3s ease, box-shadow .3s ease; animation: fadeIn .6s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
-    .glass-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px var(--shadow); }
-
-    /* Hero Section */
-    .hero { text-align: center; margin-bottom: 3rem; }
-    .hero h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.2; }
-    .hero .badge { display: inline-flex; align-items: center; gap: .5rem; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: .5rem 1.25rem; border-radius: 50px; font-size: .875rem; color: var(--text-secondary); margin-top: 1rem; }
-    .hero .badge i { width: 16px; height: 16px; }
-
-    /* Section */
-    .section { margin-bottom: 2.5rem; }
-    .section-header { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
-    .section-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); border-radius: 12px; flex-shrink: 0; }
-    .section-icon i { width: 20px; height: 20px; color: white; }
-    h2 { font-size: 1.75rem; font-weight: 700; color: var(--text-primary); }
-    p { color: var(--text-secondary); margin-bottom: 1rem; }
-
-    /* Feature List */
-    .feature-list { display: grid; gap: 1rem; margin: 1.5rem 0; }
-    .feature-item { display: flex; gap: 1rem; padding: 1.25rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; transition: transform .3s ease, box-shadow .3s ease; }
-    .feature-item:hover { transform: translateX(8px); box-shadow: 0 8px 24px var(--shadow); }
-    .feature-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--accent-1), var(--accent-3)); border-radius: 12px; flex-shrink: 0; }
-    .feature-icon i { width: 24px; height: 24px; color: white; }
-    .feature-content h3 { font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin-bottom: .5rem; }
-    .feature-content p { margin: 0; font-size: .9375rem; }
-
-    code { background: var(--glass-bg); padding: .25rem .5rem; border-radius: 6px; font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .875rem; color: var(--accent-1); border: 1px solid var(--glass-border); }
-
-    /* Contact Card */
-    .contact-card { background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); padding: 2rem; border-radius: 20px; text-align: center; color: white; margin-top: 3rem; }
-    .contact-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
-    .contact-card a { display: inline-flex; align-items: center; gap: .5rem; background: rgba(255,255,255,.2); color: white; padding: .75rem 1.5rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: transform .3s ease, background .3s ease; border: 1px solid rgba(255,255,255,.3); }
-    .contact-card a:hover { background: rgba(255,255,255,.3); transform: scale(1.05); }
-    .contact-card a i { width: 20px; height: 20px; }
-
-    /* Language Toggle */
-    .lang-toggle { display: flex; gap: .75rem; justify-content: center; margin: 2.25rem auto 2rem; padding: .25rem .5rem; }
-    .lang-btn { padding: .625rem 1.5rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 999px; cursor: pointer; transition: transform .3s ease, box-shadow .3s ease, background .3s ease; color: var(--text-primary); font-weight: 700; letter-spacing: .1px; }
-    .lang-btn.active { background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); color: white; border-color: transparent; }
-    .lang-btn:hover { transform: scale(1.05); box-shadow: 0 8px 24px var(--shadow); }
-    .lang-content { display: none; }
-    .lang-content.active { display: block; }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .glass-card { padding: 2rem 1.5rem; }
-      .container { padding: 0 1rem; }
-      .header { padding: 1rem; }
-    }
-  </style>
-</head>
-<body>
-  <noscript style="display:block; padding:1rem; text-align:center; background:#fee2e2; color:#991b1b; font-weight:600;">Aktifkan JavaScript untuk menampilkan ikon dan tombol.</noscript>
-
-  <!-- Floating Orbs -->
-  <div class="orb orb-1" aria-hidden="true"></div>
-  <div class="orb orb-2" aria-hidden="true"></div>
-  <div class="orb orb-3" aria-hidden="true"></div>
-
-  <!-- Header -->
-  <div class="header" role="banner">
-    <div class="header-content">
-      <div class="logo" aria-label="MetaFast">
-        <a href="https://andyaziz6.github.io/metafast/" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 0.5rem; transition: opacity 0.2s;">
-        <i data-lucide="shield-check" aria-hidden="true"></i>
-        <span>MetaFast</span>
-      </a>
-      </div>
-      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Toggle theme">
-        <i data-lucide="sun" id="themeIcon" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-
-  <!-- Main Container -->
-  <div class="container">
-    <!-- Hero Section -->
-    <div class="hero">
-      <h1>Kebijakan Privasi</h1>
-      <div class="badge" aria-label="Tanggal pembaruan kebijakan">
-        <i data-lucide="calendar" aria-hidden="true"></i>
-        Terakhir diperbarui: 18 Oktober 2025
-      </div>
-    </div>
-
-    <!-- Language Toggle -->
-    <div class="lang-toggle" role="tablist" aria-label="Pilih Bahasa">
-      <button class="lang-btn active" role="tab" aria-selected="true" aria-controls="lang-id" id="tab-id" data-lang="id">Bahasa Indonesia</button>
-      <button class="lang-btn" role="tab" aria-selected="false" aria-controls="lang-en" id="tab-en" data-lang="en">English</button>
-    </div>
-
-    <!-- Indonesian Content -->
-    <div class="lang-content active" id="lang-id" role="tabpanel" aria-labelledby="tab-id">
-      <!-- Summary -->
-      <div class="glass-card">
-        <div class="section">
-          <div class="section-header">
-            <div class="section-icon"><i data-lucide="file-text"></i></div>
-            <h2>Ringkasan</h2>
-          </div>
-          <p>
-            Ekstensi <strong>MetaFast for Adobe Stock</strong> membantu kontributor Adobe Stock
-            membuat <em>judul</em>, <em>kata kunci</em>, dan <em>kategori</em> secara otomatis untuk
-            mempercepat proses unggah. Ekstensi ini tidak mengumpulkan, menyimpan, menjual,
-            atau membagikan data pribadi pengguna.
-          </p>
-        </div>
-      </div>
-
-      <!-- Permissions -->
-      <div class="glass-card">
-        <div class="section">
-          <div class="section-header">
-            <div class="section-icon"><i data-lucide="lock"></i></div>
-            <h2>Izin & Penggunaan</h2>
-          </div>
-          
-          <div class="feature-list">
-            <div class="feature-item">
-              <div class="feature-icon"><i data-lucide="globe"></i></div>
-              <div class="feature-content">
-                <h3>Host Permissions</h3>
-                <p>Akses ke <code>https://*.adobe.com/</code> untuk membaca/menulis metadata di halaman unggah Adobe Stock. Akses dibatasi hanya pada domain yang relevan.</p>
-              </div>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon"><i data-lucide="layout-grid"></i></div>
-              <div class="feature-content">
-                <h3>Tabs</h3>
-                <p>Mendeteksi tab aktif saat pengguna berada di Adobe Stock. Data tidak disimpan atau dikirim ke pihak mana pun.</p>
-              </div>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon"><i data-lucide="panel-right"></i></div>
-              <div class="feature-content">
-                <h3>Side Panel</h3>
-                <p>Menampilkan antarmuka MetaFast di panel samping untuk workflow yang lebih cepat dan efisien.</p>
-              </div>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon"><i data-lucide="hard-drive"></i></div>
-              <div class="feature-content">
-                <h3>Storage</h3>
-                <p>Menyimpan preferensi lokal seperti pengaturan strategi kata kunci. Semua data tetap di perangkat Anda.</p>
-              </div>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon"><i data-lucide="code"></i></div>
-              <div class="feature-content">
-                <h3>Scripting</h3>
-                <p>Menyuntikkan skrip untuk mengisi/membaca field metadata pada halaman Adobe Stock atas tindakan pengguna.</p>
-              </div>
-            </div>
-          </div>
-
-          <p style="margin-top: 1.5rem;">
-            <strong>Catatan:</strong> Kami tidak menggunakan kode jarak jauh (remote code) atau <code>eval()</code>. 
-            Seluruh kode dibundel di paket ekstensi untuk keamanan maksimal.
-          </p>
-        </div>
-      </div>
-
-      <!-- Data Collection -->
-      <div class="glass-card">
-        <div class="section">
-          <div class="section-header">
-            <div class="section-icon"><i data-lucide="database"></i></div>
-            <h2>Data yang Dikumpulkan</h2>
-          </div>
-          <p>
-            MetaFast <strong>tidak mengumpulkan</strong> informasi identitas pribadi, kesehatan, keuangan,
-            autentikasi, komunikasi, lokasi, maupun histori web. Konten yang diakses terbatas pada field metadata
-            di halaman Adobe Stock untuk menjalankan fungsi ekstensi.
-          </p>
-        </div>
-      </div>
-
-      <!-- Third Party -->
-      <div class="glass-card">
-        <div class="section">
-          <div class="section-header">
-            <div class="section-icon"><i data-lucide="users"></i></div>
-            <h2>Berbagi Data ke Pihak Ketiga</h2>
-          </div>
-          <p>
-            Kami <strong>tidak</strong> menjual atau mentransfer data pengguna ke pihak ketiga untuk tujuan apa pun.
-            Privasi Anda adalah prioritas utama kami.
-          </p>
-        </div>
-      </div>
-
-      <!-- Security -->
-      <div class="glass-card">
-        <div class="section">
-          <div class="section-header">
-            <div class="section-icon"><i data-lucide="shield"></i></div>
-            <h2>Keamanan & Anak-anak</h2>
-          </div>
-          <p>
-            Ekstensi ini tidak dirancang untuk anak di bawah 13 tahun dan tidak memproses data anak.
-          </p>
-        </div>
-      </div>
-
-      <!-- Changes -->
-      <div class="glass-card">
-        <div class="section">
-          <div class="section-header">
-            <div class="section-icon"><i data-lucide="refresh-cw"></i></div>
-            <h2>Perubahan Kebijakan</h2>
-          </div>
-          <p>
-            Kebijakan ini dapat diperbarui sewaktu-waktu. Tanggal "Terakhir diperbarui" akan disesuaikan.
-            Jika perubahan bersifat material, kami akan memperbarui deskripsi listing dan kebijakan ini.
-          </p>
-        </div>
-      </div>
-
-      <!-- Contact -->
-      <div class="contact-card">
-        <h3>Ada Pertanyaan?</h3>
-        <p style="margin-bottom: 1.5rem; font-weight:600; color:white;">Jangan ragu untuk menghubungi kami</p>
-        <a href="mailto:andyazizsaputra@gmail.com">
-          <i data-lucide="mail"></i>
-          andyazizsaputra@gmail.com
-        </a>
-      </div>
-    </div>
-
-    <!-- English Content -->
-    <div class="lang-content" id="lang-en" role="tabpanel" aria-labelledby="tab-en">
-      <!-- Summary -->
-      <div class="glass-card">
-        <div class="section">
-          <div class="section-header">
-            <div class="section-icon"><i data-lucide="file-text"></i></div>
-            <h2>Summary</h2>
-          </div>
-          <p>
-            <strong>MetaFast for Adobe Stock</strong> helps Adobe Stock contributors automatically generate
-            <em>titles</em>, <em>keywords</em>, and <em>categories</em> to speed up the upload process. 
-            This extension does not collect, store, sell, or share personal user data.
-          </p>
-        </div>
-      </div>
-
-      <!-- Permissions -->
-      <div class="glass-card">
-        <div class="section">
-          <div class="section-header">
-            <div class="section-icon"><i data-lucide="lock"></i></div>
-            <h2>Permissions & Use</h2>
-          </div>
-          
-          <div class="feature-list">
-            <div class="feature-item">
-              <div class="feature-icon"><i data-lucide="globe"></i></div>
-              <div class="feature-content">
-                <h3>Host Permissions</h3>
-                <p>Access to <code>https://*.adobe.com/</code> to read/write metadata on Adobe Stock upload pages. Access is limited to relevant domains only.</p>
-              </div>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon"><i data-lucide="layout-grid"></i></div>
-              <div class="feature-content">
-                <h3>Tabs</h3>
-                <p>Detects active tab when user is on Adobe Stock. No data is stored or transmitted to any party.</p>
-              </div>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon"><i data-lucide="panel-right"></i></div>
-              <div class="feature-content">
-                <h3>Side Panel</h3>
-                <p>Displays MetaFast interface in side panel for faster and more efficient workflow.</p>
-              </div>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon"><i data-lucide="hard-drive"></i></div>
-              <div class="feature-content">
-                <h3>Storage</h3>
-                <p>Stores local preferences like keyword strategy settings. All data remains on your device.</p>
-              </div>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon"><i data-lucide="code"></i></div>
-              <div class="feature-content">
-                <h3>Scripting</h3>
-                <p>Injects scripts to fill/read metadata fields on Adobe Stock pages upon user action.</p>
-              </div>
-            </div>
-          </div>
-
-          <p style="margin-top: 1.5rem;">
-            <strong>Note:</strong> We do not use remote code or <code>eval()</code>. 
-            All code is bundled in the extension package for maximum security.
-          </p>
-        </div>
-      </div>
-
-      <!-- Data Collection -->
-      <div class="glass-card">
-        <div class="section">
-          <div class="section-header">
-            <div class="section-icon"><i data-lucide="database"></i></div>
-            <h2>Data Collection</h2>
-          </div>
-          <p>
-            MetaFast <strong>does not collect</strong> personal identification information, health, financial,
-            authentication, communication, location, or web history data. Content access is limited to metadata
-            fields on Adobe Stock pages to perform extension functions.
-          </p>
-        </div>
-      </div>
-
-      <!-- Third Party -->
-      <div class="glass-card">
-        <div class="section">
-          <div class="section-header">
-            <div class="section-icon"><i data-lucide="users"></i></div>
-            <h2>Third Party Sharing</h2>
-          </div>
-          <p>
-            We <strong>do not</strong> sell or transfer user data to third parties for any purpose.
-            Your privacy is our top priority.
-          </p>
-        </div>
-      </div>
-
-      <!-- Security -->
-      <div class="glass-card">
-        <div class="section">
-          <div class="section-header">
-            <div class="section-icon"><i data-lucide="shield"></i></div>
-            <h2>Security & Children</h2>
-          </div>
-          <p>
-            This extension is not designed for children under 13 and does not process children's data.
-          </p>
-        </div>
-      </div>
-
-      <!-- Changes -->
-      <div class="glass-card">
-        <div class="section">
-          <div class="section-header">
-            <div class="section-icon"><i data-lucide="refresh-cw"></i></div>
-            <h2>Policy Changes</h2>
-          </div>
-          <p>
-            This policy may be updated at any time. The "Last updated" date will be adjusted accordingly.
-            If changes are material, we will update the listing description and this policy.
-          </p>
-        </div>
-      </div>
-
-      <!-- Contact -->
-      <div class="contact-card">
-        <h3>Have Questions?</h3>
-        <p style="margin-bottom: 1.5rem; font-weight:600; color:white;">Don't hesitate to contact us</p>
-        <a href="mailto:andyazizsaputra@gmail.com">
-          <i data-lucide="mail"></i>
-          andyazizsaputra@gmail.com
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Wait for Lucide & DOM
-    window.addEventListener('DOMContentLoaded', function () {
-      if (window.lucide && typeof window.lucide.createIcons === 'function') {
-        window.lucide.createIcons();
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Kebijakan Privasi | MetaFast</title>
+    <meta
+      name="description"
+      content="Kebijakan privasi MetaFast untuk ekstensi Adobe Stock, termasuk penjelasan izin, penyimpanan data, keamanan, dan cara kami menjaga informasi pengguna tetap aman."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="images/favicon.ico?v=2" sizes="any" />
+    <link rel="icon" href="images/favicon.png?v=2" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("metafast-theme");
+        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
+        document.documentElement.dataset.theme = initialTheme;
+      })();
+    </script>
+    <style>
+      .privacy-page {
+        position: relative;
       }
 
-      const themeToggle = document.getElementById('themeToggle');
-      const themeIcon = document.getElementById('themeIcon');
-      const html = document.documentElement;
-
-      // Load saved theme
-      const savedTheme = localStorage.getItem('theme') || 'dark';
-      if (savedTheme === 'light') {
-        html.classList.add('light-mode');
-        themeIcon.setAttribute('data-lucide', 'moon');
+      .privacy-hero {
+        position: relative;
+        padding: 88px 0 36px;
       }
 
-      // Repaint icons after possible attribute change
-      if (window.lucide) window.lucide.createIcons();
+      .privacy-orb {
+        position: absolute;
+        border-radius: 999px;
+        filter: blur(16px);
+        opacity: 0.45;
+        pointer-events: none;
+      }
 
-      themeToggle.addEventListener('click', () => {
-        html.classList.toggle('light-mode');
-        const isLight = html.classList.contains('light-mode');
-        themeToggle.setAttribute('aria-pressed', String(isLight));
-        themeIcon.setAttribute('data-lucide', isLight ? 'moon' : 'sun');
-        if (window.lucide) window.lucide.createIcons();
-        localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      });
+      .privacy-orb-a {
+        width: 340px;
+        height: 340px;
+        top: -120px;
+        left: -80px;
+        background: radial-gradient(circle, rgba(200, 154, 75, 0.3) 0%, rgba(200, 154, 75, 0) 74%);
+      }
 
-      // Language Toggle
-      const langButtons = document.querySelectorAll('.lang-btn');
-      const langContents = document.querySelectorAll('.lang-content');
+      .privacy-orb-b {
+        width: 320px;
+        height: 320px;
+        top: 120px;
+        right: -70px;
+        background: radial-gradient(circle, rgba(13, 155, 120, 0.22) 0%, rgba(13, 155, 120, 0) 74%);
+      }
 
-      langButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const lang = btn.getAttribute('data-lang');
+      .privacy-shell {
+        position: relative;
+        z-index: 1;
+      }
 
-          langButtons.forEach(b => {
-            b.classList.remove('active');
-            b.setAttribute('aria-selected', 'false');
-          });
-          btn.classList.add('active');
-          btn.setAttribute('aria-selected', 'true');
+      .privacy-intro {
+        max-width: 880px;
+        text-align: center;
+        margin: 0 auto 28px;
+      }
 
-          langContents.forEach(content => {
-            const isActive = content.id === `lang-${lang}`;
-            content.classList.toggle('active', isActive);
-          });
+      .privacy-intro .eyebrow-pill {
+        margin-bottom: 18px;
+      }
 
-          // Reinitialize icons after DOM changes
-          if (window.lucide) window.lucide.createIcons();
-        });
-      });
+      .privacy-intro h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(2.4rem, 5vw, 4.3rem);
+        line-height: 1;
+        letter-spacing: -0.04em;
+        color: var(--text);
+        margin-bottom: 18px;
+      }
 
-      // Smooth scroll animation (only for hash links on-page)
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      .privacy-intro p {
+        max-width: 70ch;
+        margin: 0 auto;
+        color: var(--text-soft);
+        font-size: 1.04rem;
+      }
+
+      .privacy-meta {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 20px;
+      }
+
+      .privacy-meta-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 42px;
+        padding: 0 16px;
+        border-radius: 999px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        color: var(--text-soft);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .privacy-meta-chip .ui-icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      .privacy-nav {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .privacy-nav a {
+        text-decoration: none;
+        color: var(--text-soft);
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: color 0.2s ease, transform 0.2s ease;
+      }
+
+      .privacy-nav a:hover {
+        color: var(--navy);
+        transform: translateY(-1px);
+      }
+
+      .privacy-lang-toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: max-content;
+        padding: 8px;
+        border-radius: 999px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow-sm);
+        margin: 10px auto 30px;
+      }
+
+      .privacy-lang-btn {
+        border: 0;
+        background: transparent;
+        color: var(--text-soft);
+        font: inherit;
+        font-weight: 700;
+        padding: 10px 16px;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      }
+
+      .privacy-lang-btn.active {
+        background: linear-gradient(135deg, var(--navy), #16304d);
+        color: #ffffff;
+      }
+
+      .privacy-lang-btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .privacy-content {
+        display: none;
+      }
+
+      .privacy-content.active {
+        display: block;
+      }
+
+      .privacy-grid {
+        display: grid;
+        gap: 22px;
+      }
+
+      .privacy-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 28px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .privacy-card + .privacy-card {
+        margin-top: 2px;
+      }
+
+      .privacy-card-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 16px;
+      }
+
+      .privacy-card-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba(13, 155, 120, 0.16), rgba(200, 154, 75, 0.16));
+        border: 1px solid rgba(18, 43, 70, 0.08);
+        flex: 0 0 auto;
+      }
+
+      .privacy-card-icon .ui-icon {
+        width: 22px;
+        height: 22px;
+        color: var(--navy);
+      }
+
+      .privacy-card h2 {
+        font-size: 1.55rem;
+        margin: 0;
+        color: var(--text);
+      }
+
+      .privacy-card p {
+        color: var(--text-soft);
+        margin-bottom: 12px;
+      }
+
+      .privacy-card p:last-child {
+        margin-bottom: 0;
+      }
+
+      .privacy-feature-list {
+        display: grid;
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .privacy-feature-item {
+        display: flex;
+        gap: 14px;
+        padding: 18px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.45);
+        border: 1px solid rgba(18, 43, 70, 0.08);
+      }
+
+      .privacy-feature-badge {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        background: linear-gradient(135deg, var(--accent), #11b98f);
+        color: #ffffff;
+        box-shadow: 0 14px 28px rgba(13, 155, 120, 0.2);
+      }
+
+      .privacy-feature-badge .ui-icon {
+        width: 18px;
+        height: 18px;
+      }
+
+      .privacy-feature-copy h3 {
+        color: var(--text);
+        font-size: 1rem;
+        margin-bottom: 6px;
+      }
+
+      .privacy-feature-copy p {
+        font-size: 0.96rem;
+        margin: 0;
+      }
+
+      .privacy-note {
+        margin-top: 18px;
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: rgba(200, 154, 75, 0.12);
+        border: 1px solid rgba(200, 154, 75, 0.18);
+        color: var(--text-soft);
+      }
+
+      .privacy-note strong {
+        color: var(--text);
+      }
+
+      .privacy-check-list {
+        list-style: none;
+        display: grid;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .privacy-check-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        color: var(--text-soft);
+      }
+
+      .privacy-check-list .ui-icon {
+        width: 18px;
+        height: 18px;
+        color: var(--accent);
+        flex: 0 0 auto;
+        margin-top: 2px;
+      }
+
+      .privacy-contact {
+        background:
+          linear-gradient(135deg, rgba(13, 155, 120, 0.92), rgba(12, 32, 54, 0.94));
+        color: #ffffff;
+        border-radius: 28px;
+        padding: 28px;
+        box-shadow: 0 24px 56px rgba(8, 28, 52, 0.22);
+      }
+
+      .privacy-contact h2,
+      .privacy-contact p {
+        color: #ffffff;
+      }
+
+      .privacy-contact .btn-secondary {
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+      }
+
+      .privacy-contact .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .privacy-footer-nav {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      html[data-theme="dark"] .privacy-feature-item {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: var(--line);
+      }
+
+      html[data-theme="dark"] .privacy-card-icon {
+        background: linear-gradient(135deg, rgba(213, 167, 90, 0.16), rgba(43, 199, 160, 0.16));
+        border-color: var(--line);
+      }
+
+      html[data-theme="dark"] .privacy-card-icon .ui-icon {
+        color: #ffffff;
+      }
+
+      html[data-theme="dark"] .privacy-note {
+        background: rgba(213, 167, 90, 0.12);
+        border-color: rgba(213, 167, 90, 0.2);
+      }
+
+      @media (max-width: 900px) {
+        .privacy-intro {
+          text-align: left;
+        }
+
+        .privacy-meta {
+          justify-content: flex-start;
+        }
+      }
+
+      @media (max-width: 780px) {
+        .privacy-nav {
+          width: 100%;
+          justify-content: flex-start;
+        }
+
+        .privacy-hero {
+          padding-top: 64px;
+        }
+
+        .privacy-card,
+        .privacy-contact {
+          padding: 22px;
+          border-radius: 24px;
+        }
+
+        .privacy-feature-item {
+          padding: 16px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .privacy-lang-toggle {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .privacy-lang-btn {
+          flex: 1 1 0;
+        }
+
+        .privacy-meta {
+          flex-direction: column;
+          align-items: stretch;
+        }
+      }
+    </style>
+  </head>
+  <body class="privacy-page">
+    <svg class="icon-sprite" aria-hidden="true" focusable="false">
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <path d="M20 6 9 17l-5-5" />
+      </symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24">
+        <path d="M12 3 5 6v6c0 5 3.4 8.7 7 9 3.6-.3 7-4 7-9V6l-7-3Z" />
+        <path d="m9.5 12 1.7 1.7 3.8-3.8" />
+      </symbol>
+      <symbol id="icon-file-stack" viewBox="0 0 24 24">
+        <path d="M8 3h8l4 4v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" />
+        <path d="M16 3v5h5" />
+        <path d="M4 7v12a2 2 0 0 0 2 2h10" />
+      </symbol>
+      <symbol id="icon-lock" viewBox="0 0 24 24">
+        <rect x="5" y="11" width="14" height="10" rx="2" />
+        <path d="M8 11V8a4 4 0 1 1 8 0v3" />
+      </symbol>
+      <symbol id="icon-database" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="5" rx="7" ry="3" />
+        <path d="M5 5v7c0 1.7 3.1 3 7 3s7-1.3 7-3V5" />
+        <path d="M5 12v7c0 1.7 3.1 3 7 3s7-1.3 7-3v-7" />
+      </symbol>
+      <symbol id="icon-share" viewBox="0 0 24 24">
+        <circle cx="18" cy="5" r="3" />
+        <circle cx="6" cy="12" r="3" />
+        <circle cx="18" cy="19" r="3" />
+        <path d="m8.6 13.5 6.8 4" />
+        <path d="m15.4 6.5-6.8 4" />
+      </symbol>
+      <symbol id="icon-alert" viewBox="0 0 24 24">
+        <path d="M12 9v4" />
+        <path d="M12 17h.01" />
+        <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
+      </symbol>
+      <symbol id="icon-refresh" viewBox="0 0 24 24">
+        <path d="M3 12a9 9 0 0 1 15.5-6.3L21 8" />
+        <path d="M21 3v5h-5" />
+        <path d="M21 12a9 9 0 0 1-15.5 6.3L3 16" />
+        <path d="M8 16H3v5" />
+      </symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24">
+        <path d="M8 2v4" />
+        <path d="M16 2v4" />
+        <rect x="3" y="4" width="18" height="18" rx="2" />
+        <path d="M3 10h18" />
+      </symbol>
+      <symbol id="icon-mail" viewBox="0 0 24 24">
+        <path d="M4 6h16v12H4z" />
+        <path d="m4 7 8 6 8-6" />
+      </symbol>
+      <symbol id="icon-moon" viewBox="0 0 24 24">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+      </symbol>
+      <symbol id="icon-sun" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2.5" />
+        <path d="M12 19.5V22" />
+        <path d="M4.93 4.93 6.7 6.7" />
+        <path d="m17.3 17.3 1.77 1.77" />
+        <path d="M2 12h2.5" />
+        <path d="M19.5 12H22" />
+        <path d="m4.93 19.07 1.77-1.77" />
+        <path d="M17.3 6.7 19.07 4.93" />
+      </symbol>
+    </svg>
+
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a href="index.html" class="brand-mark">
+          <img src="images/logo-nav.png" alt="Logo MetaFast" class="brand-logo brand-logo-light" />
+          <img src="images/logo-nav-dark.png" alt="Logo MetaFast" class="brand-logo brand-logo-dark" />
+          <span>MetaFast</span>
+        </a>
+        <nav class="privacy-nav" aria-label="Navigasi halaman kebijakan">
+          <a href="index.html">Beranda</a>
+          <a href="ekstensi.html">Ekstensi Browser</a>
+          <a href="#privacy-id">Privasi</a>
+          <button type="button" class="theme-toggle" id="themeToggle" aria-label="Ganti tema tampilan">
+            <svg class="ui-icon theme-toggle-icon theme-icon-dark"><use href="#icon-moon"></use></svg>
+            <svg class="ui-icon theme-toggle-icon theme-icon-light"><use href="#icon-sun"></use></svg>
+            <span id="themeToggleLabel">Tema Gelap</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="privacy-hero">
+        <div class="privacy-orb privacy-orb-a" aria-hidden="true"></div>
+        <div class="privacy-orb privacy-orb-b" aria-hidden="true"></div>
+        <div class="container privacy-shell">
+          <div class="privacy-intro">
+            <div class="eyebrow-pill">
+              <svg class="ui-icon"><use href="#icon-shield"></use></svg>
+              Perlindungan informasi dan kejelasan penggunaan
+            </div>
+            <h1>Kebijakan privasi MetaFast.</h1>
+            <p>
+              Halaman ini menjelaskan cara kerja ekstensi Adobe Stock dari MetaFast, bentuk akses yang diperlukan,
+              informasi yang tidak kami kumpulkan, serta langkah kami dalam menjaga kenyamanan dan keamanan penggunaan.
+            </p>
+            <div class="privacy-meta">
+              <div class="privacy-meta-chip">
+                <svg class="ui-icon"><use href="#icon-calendar"></use></svg>
+                <span>Terakhir diperbarui: 18 Oktober 2025</span>
+              </div>
+              <div class="privacy-meta-chip">
+                <svg class="ui-icon"><use href="#icon-lock"></use></svg>
+                <span>Berfokus pada privasi pengguna dan penggunaan yang terukur</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="privacy-lang-toggle" role="tablist" aria-label="Pilih bahasa">
+            <button class="privacy-lang-btn active" role="tab" aria-selected="true" aria-controls="privacy-id" id="tab-id" data-lang="id">
+              Bahasa Indonesia
+            </button>
+            <button class="privacy-lang-btn" role="tab" aria-selected="false" aria-controls="privacy-en" id="tab-en" data-lang="en">
+              English
+            </button>
+          </div>
+
+          <section class="privacy-content active" id="privacy-id" role="tabpanel" aria-labelledby="tab-id">
+            <div class="privacy-grid">
+              <article class="privacy-card">
+                <div class="privacy-card-head">
+                  <div class="privacy-card-icon"><svg class="ui-icon"><use href="#icon-file-stack"></use></svg></div>
+                  <h2>Ringkasan</h2>
+                </div>
+                <p>
+                  Ekstensi Adobe Stock dari MetaFast membantu kontributor menyiapkan judul, kata kunci, dan kategori dengan lebih efisien
+                  agar proses unggah terasa lebih tertata.
+                </p>
+                <p>
+                  Kami tidak mengumpulkan, menyimpan, menjual, atau membagikan data pribadi pengguna sebagai basis bisnis.
+                  Seluruh akses yang digunakan diarahkan hanya untuk mendukung fungsi ekstensi pada halaman Adobe Stock yang memang dibutuhkan.
+                </p>
+              </article>
+
+              <article class="privacy-card">
+                <div class="privacy-card-head">
+                  <div class="privacy-card-icon"><svg class="ui-icon"><use href="#icon-lock"></use></svg></div>
+                  <h2>Akses yang digunakan</h2>
+                </div>
+                <p>
+                  Setiap akses digunakan secara terbatas sesuai fungsi utama ekstensi. Kami menghindari akses yang tidak diperlukan
+                  dan menjaga agar pengguna tetap memiliki kendali penuh atas proses kerjanya.
+                </p>
+                <div class="privacy-feature-list">
+                  <div class="privacy-feature-item">
+                    <div class="privacy-feature-badge"><svg class="ui-icon"><use href="#icon-shield"></use></svg></div>
+                    <div class="privacy-feature-copy">
+                      <h3>Akses ke halaman Adobe Stock yang dibutuhkan</h3>
+                      <p>Digunakan untuk membaca dan membantu melengkapi metadata hanya pada halaman Adobe Stock yang berkaitan langsung dengan aktivitas pengguna.</p>
+                    </div>
+                  </div>
+                  <div class="privacy-feature-item">
+                    <div class="privacy-feature-badge"><svg class="ui-icon"><use href="#icon-file-stack"></use></svg></div>
+                    <div class="privacy-feature-copy">
+                      <h3>Pengenalan halaman yang sedang digunakan</h3>
+                      <p>Membantu ekstensi mengenali saat pengguna sedang bekerja di Adobe Stock. Informasi ini tidak disimpan sebagai riwayat kebiasaan penggunaan.</p>
+                    </div>
+                  </div>
+                  <div class="privacy-feature-item">
+                    <div class="privacy-feature-badge"><svg class="ui-icon"><use href="#icon-check"></use></svg></div>
+                    <div class="privacy-feature-copy">
+                      <h3>Tampilan pendamping</h3>
+                      <p>Dipakai untuk menampilkan antarmuka MetaFast agar proses kerja terasa lebih rapi, cepat, dan nyaman digunakan.</p>
+                    </div>
+                  </div>
+                  <div class="privacy-feature-item">
+                    <div class="privacy-feature-badge"><svg class="ui-icon"><use href="#icon-database"></use></svg></div>
+                    <div class="privacy-feature-copy">
+                      <h3>Penyimpanan di perangkat pengguna</h3>
+                      <p>Digunakan untuk menyimpan preferensi pengguna di perangkatnya sendiri, seperti pilihan tampilan atau pengaturan kerja yang dipilih.</p>
+                    </div>
+                  </div>
+                  <div class="privacy-feature-item">
+                    <div class="privacy-feature-badge"><svg class="ui-icon"><use href="#icon-refresh"></use></svg></div>
+                    <div class="privacy-feature-copy">
+                      <h3>Bantuan otomatis saat proses dijalankan</h3>
+                      <p>Fungsi bantuan berjalan untuk membantu membaca dan melengkapi metadata di Adobe Stock hanya ketika pengguna memang memulai proses tersebut.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="privacy-note">
+                  <strong>Catatan penting:</strong> fungsi utama ekstensi berjalan dari paket yang telah disiapkan sebelumnya. Kami tidak menambahkan komponen luar secara sembarangan untuk menjalankan proses utamanya.
+                </div>
+              </article>
+
+              <article class="privacy-card">
+                <div class="privacy-card-head">
+                  <div class="privacy-card-icon"><svg class="ui-icon"><use href="#icon-database"></use></svg></div>
+                  <h2>Data yang dikumpulkan</h2>
+                </div>
+                <p>
+                  Secara prinsip, kami menekan pengumpulan data seminimal mungkin. Ekstensi ini tidak dirancang untuk membangun profil pengguna, mengambil data pribadi, atau mencatat aktivitas di luar kebutuhan fungsi utamanya.
+                </p>
+                <ul class="privacy-check-list">
+                  <li><svg class="ui-icon"><use href="#icon-check"></use></svg><span>Tidak mengumpulkan nama, alamat, nomor telepon, atau identitas pribadi pengguna.</span></li>
+                  <li><svg class="ui-icon"><use href="#icon-check"></use></svg><span>Tidak merekam isi akun Adobe pengguna di luar kebutuhan yang benar-benar diperlukan saat fitur dijalankan.</span></li>
+                  <li><svg class="ui-icon"><use href="#icon-check"></use></svg><span>Tidak menjadikan preferensi yang tersimpan di perangkat sebagai sarana pelacakan aktivitas di berbagai situs.</span></li>
+                  <li><svg class="ui-icon"><use href="#icon-check"></use></svg><span>Tidak menjual atau memperdagangkan informasi pengguna kepada pihak lain.</span></li>
+                </ul>
+              </article>
+
+              <article class="privacy-card">
+                <div class="privacy-card-head">
+                  <div class="privacy-card-icon"><svg class="ui-icon"><use href="#icon-share"></use></svg></div>
+                  <h2>Berbagi data kepada pihak ketiga</h2>
+                </div>
+                <p>
+                  Kami tidak membagikan data pribadi pengguna kepada pihak ketiga untuk tujuan pemasaran, pelacakan komersial, atau monetisasi data.
+                </p>
+                <p>
+                  Jika di masa depan ada layanan pihak ketiga yang benar-benar diperlukan untuk fungsi tertentu, pengguna akan diberi penjelasan yang jelas mengenai peran layanan tersebut.
+                </p>
+              </article>
+
+              <article class="privacy-card">
+                <div class="privacy-card-head">
+                  <div class="privacy-card-icon"><svg class="ui-icon"><use href="#icon-alert"></use></svg></div>
+                  <h2>Keamanan dan perlindungan pengguna</h2>
+                </div>
+                <p>
+                  Kami berupaya menjaga ekstensi tetap sederhana, terukur, dan aman. Pembatasan akses, penyimpanan di perangkat pengguna, serta penghindaran proses yang tidak perlu menjadi bagian dari pendekatan keamanan kami.
+                </p>
+                <p>
+                  Ekstensi ini juga tidak ditujukan secara khusus untuk anak-anak. Jika digunakan oleh pihak di bawah umur, kami menyarankan pendampingan orang tua atau wali.
+                </p>
+              </article>
+
+              <article class="privacy-card">
+                <div class="privacy-card-head">
+                  <div class="privacy-card-icon"><svg class="ui-icon"><use href="#icon-refresh"></use></svg></div>
+                  <h2>Perubahan kebijakan</h2>
+                </div>
+                <p>
+                  Kebijakan ini dapat diperbarui sewaktu-waktu apabila ada perubahan fungsi, penyesuaian kebijakan platform, atau perbaikan penjelasan agar lebih mudah dipahami.
+                </p>
+                <p>
+                  Jika ada perubahan penting, tanggal pembaruan di bagian atas halaman ini juga akan disesuaikan.
+                </p>
+              </article>
+
+              <article class="privacy-contact">
+                <h2>Ada pertanyaan?</h2>
+                <p>
+                  Jika Anda memerlukan penjelasan lebih lanjut mengenai kebijakan privasi ini atau penggunaan ekstensi Adobe Stock oleh MetaFast, silakan hubungi kami melalui WhatsApp.
+                </p>
+                <div class="hero-actions">
+                  <a href="https://wa.me/6287823047486?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20kebijakan%20privasi%20MetaFast." target="_blank" class="btn btn-secondary">
+                    <svg class="inline-icon"><use href="#icon-mail"></use></svg>
+                    Hubungi Kami
+                  </a>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="privacy-content" id="privacy-en" role="tabpanel" aria-labelledby="tab-en">
+            <div class="privacy-grid">
+              <article class="privacy-card">
+                <div class="privacy-card-head">
+                  <div class="privacy-card-icon"><svg class="ui-icon"><use href="#icon-file-stack"></use></svg></div>
+                  <h2>Summary</h2>
+                </div>
+                <p>
+                  The Adobe Stock extension by MetaFast helps contributors prepare titles, keywords, and categories more efficiently so the upload process feels better organized.
+                </p>
+                <p>
+                  We do not collect, store, sell, or share personal user data as a business model. Every access request is limited to what is needed for the extension to work on the Adobe Stock pages involved in the user workflow.
+                </p>
+              </article>
+
+              <article class="privacy-card">
+                <div class="privacy-card-head">
+                  <div class="privacy-card-icon"><svg class="ui-icon"><use href="#icon-lock"></use></svg></div>
+                  <h2>Access and use</h2>
+                </div>
+                <p>
+                  Each access request is used narrowly and only to support the core extension experience. We avoid unnecessary access and keep the user in control of every important action.
+                </p>
+                <div class="privacy-feature-list">
+                  <div class="privacy-feature-item">
+                    <div class="privacy-feature-badge"><svg class="ui-icon"><use href="#icon-shield"></use></svg></div>
+                    <div class="privacy-feature-copy">
+                      <h3>Access to the Adobe Stock pages that matter</h3>
+                      <p>Used to read and help complete metadata only on Adobe Stock pages directly related to the user’s current task.</p>
+                    </div>
+                  </div>
+                  <div class="privacy-feature-item">
+                    <div class="privacy-feature-badge"><svg class="ui-icon"><use href="#icon-file-stack"></use></svg></div>
+                    <div class="privacy-feature-copy">
+                      <h3>Recognizing the page in use</h3>
+                      <p>Helps the extension understand when the user is working inside Adobe Stock. This is not stored as a record of browsing habits.</p>
+                    </div>
+                  </div>
+                  <div class="privacy-feature-item">
+                    <div class="privacy-feature-badge"><svg class="ui-icon"><use href="#icon-check"></use></svg></div>
+                    <div class="privacy-feature-copy">
+                      <h3>Companion workspace</h3>
+                      <p>Used to display the MetaFast interface so the process feels more structured, faster, and easier to follow.</p>
+                    </div>
+                  </div>
+                  <div class="privacy-feature-item">
+                    <div class="privacy-feature-badge"><svg class="ui-icon"><use href="#icon-database"></use></svg></div>
+                    <div class="privacy-feature-copy">
+                      <h3>On-device preferences</h3>
+                      <p>Used to save preferences on the user’s own device, such as display choices or selected working preferences.</p>
+                    </div>
+                  </div>
+                  <div class="privacy-feature-item">
+                    <div class="privacy-feature-badge"><svg class="ui-icon"><use href="#icon-refresh"></use></svg></div>
+                    <div class="privacy-feature-copy">
+                      <h3>Assisted actions started by the user</h3>
+                      <p>Support functions run to help read and complete metadata on Adobe Stock only when the user chooses to start those actions.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="privacy-note">
+                  <strong>Important note:</strong> the core extension experience runs from the package prepared for users. We do not casually pull in outside components to power the main features.
+                </div>
+              </article>
+
+              <article class="privacy-card">
+                <div class="privacy-card-head">
+                  <div class="privacy-card-icon"><svg class="ui-icon"><use href="#icon-database"></use></svg></div>
+                  <h2>Data collection</h2>
+                </div>
+                <p>
+                  As a principle, we keep data collection to a minimum. This extension is not designed to build user profiles, take personal information, or record activity beyond what is needed for its primary role.
+                </p>
+                <ul class="privacy-check-list">
+                  <li><svg class="ui-icon"><use href="#icon-check"></use></svg><span>We do not collect names, phone numbers, addresses, or personal identity information.</span></li>
+                  <li><svg class="ui-icon"><use href="#icon-check"></use></svg><span>We do not record Adobe account content beyond what is genuinely needed when a feature is being used.</span></li>
+                  <li><svg class="ui-icon"><use href="#icon-check"></use></svg><span>We do not turn saved preferences into a tool for tracking activity across other sites.</span></li>
+                  <li><svg class="ui-icon"><use href="#icon-check"></use></svg><span>We do not sell or trade user information to third parties.</span></li>
+                </ul>
+              </article>
+
+              <article class="privacy-card">
+                <div class="privacy-card-head">
+                  <div class="privacy-card-icon"><svg class="ui-icon"><use href="#icon-share"></use></svg></div>
+                  <h2>Third-party sharing</h2>
+                </div>
+                <p>
+                  We do not share personal user data with third parties for marketing, commercial tracking, or data monetization purposes.
+                </p>
+                <p>
+                  If a third-party service is ever required for a specific function in the future, users will be given a clear explanation of that service and its role.
+                </p>
+              </article>
+
+              <article class="privacy-card">
+                <div class="privacy-card-head">
+                  <div class="privacy-card-icon"><svg class="ui-icon"><use href="#icon-alert"></use></svg></div>
+                  <h2>Security and user protection</h2>
+                </div>
+                <p>
+                  We aim to keep the extension focused, measured, and secure. Limited access, on-device preferences, and the avoidance of unnecessary processes are all part of our security approach.
+                </p>
+                <p>
+                  This extension is not specifically directed at children. If it is used by minors, we recommend parental or guardian guidance.
+                </p>
+              </article>
+
+              <article class="privacy-card">
+                <div class="privacy-card-head">
+                  <div class="privacy-card-icon"><svg class="ui-icon"><use href="#icon-refresh"></use></svg></div>
+                  <h2>Policy changes</h2>
+                </div>
+                <p>
+                  This policy may be updated from time to time if there are functional changes, platform policy adjustments, or wording improvements to make it clearer.
+                </p>
+                <p>
+                  If important changes are made, the update date shown at the top of this page will also be revised.
+                </p>
+              </article>
+
+              <article class="privacy-contact">
+                <h2>Have questions?</h2>
+                <p>
+                  If you would like additional clarification about this privacy policy or the Adobe Stock extension by MetaFast, please contact us through WhatsApp.
+                </p>
+                <div class="hero-actions">
+                  <a href="https://wa.me/6287823047486?text=Hello%2C%20I%20have%20a%20question%20about%20the%20MetaFast%20privacy%20policy." target="_blank" class="btn btn-secondary">
+                    <svg class="inline-icon"><use href="#icon-mail"></use></svg>
+                    Contact Us
+                  </a>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <div>
+          <a href="index.html" class="brand-mark footer-brand">
+            <img src="images/logo-nav.png" alt="Logo MetaFast" class="brand-logo brand-logo-light" />
+            <img src="images/logo-nav-dark.png" alt="Logo MetaFast" class="brand-logo brand-logo-dark" />
+            <span>MetaFast</span>
+          </a>
+          <p class="footer-copy">
+            &copy; 2025 MetaFast. Seluruh hak cipta dilindungi. Materi, tampilan, dan isi halaman ini merupakan bagian dari informasi resmi MetaFast.
+          </p>
+        </div>
+        <nav class="privacy-footer-nav">
+          <a href="index.html">Beranda</a>
+          <a href="ekstensi.html">Ekstensi Browser</a>
+          <a href="#privacy-id">Privasi</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const root = document.documentElement;
+        const themeToggle = document.getElementById("themeToggle");
+        const themeToggleLabel = document.getElementById("themeToggleLabel");
+        const tabButtons = document.querySelectorAll(".privacy-lang-btn");
+        const tabPanels = document.querySelectorAll(".privacy-content");
+
+        const updateThemeLabel = () => {
+          const isDark = root.dataset.theme === "dark";
+          if (themeToggleLabel) {
+            themeToggleLabel.textContent = isDark ? "Tema Terang" : "Tema Gelap";
           }
+          if (themeToggle) {
+            themeToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+          }
+        };
+
+        updateThemeLabel();
+
+        themeToggle?.addEventListener("click", () => {
+          const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+          root.dataset.theme = nextTheme;
+          localStorage.setItem("metafast-theme", nextTheme);
+          updateThemeLabel();
+        });
+
+        const activateLanguage = (lang) => {
+          tabButtons.forEach((button) => {
+            const isActive = button.dataset.lang === lang;
+            button.classList.toggle("active", isActive);
+            button.setAttribute("aria-selected", isActive ? "true" : "false");
+          });
+
+          tabPanels.forEach((panel) => {
+            panel.classList.toggle("active", panel.id === `privacy-${lang}`);
+          });
+        };
+
+        tabButtons.forEach((button) => {
+          button.addEventListener("click", () => activateLanguage(button.dataset.lang));
         });
       });
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>
