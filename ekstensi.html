@@ -3,669 +3,1032 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MetaFast for Adobe Stock – Ekstensi Browser AI untuk Kontributor</title>
+    <meta name="color-scheme" content="light dark" />
+    <title>MetaFast untuk Adobe Stock - Ekstensi kerja bagi kontributor</title>
+    <meta
+      name="description"
+      content="MetaFast untuk Adobe Stock membantu menyiapkan judul, kata kunci, dan kategori langsung di halaman Adobe Stock dengan alur kerja yang lebih cepat, rapi, dan profesional."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="images/favicon.ico?v=2" sizes="any" />
+    <link rel="icon" href="images/favicon.png?v=2" type="image/png" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="images/icon.png" type="image/png">
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("metafast-theme");
+        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
+        document.documentElement.dataset.theme = initialTheme;
+      })();
+    </script>
     <style>
-      .extension-hero {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 5rem 0 4rem;
-        text-align: center;
-      }
-      .extension-hero h1 {
-        font-size: 2.8rem;
-        margin-bottom: 1rem;
-        color: white;
-      }
-      .extension-hero .tagline {
-        font-size: 1.3rem;
-        opacity: 0.95;
-        margin-bottom: 2rem;
-      }
-      .extension-hero p {
-        font-size: 1.1rem;
-        max-width: 800px;
-        margin: 0 auto 2rem;
-        opacity: 0.9;
+      .extension-page {
+        position: relative;
       }
 
-      .extension-features {
-        padding: 4rem 0;
-        background-color: #fff;
+      .extension-hero {
+        position: relative;
+        padding: 92px 0 56px;
+      }
+
+      .extension-orb {
+        position: absolute;
+        border-radius: 999px;
+        filter: blur(18px);
+        opacity: 0.42;
+        pointer-events: none;
+      }
+
+      .extension-orb-a {
+        width: 320px;
+        height: 320px;
+        top: -120px;
+        left: -70px;
+        background: radial-gradient(circle, rgba(200, 154, 75, 0.26) 0%, rgba(200, 154, 75, 0) 72%);
+      }
+
+      .extension-orb-b {
+        width: 320px;
+        height: 320px;
+        top: 40px;
+        right: -90px;
+        background: radial-gradient(circle, rgba(13, 155, 120, 0.22) 0%, rgba(13, 155, 120, 0) 72%);
+      }
+
+      .extension-shell {
+        position: relative;
+        z-index: 1;
+      }
+
+      .extension-intro {
+        max-width: 920px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .extension-intro h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(2.8rem, 5vw, 4.8rem);
+        line-height: 1.04;
+        margin-bottom: 18px;
+      }
+
+      .extension-intro p {
+        font-size: 1.12rem;
+        color: var(--text-soft);
+        max-width: 760px;
+        margin: 0 auto 28px;
+      }
+
+      .extension-meta {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+
+      .extension-meta-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 16px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(18, 43, 70, 0.08);
+        color: var(--text-soft);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .extension-meta-chip .ui-icon {
+        width: 18px;
+        height: 18px;
+      }
+
+      .extension-section {
+        padding: 34px 0 12px;
+      }
+
+      .extension-section-head {
+        max-width: 820px;
+        margin: 0 auto 28px;
+        text-align: center;
+      }
+
+      .extension-section-head h2 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(2rem, 3.8vw, 3rem);
+        line-height: 1.1;
+        margin-bottom: 14px;
+      }
+
+      .extension-section-head p {
+        color: var(--text-soft);
       }
 
       .feature-showcase {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        gap: 36px;
         align-items: center;
-        margin-bottom: 4rem;
-        padding: 2rem 0;
+        padding: 26px 0;
       }
 
-      .feature-showcase:nth-child(even) {
-        direction: rtl;
+      .feature-showcase.reverse .feature-copy {
+        order: -1;
       }
 
-      .feature-showcase:nth-child(even) > * {
-        direction: ltr;
+      .feature-media {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 14px;
+        box-shadow: var(--shadow-md);
       }
 
-      .feature-image {
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-      }
-
-      .feature-image img {
+      .feature-media img {
         width: 100%;
+        border-radius: 22px;
         display: block;
       }
 
-      .feature-description h3 {
-        font-size: 2rem;
-        color: var(--primary);
-        margin-bottom: 1rem;
+      .feature-copy h3 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(1.65rem, 2.6vw, 2.25rem);
+        line-height: 1.15;
+        margin-bottom: 14px;
       }
 
-      .feature-description p {
-        font-size: 1.1rem;
-        color: var(--muted);
-        line-height: 1.7;
-        margin-bottom: 1rem;
+      .feature-copy p {
+        color: var(--text-soft);
+        margin-bottom: 14px;
       }
 
       .feature-list {
+        display: grid;
+        gap: 12px;
         list-style: none;
-        padding-left: 0;
-        margin-top: 1.5rem;
       }
 
       .feature-list li {
-        padding: 0.5rem 0;
-        font-size: 1rem;
+        display: grid;
+        grid-template-columns: 18px 1fr;
+        gap: 12px;
+        align-items: start;
         color: var(--text);
       }
 
-      .feature-list li:before {
-        content: "✓ ";
-        color: var(--accent);
-        font-weight: bold;
-        margin-right: 0.5rem;
+      .feature-list li::before {
+        content: "";
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--accent) 0%, #62d7bb 100%);
+        box-shadow: 0 0 0 5px rgba(13, 155, 120, 0.12);
+        margin-top: 4px;
       }
 
       .benefits-section {
-        background-color: #f5f6fb;
-        padding: 4rem 0;
+        padding: 46px 0 12px;
       }
 
       .benefits-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
       }
 
       .benefit-card {
-        background: white;
-        padding: 2rem;
-        border-radius: var(--radius);
-        box-shadow: 0 4px 8px var(--shadow);
-        text-align: center;
-      }
-
-      .benefit-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: var(--shadow-sm);
       }
 
       .benefit-card h4 {
-        font-size: 1.4rem;
-        color: var(--dark);
-        margin-bottom: 0.75rem;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.25rem;
+        margin-bottom: 10px;
       }
 
       .benefit-card p {
-        color: var(--muted);
-        font-size: 1rem;
-        line-height: 1.6;
+        color: var(--text-soft);
       }
 
       .how-it-works {
-        padding: 4rem 0;
-        background-color: #fff;
+        padding: 46px 0 12px;
       }
 
       .steps-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
       }
 
       .step-card {
-        text-align: center;
-        padding: 2rem 1rem;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: var(--shadow-sm);
       }
 
       .step-number {
-        display: inline-block;
-        width: 60px;
-        height: 60px;
-        background: var(--primary);
-        color: white;
+        width: 48px;
+        height: 48px;
         border-radius: 50%;
-        line-height: 60px;
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--accent) 0%, #63d8bc 100%);
+        color: #ffffff;
+        font-weight: 700;
+        margin-bottom: 14px;
       }
 
       .step-card h4 {
-        font-size: 1.3rem;
-        color: var(--dark);
-        margin-bottom: 0.5rem;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.15rem;
+        margin-bottom: 8px;
       }
 
       .step-card p {
-        color: var(--muted);
-        font-size: 1rem;
+        color: var(--text-soft);
       }
 
-      .cta-extension {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 4rem 0;
+      .extension-pricing {
+        padding: 48px 0 20px;
+      }
+
+      .pricing-card-single {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      .extension-cta {
+        padding: 58px 0 72px;
+      }
+
+      .extension-cta-shell {
+        background: linear-gradient(135deg, #0d1d33 0%, #163258 52%, #0f2040 100%);
+        color: #f4f8ff;
+        border-radius: 32px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 42px;
         text-align: center;
+        box-shadow: 0 24px 70px rgba(5, 15, 28, 0.26);
       }
 
-      .cta-extension h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        color: white;
+      .extension-cta-shell h2 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(2rem, 3vw, 2.7rem);
+        line-height: 1.12;
+        margin-bottom: 12px;
       }
 
-      .cta-extension p {
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
-        opacity: 0.95;
+      .extension-cta-shell p {
+        max-width: 680px;
+        margin: 0 auto 22px;
+        color: rgba(231, 239, 250, 0.88);
       }
 
-      .cta-extension .btn {
-        font-size: 1.1rem;
-        padding: 1rem 2.5rem;
+      .extension-cta-shell .hero-actions {
+        justify-content: center;
       }
 
-      @media (max-width: 768px) {
-        .feature-showcase {
+      html[data-theme="dark"] .extension-meta-chip,
+      html[data-theme="dark"] .feature-media,
+      html[data-theme="dark"] .benefit-card,
+      html[data-theme="dark"] .step-card {
+        background: var(--surface);
+        border-color: var(--line);
+      }
+
+      @media (max-width: 980px) {
+        .feature-showcase,
+        .feature-showcase.reverse {
           grid-template-columns: 1fr;
-          gap: 2rem;
         }
-        .feature-showcase:nth-child(even) {
-          direction: ltr;
+
+        .feature-showcase.reverse .feature-copy {
+          order: initial;
         }
-        .extension-hero h1 {
-          font-size: 2rem;
+
+        .benefits-grid,
+        .steps-container {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 720px) {
+        .extension-hero {
+          padding-top: 78px;
+        }
+
+        .benefits-grid,
+        .steps-container {
+          grid-template-columns: 1fr;
+        }
+
+        .extension-cta-shell {
+          padding: 30px 20px;
         }
       }
     </style>
   </head>
-  <body>
-    <header class="navbar">
-      <div class="container">
-        <a href="index.html" class="logo">MetaFast</a>
-        <nav class="nav">
-          <a href="https://andyaziz6.github.io/metafast/ekstensi" class="active">Ekstensi Adobe Stock</a>
+  <body class="extension-page">
+    <svg aria-hidden="true" class="icon-sprite">
+      <defs>
+        <symbol id="icon-spark" viewBox="0 0 24 24">
+          <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" fill="currentColor"></path>
+        </symbol>
+        <symbol id="icon-bolt" viewBox="0 0 24 24">
+          <path d="M13 2L4 14h6l-1 8 11-14h-6l-1-6z" fill="currentColor"></path>
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+          <path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"></path>
+        </symbol>
+        <symbol id="icon-globe" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"></circle>
+          <path d="M3 12h18M12 3a15.2 15.2 0 010 18M12 3a15.2 15.2 0 000 18" fill="none" stroke="currentColor" stroke-width="2"></path>
+        </symbol>
+        <symbol id="icon-lock" viewBox="0 0 24 24">
+          <rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M8 11V8a4 4 0 118 0v3" fill="none" stroke="currentColor" stroke-width="2"></path>
+        </symbol>
+        <symbol id="icon-refresh" viewBox="0 0 24 24">
+          <path d="M20 6v6h-6M4 18v-6h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M18 13a7 7 0 01-12 3M6 11a7 7 0 0112-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </symbol>
+        <symbol id="icon-calendar" viewBox="0 0 24 24">
+          <rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="2"></path>
+        </symbol>
+        <symbol id="icon-mail" viewBox="0 0 24 24">
+          <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2"></path>
+        </symbol>
+        <symbol id="icon-moon" viewBox="0 0 24 24">
+          <path d="M20 14.5A8.5 8.5 0 119.5 4 6.7 6.7 0 0020 14.5z" fill="none" stroke="currentColor" stroke-width="2"></path>
+        </symbol>
+        <symbol id="icon-sun" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"></circle>
+          <path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1L7 17M17 7l2.1-2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </symbol>
+      </defs>
+    </svg>
+
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a href="index.html" class="brand-mark">
+          <img src="images/logo-nav.png" alt="Logo MetaFast" class="brand-logo brand-logo-light" />
+          <img src="images/logo-nav-dark.png" alt="Logo MetaFast" class="brand-logo brand-logo-dark" />
+          <span>MetaFast</span>
+        </a>
+
+        <nav class="site-nav">
+          <a href="index.html">Beranda</a>
+          <a href="ekstensi.html" class="active">Ekstensi Browser</a>
           <a href="#extension-features">Fitur</a>
-          <a href="#benefits">Perbandingan</a>
+          <a href="#benefits">Keunggulan</a>
           <a href="#pricing">Harga</a>
-          <a href="https://chat.whatsapp.com/K0Yl9qLy53QE7jjUahXqme" target="_blank">Grup Whatsapp</a>
-          <a href="https://chromewebstore.google.com/detail/metafast-for-adobe-stock/mnbcbgcciaipeggagmambfokindnllhd" target="_blank" class="cta-btn">Mulai</a>
+          <a href="privacy.html">Privasi</a>
         </nav>
+
+        <div class="site-nav-actions">
+          <button type="button" class="theme-toggle" id="themeToggle" aria-label="Ganti tema tampilan">
+            <svg class="ui-icon theme-toggle-icon theme-icon-dark"><use href="#icon-moon"></use></svg>
+            <svg class="ui-icon theme-toggle-icon theme-icon-light"><use href="#icon-sun"></use></svg>
+            <span id="themeToggleLabel">Tema Gelap</span>
+          </button>
+          <a
+            href="https://chromewebstore.google.com/detail/metafast-for-adobe-stock/mnbcbgcciaipeggagmambfokindnllhd"
+            target="_blank"
+            class="nav-cta"
+            rel="noreferrer"
+            >Mulai</a
+          >
+        </div>
       </div>
     </header>
 
-    <section class="extension-hero">
-      <div class="container">
-        <p class="tagline">🚀 Chrome Extension untuk Adobe Stock</p>
-        <h1>MetaFast for Adobe Stock</h1>
-        <p>
-          Ekstensi browser AI yang bekerja langsung di halaman Adobe Stock Contributor Portal.
-          Generate metadata berkualitas tinggi dengan AI (Gemini & OpenAI) tanpa meninggalkan halaman upload Anda!
-        </p>
-        <div class="hero-buttons">
-          <a href="https://chromewebstore.google.com/detail/metafast-for-adobe-stock/mnbcbgcciaipeggagmambfokindnllhd" target="_blank" class="btn primary-btn">Add to Chrome</a>
-          <a href="#how-it-works" class="btn secondary-btn" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white;">Cara Kerja</a>
+    <main>
+      <section class="extension-hero">
+        <div class="extension-orb extension-orb-a" aria-hidden="true"></div>
+        <div class="extension-orb extension-orb-b" aria-hidden="true"></div>
+        <div class="container extension-shell">
+          <div class="extension-intro">
+            <div class="eyebrow-pill">
+              <svg class="ui-icon"><use href="#icon-bolt"></use></svg>
+              Ekstensi MetaFast
+            </div>
+            <h1>Ekstensi browser MetaFast.</h1>
+            <p>
+              Ekstensi ini membantu menyiapkan metadata langsung di halaman Adobe Stock agar proses unggah terasa
+              lebih cepat, lebih rapi, dan lebih mudah dipantau dari awal sampai akhir.
+            </p>
+            <div class="extension-meta">
+              <div class="extension-meta-chip">
+                <svg class="ui-icon"><use href="#icon-check"></use></svg>
+                <span>Judul, kata kunci, dan kategori dikelola di satu tempat</span>
+              </div>
+              <div class="extension-meta-chip">
+                <svg class="ui-icon"><use href="#icon-refresh"></use></svg>
+                <span>Dukungan proses tunggal, terpilih, dan otomatis</span>
+              </div>
+              <div class="extension-meta-chip">
+                <svg class="ui-icon"><use href="#icon-lock"></use></svg>
+                <span>Pengaturan kerja dan akses AI tersimpan dengan lebih tertata</span>
+              </div>
+            </div>
+            <div class="hero-actions centered">
+              <a
+                href="https://chromewebstore.google.com/detail/metafast-for-adobe-stock/mnbcbgcciaipeggagmambfokindnllhd"
+                target="_blank"
+                rel="noreferrer"
+                class="btn btn-primary"
+                >Pasang di Chrome</a
+              >
+              <a href="#how-it-works" class="btn btn-secondary">Lihat cara kerja</a>
+            </div>
+          </div>
         </div>
+      </section>
+
+      <section class="extension-section" id="extension-features">
+        <div class="container">
+          <div class="extension-section-head">
+            <h2>Kemampuan yang sudah tercermin di produk</h2>
+            <p>
+              Daftar ini diringkas dari fitur yang memang tersedia di paket MetaFast Auto untuk membantu proses Adobe Stock
+              terasa lebih praktis tanpa kehilangan ketelitian.
+            </p>
+          </div>
+
+          <div class="feature-showcase animate-on-scroll">
+            <div class="feature-media">
+              <img src="images/ext-overview.png" alt="Pembuatan metadata otomatis untuk Adobe Stock" data-zoomable="true" />
+            </div>
+            <div class="feature-copy">
+              <h3>Pembuatan metadata yang lebih tertata sejak awal</h3>
+              <p>
+                MetaFast membantu membaca aset lalu menyiapkan judul, kata kunci, dan kategori secara langsung di halaman kerja Adobe Stock.
+                Hasilnya dibuat agar tetap deskriptif, relevan, dan sesuai dengan pola penulisan yang lebih siap pakai.
+              </p>
+              <ul class="feature-list">
+                <li>Dukungan layanan AI seperti Google Gemini dan OpenAI</li>
+                <li>Penyiapan judul, kata kunci, dan kategori dalam satu alur</li>
+                <li>Kategori disesuaikan dengan struktur Adobe Stock</li>
+                <li>Panjang judul dapat diatur sesuai kebutuhan hasil</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-showcase reverse animate-on-scroll">
+            <div class="feature-media">
+              <img src="images/ext-tombol.png" alt="Pilihan cara proses yang fleksibel" data-zoomable="true" />
+            </div>
+            <div class="feature-copy">
+              <h3>Pilihan cara proses yang mengikuti ritme kerja Anda</h3>
+              <p>
+                Tidak semua sesi unggah membutuhkan perlakuan yang sama. Karena itu MetaFast menyediakan proses otomatis,
+                proses terpilih, dan proses satu aset agar pekerjaan bisa disesuaikan dengan situasi yang sedang dihadapi.
+              </p>
+              <ul class="feature-list">
+                <li>Proses otomatis untuk seluruh aset di halaman</li>
+                <li>Proses terpilih untuk aset yang memang Anda tandai</li>
+                <li>Proses satu aset untuk pemeriksaan yang lebih teliti</li>
+                <li>Panel kerja muncul saat halaman yang didukung siap digunakan</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-showcase animate-on-scroll">
+            <div class="feature-media">
+              <img src="images/ext-mode.png" alt="Pilihan hasil yang ingin diperbarui" data-zoomable="true" />
+            </div>
+            <div class="feature-copy">
+              <h3>Pilihan hasil yang ingin diperbarui</h3>
+              <p>
+                Kadang Anda hanya perlu merapikan judul. Di kesempatan lain, yang dibutuhkan justru kata kunci.
+                MetaFast memberi ruang untuk memperbarui bagian yang memang diperlukan tanpa mengubah semuanya sekaligus.
+              </p>
+              <ul class="feature-list">
+                <li>Perbarui judul saja saat kata kunci sudah memadai</li>
+                <li>Perbarui kata kunci saja saat judul ingin dipertahankan</li>
+                <li>Perbarui keduanya untuk penyesuaian menyeluruh</li>
+                <li>Bagian yang tidak dipilih tetap dibiarkan seperti semula</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-showcase reverse animate-on-scroll">
+            <div class="feature-media">
+              <img src="images/ext-strategy.png" alt="Strategi kata kunci dan penyaringan istilah" data-zoomable="true" />
+            </div>
+            <div class="feature-copy">
+              <h3>Strategi kata kunci, pembersihan istilah, dan arahan yang lebih rapi</h3>
+              <p>
+                Produk ini sudah menyediakan beberapa pola penyusunan kata kunci serta daftar pengecualian untuk menjaga hasil tetap bersih.
+                Selain kata kunci, judul juga dapat dirapikan dari awalan atau frasa yang tidak relevan.
+              </p>
+              <ul class="feature-list">
+                <li>Pola kata tunggal, frasa dua kata, atau campuran keduanya</li>
+                <li>Jumlah kata kunci dijaga tetap konsisten untuk Adobe Stock</li>
+                <li>Daftar pengecualian dapat diisi sesuai kebutuhan kerja Anda</li>
+                <li>Istilah pengisi dan frasa latar dapat dibersihkan sebelum hasil ditempel</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-showcase animate-on-scroll">
+            <div class="feature-media">
+              <img src="images/ext-config.png" alt="Pengelolaan akses AI dan cadangan otomatis" data-zoomable="true" />
+            </div>
+            <div class="feature-copy">
+              <h3>Pengelolaan akses AI yang lebih stabil</h3>
+              <p>
+                Bila Anda menggunakan lebih dari satu akses AI, MetaFast dapat membantu menjaga kelancaran proses dengan memindahkan pekerjaan
+                ke akses cadangan saat salah satu sedang tidak tersedia.
+              </p>
+              <ul class="feature-list">
+                <li>Dukungan beberapa akses untuk Gemini maupun OpenAI</li>
+                <li>Peralihan otomatis saat batas pemakaian tercapai</li>
+                <li>Percobaan ulang bertahap untuk gangguan sementara</li>
+                <li>Pilihan model dapat disesuaikan menurut kebutuhan hasil</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-showcase reverse animate-on-scroll">
+            <div class="feature-media">
+              <img src="images/ext-progressbar.png" alt="Pemantauan proses secara langsung" data-zoomable="true" />
+            </div>
+            <div class="feature-copy">
+              <h3>Pemantauan proses, percobaan ulang, dan penyimpanan berkala</h3>
+              <p>
+                MetaFast membantu Anda tetap mengetahui keadaan proses saat bekerja dalam jumlah banyak.
+                Aset yang berhasil, aset yang gagal, dan tahapan yang sedang berjalan dapat dipantau dengan lebih jelas.
+              </p>
+              <ul class="feature-list">
+                <li>Persentase progres dan jumlah aset diperbarui secara langsung</li>
+                <li>Aset yang gagal dapat dicoba ulang tanpa mengulang seluruh antrean</li>
+                <li>Penyimpanan berkala membantu menjaga kesinambungan kerja</li>
+                <li>Pesan status tersedia untuk setiap tahap yang sedang berlangsung</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-showcase animate-on-scroll">
+            <div class="feature-media">
+              <img src="images/ext-status.png" alt="Lisensi dan perlindungan alur simpan" data-zoomable="true" />
+            </div>
+            <div class="feature-copy">
+              <h3>Pemeriksaan aset serupa dan perlindungan proses simpan</h3>
+              <p>
+                Dari hasil yang tersedia di paket MetaFast Auto, sistem juga sudah menyiapkan pemeriksaan aset serupa dan perlindungan
+                agar langkah simpan tidak berubah menjadi pengiriman review tanpa persetujuan yang jelas.
+              </p>
+              <ul class="feature-list">
+                <li>Pemeriksaan aset serupa membantu menandai kemungkinan duplikat</li>
+                <li>Langkah simpan dijaga agar tidak langsung berpindah ke proses kirim review</li>
+                <li>Lisensi tetap dapat dikelola saat Anda berganti perangkat</li>
+                <li>Masa aktif lisensi dapat dipantau dengan lebih mudah</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-showcase reverse animate-on-scroll">
+            <div class="feature-media">
+              <img src="images/ext-language.png" alt="Pilihan bahasa antarmuka" data-zoomable="true" />
+            </div>
+            <div class="feature-copy">
+              <h3>Bahasa antarmuka dan pengaturan lanjutan</h3>
+              <p>
+                MetaFast juga memberikan kenyamanan melalui pilihan bahasa dan pengaturan yang lebih rinci,
+                sehingga alur kerja bisa disesuaikan dengan preferensi pribadi maupun kebutuhan tim kecil.
+              </p>
+              <ul class="feature-list">
+                <li>Bahasa Indonesia dan English tersedia di area utama</li>
+                <li>Pesan status mengikuti bahasa yang dipilih</li>
+                <li>Jeda proses, batas percobaan ulang, dan panjang judul dapat diatur</li>
+                <li>Preferensi yang dipilih disimpan agar tidak perlu diatur ulang setiap saat</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="benefits-section" id="benefits">
+        <div class="container">
+          <div class="extension-section-head">
+            <h2>Alasan banyak kontributor memilih MetaFast</h2>
+            <p>
+              Hal yang paling terasa bukan hanya kecepatan, tetapi juga ketertiban kerja, kemudahan penyesuaian, dan rasa aman saat memproses banyak aset.
+            </p>
+          </div>
+
+          <div class="benefits-grid">
+            <article class="benefit-card animate-on-scroll">
+              <h4>Langsung di halaman Adobe Stock</h4>
+              <p>Anda tidak perlu berpindah ke alat lain hanya untuk menyiapkan metadata. Semua berjalan di ruang kerja yang sama.</p>
+            </article>
+            <article class="benefit-card animate-on-scroll">
+              <h4>Lebih cepat tanpa terasa terburu-buru</h4>
+              <p>Mode proses yang fleksibel membantu mempercepat pekerjaan sambil tetap memberi ruang untuk pemeriksaan manual saat diperlukan.</p>
+            </article>
+            <article class="benefit-card animate-on-scroll">
+              <h4>Hasil lebih mudah diarahkan</h4>
+              <p>Pengaturan judul, strategi kata kunci, dan daftar pengecualian membantu menjaga hasil tetap sesuai preferensi kerja Anda.</p>
+            </article>
+            <article class="benefit-card animate-on-scroll">
+              <h4>Cadangan proses tetap tersedia</h4>
+              <p>Jika satu akses AI sedang bermasalah, sistem dapat beralih ke cadangan sehingga sesi kerja tidak mudah terputus.</p>
+            </article>
+            <article class="benefit-card animate-on-scroll">
+              <h4>Perkembangan proses selalu terlihat</h4>
+              <p>Anda dapat memantau aset yang berhasil, aset yang perlu diulang, dan tahapan yang sedang berlangsung secara lebih jelas.</p>
+            </article>
+            <article class="benefit-card animate-on-scroll">
+              <h4>Lebih aman saat mendekati tahap akhir</h4>
+              <p>Pemeriksaan aset serupa dan perlindungan langkah simpan membantu mengurangi risiko tindakan yang tidak diinginkan.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="how-it-works" id="how-it-works">
+        <div class="container">
+          <div class="extension-section-head">
+            <h2>Cara mulai menggunakan MetaFast</h2>
+            <p>Langkahnya singkat dan mudah diikuti, bahkan jika Anda baru pertama kali menggunakan ekstensi kerja untuk Adobe Stock.</p>
+          </div>
+
+          <div class="feature-showcase animate-on-scroll" style="padding-top: 0;">
+            <div class="feature-media">
+              <img src="images/extension.png" alt="MetaFast di Chrome Web Store" data-zoomable="true" />
+            </div>
+            <div class="feature-copy">
+              <h3>Tersedia melalui Chrome Web Store</h3>
+              <p>
+                MetaFast tersedia melalui Chrome Web Store agar proses pemasangan lebih sederhana, pembaruan berjalan lebih praktis,
+                dan distribusi tetap tertata.
+              </p>
+              <div class="hero-actions">
+                <a
+                  href="https://chromewebstore.google.com/detail/metafast-for-adobe-stock/mnbcbgcciaipeggagmambfokindnllhd"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="btn btn-primary"
+                  >Pasang di Chrome</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="steps-container">
+            <article class="step-card animate-on-scroll">
+              <div class="step-number">1</div>
+              <h4>Pasang ekstensi</h4>
+              <p>Buka halaman Chrome Web Store lalu pasang MetaFast ke browser Anda. Prosesnya singkat dan langsung siap digunakan.</p>
+            </article>
+            <article class="step-card animate-on-scroll">
+              <div class="step-number">2</div>
+              <h4>Aktifkan lisensi</h4>
+              <p>Masukkan lisensi yang Anda miliki agar masa aktif dan hak penggunaan langsung tercatat dengan rapi.</p>
+            </article>
+            <article class="step-card animate-on-scroll">
+              <div class="step-number">3</div>
+              <h4>Siapkan akses AI</h4>
+              <p>Masukkan akses AI yang akan digunakan. Jika diperlukan, siapkan juga cadangan untuk menjaga kelancaran proses.</p>
+            </article>
+            <article class="step-card animate-on-scroll">
+              <div class="step-number">4</div>
+              <h4>Buka halaman Adobe Stock</h4>
+              <p>Masuk ke area unggah Adobe Stock. MetaFast akan menampilkan panel kerja saat halaman sudah siap digunakan.</p>
+            </article>
+            <article class="step-card animate-on-scroll">
+              <div class="step-number">5</div>
+              <h4>Tentukan cara kerja</h4>
+              <p>Pilih mode proses, bentuk hasil yang ingin diperbarui, dan strategi kata kunci sesuai kebutuhan Anda.</p>
+            </article>
+            <article class="step-card animate-on-scroll">
+              <div class="step-number">6</div>
+              <h4>Tinjau hasil akhir</h4>
+              <p>Periksa hasil yang sudah disiapkan, lakukan penyesuaian bila perlu, lalu lanjutkan proses simpan sesuai alur kerja Anda.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="extension-pricing" id="pricing">
+        <div class="container">
+          <div class="extension-section-head">
+            <h2>Harga MetaFast untuk Adobe Stock</h2>
+            <p>Pilih masa aktif yang paling sesuai dengan ritme kerja dan target produksi Anda.</p>
+          </div>
+
+          <div class="pricing-card pricing-card-single animate-on-scroll">
+            <div class="featured-badge">Pilihan paket</div>
+            <p class="pricing-plan">MetaFast</p>
+            <h3>Untuk proses kerja yang lebih efisien dan tertata</h3>
+
+            <div class="pricing-tier">
+              <span>1 Bulan</span>
+              <strong>Rp 35.000</strong>
+            </div>
+            <div class="pricing-tier">
+              <span>3 Bulan</span>
+              <strong>Rp 95.000</strong>
+              <small>Bonus 1 minggu</small>
+            </div>
+            <div class="pricing-tier">
+              <span>6 Bulan</span>
+              <strong>Rp 190.000</strong>
+              <small>Bonus 2 minggu</small>
+            </div>
+            <div class="pricing-tier">
+              <span>1 Tahun</span>
+              <strong>Rp 380.000</strong>
+              <small>Bonus 1 bulan</small>
+            </div>
+
+            <a href="https://chat.whatsapp.com/K0Yl9qLy53QE7jjUahXqme" target="_blank" rel="noreferrer" class="btn btn-primary pricing-button"
+              >Pesan Sekarang</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="extension-cta">
+        <div class="container">
+          <div class="extension-cta-shell animate-on-scroll">
+            <h2>Siap merapikan proses unggah Adobe Stock Anda?</h2>
+            <p>
+              MetaFast membantu proses penyiapan metadata terasa lebih tertata, lebih cepat, dan lebih nyaman dijalankan langsung dari browser.
+            </p>
+            <div class="hero-actions">
+              <a
+                href="https://chromewebstore.google.com/detail/metafast-for-adobe-stock/mnbcbgcciaipeggagmambfokindnllhd"
+                target="_blank"
+                rel="noreferrer"
+                class="btn btn-primary"
+                >Pasang di Chrome</a
+              >
+              <a href="https://chat.whatsapp.com/K0Yl9qLy53QE7jjUahXqme" target="_blank" rel="noreferrer" class="btn btn-secondary"
+                >Grup WhatsApp</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+      <div class="image-lightbox-toolbar">
+        <div class="image-lightbox-zoom" aria-label="Kontrol zoom gambar">
+          <button type="button" class="image-lightbox-icon-btn" id="imageZoomOut" aria-label="Perkecil gambar">-</button>
+          <span class="image-lightbox-zoom-value" id="imageZoomValue">100%</span>
+          <button type="button" class="image-lightbox-icon-btn" id="imageZoomIn" aria-label="Perbesar gambar">+</button>
+        </div>
+        <button type="button" class="image-lightbox-close" id="imageLightboxClose" aria-label="Tutup pratinjau gambar">&times;</button>
       </div>
-    </section>
-
-    <section class="extension-features" id="extension-features">
-      <div class="container">
-        <h2 class="section-title animate-on-scroll">Fitur Lengkap Ekstensi Browser</h2>
-
-        <div class="feature-showcase animate-on-scroll">
-          <div class="feature-image">
-            <img src="images/ext-overview.png" alt="Generator AI Metadata Adobe Stock" />
-          </div>
-          <div class="feature-description">
-            <h3>🤖 Generator Metadata AI Otomatis</h3>
-            <p>
-              AI akan menganalisis gambar Anda dan menghasilkan metadata profesional secara otomatis:
-              judul deskriptif (50-200 karakter), 49 keywords berkualitas, dan kategori yang tepat dari 21 kategori Adobe Stock.
-            </p>
-            <ul class="feature-list">
-              <li>Dukungan Google Gemini (2.5 Pro, 2.0 Flash, 1.5 Pro, dll)</li>
-              <li>Dukungan OpenAI (GPT-4.1, GPT-4o, O1, O3, dll)</li>
-              <li>Auto-select dari 21 kategori Adobe Stock</li>
-              <li>Customizable title length (10-200 karakter)</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="feature-showcase animate-on-scroll">
-          <div class="feature-image">
-            <img src="images/ext-tombol.png" alt="Mode Pemrosesan Fleksibel" />
-          </div>
-          <div class="feature-description">
-            <h3>⚡ 3 Mode Pemrosesan Fleksibel</h3>
-            <p>
-              Pilih cara kerja yang sesuai dengan workflow Anda. Proses satu foto, batch selected photos, atau otomatis semua foto di halaman.
-            </p>
-            <ul class="feature-list">
-              <li><strong>Proses Otomatis:</strong> Semua foto di halaman diproses berurutan</li>
-              <li><strong>Proses Terpilih:</strong> Hanya foto yang Anda pilih (multi-select support)</li>
-              <li><strong>Proses Satu Foto:</strong> Single photo processing untuk kontrol penuh</li>
-              <li>Smart image tile detection & thumbnail finder</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="feature-showcase animate-on-scroll">
-          <div class="feature-image">
-            <img src="images/ext-mode.png" alt="Generate Mode Options" />
-          </div>
-          <div class="feature-description">
-            <h3>🎯 Generate Mode: Title, Keywords, atau Both</h3>
-            <p>
-              Kontrol penuh atas apa yang ingin di-generate. Jika Anda sudah punya title yang bagus, generate keywords saja. Atau sebaliknya.
-            </p>
-            <ul class="feature-list">
-              <li><strong>Title Only:</strong> Generate judul saja, keywords tetap</li>
-              <li><strong>Keywords Only:</strong> Generate keywords saja, title tetap</li>
-              <li><strong>Both (Default):</strong> Generate judul + keywords + kategori</li>
-              <li>Preserve existing metadata yang tidak di-update</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="feature-showcase animate-on-scroll">
-          <div class="feature-image">
-            <img src="images/ext-strategy.png" alt="Strategi Keyword Fleksibel" />
-          </div>
-          <div class="feature-description">
-            <h3>📝 3 Strategi Keyword yang Powerful</h3>
-            <p>
-              Adobe Stock merekomendasikan mix antara single words dan phrases. Kami beri Anda kontrol penuh untuk memilih strategi terbaik.
-            </p>
-            <ul class="feature-list">
-              <li><strong>Single Word:</strong> 49 kata tunggal (best for discoverability)</li>
-              <li><strong>Double Word:</strong> 49 frasa 2 kata (best for context)</li>
-              <li><strong>Mixed (Recommended):</strong> 25 single + 24 double words</li>
-              <li>Smart stopword removal & phrase trimming</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="feature-showcase animate-on-scroll">
-          <div class="feature-image">
-            <img src="images/ext-strategy.png" alt="Keyword Blacklist Filter" />
-          </div>
-          <div class="feature-description">
-            <h3>🚫 Keyword Blacklist yang Cerdas</h3>
-            <p>
-              Lebih dari 50+ banned words default (vector, illustration, AI generated, copy space, dll).
-              Plus custom blacklist untuk kebutuhan spesifik Anda.
-            </p>
-            <ul class="feature-list">
-              <li>50+ default banned words (Adobe Stock best practices)</li>
-              <li>Custom blacklist (tambahkan kata-kata yang tidak diinginkan)</li>
-              <li>Auto-remove background phrases dari title</li>
-              <li>Smart keyword validation & sanitization</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="feature-showcase animate-on-scroll">
-          <div class="feature-image">
-            <img src="images/ext-config.png" alt="Multiple API Keys Support" />
-          </div>
-          <div class="feature-description">
-            <h3>🔑 Multiple API Keys & Auto-Failover</h3>
-            <p>
-              Masukkan beberapa API keys sekaligus (satu per baris). Saat satu key kena rate limit atau quota habis,
-              ekstensi otomatis beralih ke key berikutnya.
-            </p>
-            <ul class="feature-list">
-              <li>Support multiple Gemini API keys</li>
-              <li>Support multiple OpenAI API keys</li>
-              <li>Auto-switch saat quota habis atau rate limit</li>
-              <li>Exponential backoff retry strategy</li>
-              <li>Smart error handling (critical vs transient)</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="feature-showcase animate-on-scroll">
-          <div class="feature-image">
-            <img src="images/ext-progressbar.png" alt="Real-time Progress Tracking" />
-          </div>
-          <div class="feature-description">
-            <h3>📊 Real-time Progress & Statistics</h3>
-            <p>
-              Monitor proses secara real-time dengan progress bar, success/failed counters, dan status detail untuk setiap foto.
-            </p>
-            <ul class="feature-list">
-              <li>Live progress percentage tracking</li>
-              <li>Success & failed counters real-time</li>
-              <li>Detailed status messages untuk setiap foto</li>
-              <li>Pause/Resume functionality</li>
-              <li>Retry failed items dengan satu klik</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="feature-showcase animate-on-scroll">
-          <div class="feature-image">
-            <img src="images/ext-status.png" alt="Sistem Lisensi Cloud" />
-          </div>
-          <div class="feature-description">
-            <h3>🔐 Sistem Lisensi Cloud-Based</h3>
-            <p>
-              Aktivasi sekali, gunakan di mana saja. Lisensi Anda tersimpan di cloud dan bisa di-reset remote jika berganti perangkat.
-            </p>
-            <ul class="feature-list">
-              <li>Cloud-based license validation via Google Apps Script</li>
-              <li>Device fingerprinting untuk keamanan</li>
-              <li>Remote license reset (jika ganti laptop)</li>
-              <li>Expiry date tracking & renewal notifications</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="feature-showcase animate-on-scroll">
-          <div class="feature-image">
-            <img src="images/ext-language.png" alt="Multi-language Support" />
-          </div>
-          <div class="feature-description">
-            <h3>🌍 Interface Bilingual (Indonesia & English)</h3>
-            <p>
-              Seluruh interface tersedia dalam Bahasa Indonesia dan English. Switch language dengan satu klik,
-              dan preferensi Anda tersimpan otomatis.
-            </p>
-            <ul class="feature-list">
-              <li>Full Indonesian translation</li>
-              <li>Full English translation</li>
-              <li>Dynamic status message translation</li>
-              <li>Saved language preference</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="feature-showcase animate-on-scroll">
-          <div class="feature-image">
-            <img src="images/ext-lanjutan.png" alt="Advanced Settings" />
-          </div>
-          <div class="feature-description">
-            <h3>⚙️ Advanced Settings untuk Power Users</h3>
-            <p>
-              Fine-tune setiap aspek dari generation process. Dari request delay, retry attempts, hingga title length limits.
-            </p>
-            <ul class="feature-list">
-              <li>Request delay (0-30 detik) untuk rate limit control</li>
-              <li>Max retry attempts (1-10 kali)</li>
-              <li>Title min/max length customization</li>
-              <li>Auto-retry toggle (on/off)</li>
-              <li>AI model selection (17+ models supported)</li>
-            </ul>
-          </div>
-        </div>
+      <div class="image-lightbox-stage" id="imageLightboxStage">
+        <img src="" alt="" id="imageLightboxPreview" />
       </div>
-    </section>
-
-    <section class="benefits-section" id="benefits">
-      <div class="container">
-        <h2 class="section-title animate-on-scroll">Mengapa Pilih MetaFast for Adobe Stock?</h2>
-        <div class="benefits-grid">
-          <div class="benefit-card animate-on-scroll" style="transition-delay: 100ms;">
-            <div class="benefit-icon">⚡</div>
-            <h4>Langsung di Browser</h4>
-            <p>
-              Bekerja langsung di halaman Adobe Stock Contributor Portal. Tidak perlu download gambar,
-              tidak perlu buka aplikasi lain. Semua proses di satu tempat.
-            </p>
-          </div>
-
-          <div class="benefit-card animate-on-scroll" style="transition-delay: 200ms;">
-            <div class="benefit-icon">🤖</div>
-            <h4>AI Terbaik di Kelasnya</h4>
-            <p>
-              Support untuk Gemini 2.5 Pro dan GPT-4.1 Nano. Hasil metadata yang akurat,
-              relevan, dan sesuai best practices Adobe Stock.
-            </p>
-          </div>
-
-          <div class="benefit-card animate-on-scroll" style="transition-delay: 300ms;">
-            <div class="benefit-icon">🎯</div>
-            <h4>Hemat Waktu 90%</h4>
-            <p>
-              Yang biasanya butuh 30 menit untuk 50 foto, sekarang cuma 3 menit.
-              Auto-fill langsung ke form Adobe Stock tanpa copy-paste.
-            </p>
-          </div>
-
-          <div class="benefit-card animate-on-scroll" style="transition-delay: 100ms;">
-            <div class="benefit-icon">🔑</div>
-            <h4>Multiple API Keys</h4>
-            <p>
-              Masukkan beberapa API keys sekaligus. Auto-failover saat quota habis atau rate limit.
-              Tidak perlu manual switch keys lagi.
-            </p>
-          </div>
-
-          <div class="benefit-card animate-on-scroll" style="transition-delay: 200ms;">
-            <div class="benefit-icon">🛡️</div>
-            <h4>Privacy & Security</h4>
-            <p>
-              API keys tersimpan lokal di browser. Hanya thumbnail beresolusi rendah yang dikirim ke AI.
-              File original tidak pernah di-upload ke server manapun.
-            </p>
-          </div>
-
-          <div class="benefit-card animate-on-scroll" style="transition-delay: 300ms;">
-            <div class="benefit-icon">🌍</div>
-            <h4>Bilingual Interface</h4>
-            <p>
-              Interface lengkap dalam Bahasa Indonesia dan English. Cocok untuk kontributor lokal
-              maupun internasional.
-            </p>
-          </div>
-
-          <div class="benefit-card animate-on-scroll" style="transition-delay: 100ms;">
-            <div class="benefit-icon">📊</div>
-            <h4>Smart Progress Tracking</h4>
-            <p>
-              Real-time progress bar, success/failed counters, detailed error messages.
-              Tahu persis status setiap foto yang diproses.
-            </p>
-          </div>
-
-          <div class="benefit-card animate-on-scroll" style="transition-delay: 200ms;">
-            <div class="benefit-icon">🔄</div>
-            <h4>Flexible Workflow</h4>
-            <p>
-              3 mode pemrosesan (auto, selected, single). 3 strategi keyword (single, double, mixed).
-              3 generate mode (title, keywords, both). Total kontrol.
-            </p>
-          </div>
-
-          <div class="benefit-card animate-on-scroll" style="transition-delay: 300ms;">
-            <div class="benefit-icon">🚫</div>
-            <h4>Keyword Filtering</h4>
-            <p>
-              50+ banned words default sesuai Adobe Stock guidelines. Plus custom blacklist
-              untuk kata-kata spesifik yang ingin Anda hindari.
-            </p>
-          </div>
+    </div>
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <div>
+          <a href="index.html" class="brand-mark footer-brand">
+            <img src="images/logo-nav.png" alt="Logo MetaFast" class="brand-logo brand-logo-light" />
+            <img src="images/logo-nav-dark.png" alt="Logo MetaFast" class="brand-logo brand-logo-dark" />
+            <span>MetaFast</span>
+          </a>
+          <p class="footer-copy">
+            &copy; 2025 MetaFast. Seluruh hak cipta dilindungi. Materi, tampilan, dan isi halaman ini merupakan bagian dari informasi resmi produk MetaFast.
+          </p>
         </div>
-      </div>
-    </section>
-
-    <section class="how-it-works" id="how-it-works">
-      <div class="container">
-        <h2 class="section-title animate-on-scroll">Cara Install & Menggunakan Ekstensi</h2>
-
-        <!-- Chrome Web Store Preview -->
-        <div class="feature-showcase animate-on-scroll" style="margin-bottom: 3rem;">
-          <div class="feature-image">
-            <img src="images/extension.png" alt="MetaFast for Adobe Stock di Chrome Web Store" style="border: 2px solid #e5e7f1;" />
-          </div>
-          <div class="feature-description">
-            <h3>📦 Tersedia di Chrome Web Store</h3>
-            <p>
-              MetaFast for Adobe Stock sekarang tersedia secara official di Chrome Web Store.
-              Instalasi mudah dengan satu klik, automatic updates, dan keamanan terjamin oleh Google.
-            </p>
-            <a href="https://chromewebstore.google.com/detail/metafast-for-adobe-stock/mnbcbgcciaipeggagmambfokindnllhd" target="_blank" class="btn primary-btn" style="margin-top: 1rem;">Install di Chrome</a>
-          </div>
-        </div>
-
-        <div class="steps-container">
-          <div class="step-card animate-on-scroll" style="transition-delay: 100ms;">
-            <div class="step-number">1</div>
-            <h4>Download & Install</h4>
-            <p>Klik tombol "Add to Chrome" di Chrome Web Store. Ekstensi akan otomatis terinstall di browser Anda dalam hitungan detik.</p>
-          </div>
-
-          <div class="step-card animate-on-scroll" style="transition-delay: 200ms;">
-            <div class="step-number">2</div>
-            <h4>Aktivasi Lisensi</h4>
-            <p>Masukkan license key yang Anda dapatkan. Aktivasi hanya sekali, tersimpan di cloud, bisa digunakan di perangkat mana saja.</p>
-          </div>
-
-          <div class="step-card animate-on-scroll" style="transition-delay: 300ms;">
-            <div class="step-number">3</div>
-            <h4>Setup API Keys</h4>
-            <p>Masukkan Gemini atau OpenAI API keys di tab Settings. Bisa multiple keys (satu per baris) untuk auto-failover.</p>
-          </div>
-
-          <div class="step-card animate-on-scroll" style="transition-delay: 400ms;">
-            <div class="step-number">4</div>
-            <h4>Buka Adobe Stock Portal</h4>
-            <p>Pergi ke halaman contributor.stock.adobe.com/uploads. Side panel ekstensi akan otomatis muncul di sebelah kanan.</p>
-          </div>
-
-          <div class="step-card animate-on-scroll" style="transition-delay: 100ms;">
-            <div class="step-number">5</div>
-            <h4>Pilih Mode & Mulai</h4>
-            <p>Pilih Generate Mode (title/keywords/both), pilih Strategi Keyword, lalu klik tombol proses. AI akan otomatis fill metadata ke form Adobe Stock.</p>
-          </div>
-
-          <div class="step-card animate-on-scroll" style="transition-delay: 200ms;">
-            <div class="step-number">6</div>
-            <h4>Review & Submit</h4>
-            <p>Review hasil metadata yang di-generate, edit jika perlu, lalu klik Save Work di Adobe Stock. Selesai!</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="pricing" id="pricing" style="padding: 4rem 0; background-color: #f5f6fb;">
-      <div class="container">
-        <h2 class="section-title animate-on-scroll">Harga Ekstensi MetaFast</h2>
-        <p style="text-align: center; color: var(--muted); margin-bottom: 2rem;" class="animate-on-scroll">Pilih paket yang sesuai dengan kebutuhan Anda</p>
-        <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2.5rem; border-radius: var(--radius); box-shadow: 0 4px 8px var(--shadow);" class="animate-on-scroll">
-          <h3 style="text-align: center; color: var(--primary); font-size: 1.8rem; margin-bottom: 2rem;">🔹 MetaFast Extension</h3>
-
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #e5e7f1;">
-            <span style="font-weight: 600; font-size: 1.1rem; color: var(--primary);">1 Bulan</span>
-            <span style="font-weight: 500; font-size: 1rem; color: var(--text);">Rp35.000</span>
-          </div>
-
-          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #e5e7f1;">
-            <span style="font-weight: 600; font-size: 1.1rem; color: var(--primary);">3 Bulan</span>
-            <span style="font-weight: 500; font-size: 1rem; color: var(--text);">Rp95.000</span>
-            <span style="width: 100%; text-align: right; font-size: 0.85rem; font-style: italic; color: var(--accent); font-weight: 600; padding-top: 0.25rem;">✨ Bonus 1 minggu</span>
-          </div>
-
-          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #e5e7f1;">
-            <span style="font-weight: 600; font-size: 1.1rem; color: var(--primary);">6 Bulan</span>
-            <span style="font-weight: 500; font-size: 1rem; color: var(--text);">Rp190.000</span>
-            <span style="width: 100%; text-align: right; font-size: 0.85rem; font-style: italic; color: var(--accent); font-weight: 600; padding-top: 0.25rem;">✨ Bonus 2 minggu</span>
-          </div>
-
-          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1rem 0;">
-            <span style="font-weight: 600; font-size: 1.1rem; color: var(--primary);">1 Tahun</span>
-            <span style="font-weight: 500; font-size: 1rem; color: var(--text);">Rp380.000</span>
-            <span style="width: 100%; text-align: right; font-size: 0.85rem; font-style: italic; color: var(--accent); font-weight: 600; padding-top: 0.25rem;">✨ Bonus 1 bulan</span>
-          </div>
-
-          <a href="https://chat.whatsapp.com/K0Yl9qLy53QE7jjUahXqme" target="_blank" class="btn primary-btn" style="width: 100%; margin-top: 2rem; text-align: center;">Pesan Sekarang</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-extension">
-      <div class="container animate-on-scroll">
-        <h2>Siap Tingkatkan Produktivitas Upload Adobe Stock?</h2>
-        <p>
-          Bergabunglah dengan ratusan kontributor yang sudah menggunakan MetaFast for Adobe Stock.
-          Install ekstensi sekarang dari Chrome Web Store dan dapatkan lisensi melalui grup WhatsApp kami.
-        </p>
-        <div class="hero-buttons" style="justify-content: center;">
-          <a href="https://chromewebstore.google.com/detail/metafast-for-adobe-stock/mnbcbgcciaipeggagmambfokindnllhd" target="_blank" class="btn primary-btn" style="background: white; color: var(--primary);">Add to Chrome</a>
-          <a href="https://chat.whatsapp.com/K0Yl9qLy53QE7jjUahXqme" target="_blank" class="btn secondary-btn" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white;">Grup Whatsapp</a>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container footer-content">
-        <p>&copy; 2025 MetaFast. All rights reserved.</p>
         <nav class="footer-nav">
           <a href="#extension-features">Fitur</a>
-          <a href="#benefits">Perbandingan</a>
+          <a href="#benefits">Keunggulan</a>
           <a href="#pricing">Harga</a>
-          <a href="https://andyaziz6.github.io/metafast/privacy">Kebijakan Privasi</a>
+          <a href="privacy.html">Privasi</a>
         </nav>
       </div>
     </footer>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      document.addEventListener("DOMContentLoaded", () => {
+        const root = document.documentElement;
+        const themeToggle = document.getElementById("themeToggle");
+        const themeToggleLabel = document.getElementById("themeToggleLabel");
+        const animatedElements = document.querySelectorAll(".animate-on-scroll");
+        const zoomableImages = document.querySelectorAll("img[data-zoomable='true']");
+        const lightbox = document.getElementById("imageLightbox");
+        const lightboxStage = document.getElementById("imageLightboxStage");
+        const lightboxPreview = document.getElementById("imageLightboxPreview");
+        const lightboxClose = document.getElementById("imageLightboxClose");
+        const zoomInButton = document.getElementById("imageZoomIn");
+        const zoomOutButton = document.getElementById("imageZoomOut");
+        const zoomValue = document.getElementById("imageZoomValue");
+        let lightboxScale = 1;
+        const minLightboxScale = 1;
+        const maxLightboxScale = 4;
+        let lightboxTranslateX = 0;
+        let lightboxTranslateY = 0;
+        let isDraggingLightbox = false;
+        let dragStartX = 0;
+        let dragStartY = 0;
 
-        if (!animatedElements) {
-          return;
-        }
+        const clampLightboxPosition = () => {
+          if (!lightboxPreview || !lightboxStage || lightboxScale <= 1) {
+            lightboxTranslateX = 0;
+            lightboxTranslateY = 0;
+            return;
+          }
 
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
-            }
+          const stageRect = lightboxStage.getBoundingClientRect();
+          const scaledWidth = lightboxPreview.offsetWidth * lightboxScale;
+          const scaledHeight = lightboxPreview.offsetHeight * lightboxScale;
+          const maxX = Math.max(0, (scaledWidth - stageRect.width) / 2);
+          const maxY = Math.max(0, (scaledHeight - stageRect.height) / 2);
+
+          lightboxTranslateX = Math.min(maxX, Math.max(-maxX, lightboxTranslateX));
+          lightboxTranslateY = Math.min(maxY, Math.max(-maxY, lightboxTranslateY));
+        };
+
+        const applyLightboxTransform = () => {
+          if (!lightboxPreview || !lightboxStage) return;
+          clampLightboxPosition();
+          lightboxPreview.style.transform = `translate(${lightboxTranslateX}px, ${lightboxTranslateY}px) scale(${lightboxScale})`;
+          if (zoomValue) {
+            zoomValue.textContent = `${Math.round(lightboxScale * 100)}%`;
+          }
+          lightboxStage.classList.toggle("is-draggable", lightboxScale > 1 && !isDraggingLightbox);
+          lightboxStage.classList.toggle("is-dragging", isDraggingLightbox);
+          if (zoomOutButton) {
+            zoomOutButton.disabled = lightboxScale <= minLightboxScale;
+          }
+          if (zoomInButton) {
+            zoomInButton.disabled = lightboxScale >= maxLightboxScale;
+          }
+        };
+
+        const resetLightboxTransform = () => {
+          lightboxScale = 1;
+          lightboxTranslateX = 0;
+          lightboxTranslateY = 0;
+          isDraggingLightbox = false;
+          applyLightboxTransform();
+        };
+
+        const setLightboxScale = (nextScale, clientX, clientY) => {
+          if (!lightboxPreview || !lightboxStage) return;
+          const clampedScale = Math.min(maxLightboxScale, Math.max(minLightboxScale, Number(nextScale.toFixed(2))));
+          if (clampedScale === lightboxScale) return;
+
+          const previousScale = lightboxScale;
+          const stageRect = lightboxStage.getBoundingClientRect();
+          const anchorX = typeof clientX === "number" ? clientX - stageRect.left - stageRect.width / 2 : 0;
+          const anchorY = typeof clientY === "number" ? clientY - stageRect.top - stageRect.height / 2 : 0;
+          const scaleRatio = clampedScale / previousScale;
+
+          lightboxTranslateX = (lightboxTranslateX - anchorX) * scaleRatio + anchorX;
+          lightboxTranslateY = (lightboxTranslateY - anchorY) * scaleRatio + anchorY;
+          lightboxScale = clampedScale;
+          if (lightboxScale <= minLightboxScale) {
+            lightboxTranslateX = 0;
+            lightboxTranslateY = 0;
+          }
+          applyLightboxTransform();
+        };
+
+        const closeLightbox = () => {
+          if (!lightbox || !lightboxPreview) return;
+          lightbox.classList.remove("is-open");
+          lightbox.setAttribute("aria-hidden", "true");
+          lightboxPreview.src = "";
+          lightboxPreview.alt = "";
+          resetLightboxTransform();
+          document.body.classList.remove("lightbox-open");
+        };
+
+        zoomableImages.forEach((image) => {
+          image.addEventListener("click", () => {
+            if (!lightbox || !lightboxPreview) return;
+            lightboxPreview.src = image.getAttribute("src") || "";
+            lightboxPreview.alt = image.getAttribute("alt") || "Pratinjau gambar";
+            resetLightboxTransform();
+            lightbox.classList.add("is-open");
+            lightbox.setAttribute("aria-hidden", "false");
+            document.body.classList.add("lightbox-open");
           });
-        }, {
-          threshold: 0.1
         });
 
-        animatedElements.forEach(element => {
-          observer.observe(element);
+        lightboxStage?.addEventListener(
+          "wheel",
+          (event) => {
+            if (!lightbox?.classList.contains("is-open")) return;
+            event.preventDefault();
+            const delta = event.deltaY < 0 ? 0.2 : -0.2;
+            setLightboxScale(lightboxScale + delta, event.clientX, event.clientY);
+          },
+          { passive: false }
+        );
+
+        lightboxStage?.addEventListener("dblclick", (event) => {
+          if (!lightbox?.classList.contains("is-open")) return;
+          const nextScale = lightboxScale > 1 ? 1 : 2;
+          setLightboxScale(nextScale, event.clientX, event.clientY);
         });
+
+        lightboxStage?.addEventListener("mousedown", (event) => {
+          if (lightboxScale <= 1) return;
+          event.preventDefault();
+          isDraggingLightbox = true;
+          dragStartX = event.clientX - lightboxTranslateX;
+          dragStartY = event.clientY - lightboxTranslateY;
+          applyLightboxTransform();
+        });
+
+        document.addEventListener("mousemove", (event) => {
+          if (!isDraggingLightbox) return;
+          lightboxTranslateX = event.clientX - dragStartX;
+          lightboxTranslateY = event.clientY - dragStartY;
+          applyLightboxTransform();
+        });
+
+        document.addEventListener("mouseup", () => {
+          if (!isDraggingLightbox) return;
+          isDraggingLightbox = false;
+          applyLightboxTransform();
+        });
+
+        zoomInButton?.addEventListener("click", () => {
+          const stageRect = lightboxStage?.getBoundingClientRect();
+          setLightboxScale(
+            lightboxScale + 0.25,
+            stageRect ? stageRect.left + stageRect.width / 2 : undefined,
+            stageRect ? stageRect.top + stageRect.height / 2 : undefined
+          );
+        });
+
+        zoomOutButton?.addEventListener("click", () => {
+          const stageRect = lightboxStage?.getBoundingClientRect();
+          setLightboxScale(
+            lightboxScale - 0.25,
+            stageRect ? stageRect.left + stageRect.width / 2 : undefined,
+            stageRect ? stageRect.top + stageRect.height / 2 : undefined
+          );
+        });
+
+        lightboxClose?.addEventListener("click", closeLightbox);
+        lightbox?.addEventListener("click", (event) => {
+          if (event.target === lightbox) {
+            closeLightbox();
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && lightbox?.classList.contains("is-open")) {
+            closeLightbox();
+          } else if ((event.key === "+" || event.key === "=") && lightbox?.classList.contains("is-open")) {
+            setLightboxScale(lightboxScale + 0.25);
+          } else if (event.key === "-" && lightbox?.classList.contains("is-open")) {
+            setLightboxScale(lightboxScale - 0.25);
+          } else if (event.key === "0" && lightbox?.classList.contains("is-open")) {
+            resetLightboxTransform();
+          }
+        });
+
+        window.addEventListener("resize", () => {
+          if (lightbox?.classList.contains("is-open")) {
+            applyLightboxTransform();
+          }
+        });
+        if (animatedElements.length) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12 }
+          );
+
+          animatedElements.forEach((element) => observer.observe(element));
+        }
       });
     </script>
-
   </body>
 </html>
