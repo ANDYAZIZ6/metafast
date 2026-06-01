@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Fitur Lengkap MetaFast | Semua yang Bisa Kamu Kerjakan di Satu Workspace</title>
+    <meta
+      name="description"
+      content="Kenali semua fitur utama MetaFast secara lengkap: generate metadata AI, review, riset tren, prompt visual, pembersihan metadata, upload FTP, dan alur kerja siap pakai untuk kontributor stock."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="images/favicon.ico?v=2" sizes="any" />
+    <link rel="icon" href="images/favicon.png?v=2" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="fitur.css" />
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("metafast-theme");
+        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
+        document.documentElement.dataset.theme = initialTheme;
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a href="index.html" class="brand-mark">
+          <img src="images/logo-nav.png" alt="Logo MetaFast" class="brand-logo brand-logo-light" />
+          <img src="images/logo-nav-dark.png" alt="Logo MetaFast" class="brand-logo brand-logo-dark" />
+          <span>MetaFast</span>
+        </a>
+        <nav class="site-nav">
+          <a href="index.html">Beranda</a>
+          <a href="ekstensi.html">Ekstensi</a>
+          <a href="#ringkasan">Ringkasan</a>
+          <a href="#daftar-fitur">Daftar Fitur</a>
+          <a href="#alur">Cara Pakai</a>
+          <a href="index.html#pricing">Harga</a>
+          <a href="index.html#download" class="nav-cta">Unduh</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="feature-hero">
+        <div class="container feature-hero-grid">
+          <div class="feature-hero-copy">
+            <p class="section-kicker">Fitur Lengkap MetaFast</p>
+            <h1 class="section-title">Satu halaman untuk memahami seluruh kemampuan MetaFast, tanpa bahasa yang terasa seperti dokumentasi teknis.</h1>
+            <p class="section-description">
+              MetaFast dirancang sebagai workspace desktop untuk kontributor stock yang ingin mengerjakan metadata,
+              riset, pengecekan file, dan distribusi aset dengan alur yang lebih rapi. Di halaman ini, setiap fitur
+              dijelaskan dengan bahasa yang jelas: apa fungsinya, kapan dipakai, kenapa penting, dan bagaimana alur
+              penggunaannya di pekerjaan sehari-hari.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#daftar-fitur" class="btn btn-primary">Lihat Semua Fitur</a>
+              <a href="#alur" class="btn btn-secondary">Pelajari Alur Pakai</a>
+            </div>
+
+            <div class="hero-points">
+              <div class="hero-point">
+                <strong>Penjelasan lengkap</strong>
+                <span>Bukan sekadar daftar menu, tapi fungsi nyata tiap modul di workflow stock.</span>
+              </div>
+              <div class="hero-point">
+                <strong>Bahasa lebih produk</strong>
+                <span>Disusun agar enak dibaca calon pengguna, bukan terasa seperti catatan developer.</span>
+              </div>
+              <div class="hero-point">
+                <strong>Siap dipadukan dengan screenshot</strong>
+                <span>Setiap bagian sudah punya area visual yang bisa kamu isi dengan hasil screenshot sendiri.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-hero-card">
+            <div class="hero-card-badge">Workspace Utama</div>
+            <img src="images/metafast-review.png" alt="Tampilan workspace MetaFast" />
+            <div class="hero-card-caption">
+              <strong>MetaFast menyatukan proses yang biasanya terpisah.</strong>
+              <p>Mulai dari generate metadata, review, cleanup, sampai upload — semua tetap dalam satu alur kerja desktop.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-summary" id="ringkasan">
+        <div class="container">
+          <div class="section-heading compact-center">
+            <p class="section-kicker">Ringkasan Nilai</p>
+            <h2 class="section-title">Apa yang sebenarnya kamu dapat dari MetaFast?</h2>
+            <p class="section-description">
+              MetaFast bukan hanya alat untuk membuat keyword otomatis. Nilai utamanya ada pada cara ia menyusun seluruh
+              pekerjaan stock menjadi alur yang lebih cepat, lebih konsisten, dan lebih mudah dikontrol saat jumlah file mulai besar.
+            </p>
+          </div>
+
+          <div class="summary-grid">
+            <article class="summary-card">
+              <h3>1. Metadata lebih cepat selesai</h3>
+              <p>Judul, keyword, deskripsi, dan kategori bisa dibuat dalam batch tanpa harus mengerjakan satu file demi satu file secara manual.</p>
+            </article>
+            <article class="summary-card">
+              <h3>2. Hasil tetap bisa dikendalikan</h3>
+              <p>AI membantu di tahap awal, tetapi keputusan akhir tetap di tangan kamu melalui review, edit, filter, dan penyesuaian metadata.</p>
+            </article>
+            <article class="summary-card">
+              <h3>3. Workflow lebih rapi</h3>
+              <p>Dari file masuk, generate, pengecekan, pembersihan, sampai ekspor dan upload, semuanya berjalan di satu workspace yang konsisten.</p>
+            </article>
+            <article class="summary-card">
+              <h3>4. Cocok untuk skala kecil sampai besar</h3>
+              <p>Bisa dipakai untuk puluhan file harian maupun koleksi besar dengan mode tampilan, filter, worker, dan pengaturan performa yang fleksibel.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="toc-section" id="daftar-fitur">
+        <div class="container">
+          <div class="section-heading compact-center">
+            <p class="section-kicker">Daftar Modul</p>
+            <h2 class="section-title">Semua fitur utama yang tersedia di MetaFast</h2>
+          </div>
+
+          <nav class="toc-grid">
+            <a href="#generate" class="toc-item"><span class="toc-num">01</span><span>Generate Metadata</span></a>
+            <a href="#review" class="toc-item"><span class="toc-num">02</span><span>Review & Edit</span></a>
+            <a href="#describe" class="toc-item"><span class="toc-num">03</span><span>Describe</span></a>
+            <a href="#cleanup" class="toc-item"><span class="toc-num">04</span><span>Delete Metadata</span></a>
+            <a href="#national-day" class="toc-item"><span class="toc-num">05</span><span>National Day</span></a>
+            <a href="#market-trends" class="toc-item"><span class="toc-num">06</span><span>Market Trends</span></a>
+            <a href="#keyword-analyzer" class="toc-item"><span class="toc-num">07</span><span>Keyword Analyzer</span></a>
+            <a href="#png-to-psd" class="toc-item"><span class="toc-num">08</span><span>PNG to PSD</span></a>
+            <a href="#mj-splitter" class="toc-item"><span class="toc-num">09</span><span>MJ Splitter</span></a>
+            <a href="#ftp-upload" class="toc-item"><span class="toc-num">10</span><span>FTP Upload</span></a>
+            <a href="#ai-assistant" class="toc-item"><span class="toc-num">11</span><span>MetaFast AI Assistant</span></a>
+            <a href="#settings" class="toc-item"><span class="toc-num">12</span><span>Settings & Runtime</span></a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="feature-section" id="generate">
+        <div class="container">
+          <div class="feature-section-header">
+            <span class="feature-number">01</span>
+            <div>
+              <h2>Generate Metadata</h2>
+              <p>Mesin utama MetaFast untuk membuat judul, keyword, deskripsi, dan kategori stock secara otomatis dengan bantuan AI.</p>
+            </div>
+          </div>
+
+          <div class="feature-lead-grid">
+            <div class="feature-copy-card">
+              <h3>Kenapa fitur ini penting</h3>
+              <p>
+                Generate Metadata adalah titik awal dari sebagian besar workflow di MetaFast. Fitur ini mempercepat pekerjaan yang biasanya paling menyita waktu:
+                menulis judul, menyusun keyword, dan menyiapkan deskripsi yang relevan untuk banyak file sekaligus.
+              </p>
+              <ul class="feature-list">
+                <li>Menghemat waktu produksi metadata dalam skala batch</li>
+                <li>Membantu menjaga konsistensi antar aset dalam satu koleksi</li>
+                <li>Mengurangi pekerjaan berulang saat mengelola file dalam jumlah besar</li>
+                <li>Bisa dikombinasikan dengan tema, negative keywords, dan export workflow</li>
+              </ul>
+            </div>
+            <div class="feature-visual-card">
+              <img src="images/metafast-review.png" alt="Fitur generate metadata MetaFast" />
+              <p>Contoh tampilan workspace saat generate metadata dan review hasil AI.</p>
+            </div>
+          </div>
+
+          <div class="feature-detail-grid">
+            <article class="feature-box">
+              <h3>Apa yang dikerjakan sistem</h3>
+              <p>MetaFast membaca file yang kamu masukkan, mengirimkannya ke provider AI yang aktif, lalu mengembalikan hasil metadata ke workspace agar bisa langsung ditinjau.</p>
+            </article>
+            <article class="feature-box">
+              <h3>Kapan paling terasa manfaatnya</h3>
+              <p>Saat kamu harus mengurus banyak aset dalam satu sesi kerja dan tidak ingin menulis metadata satu per satu dari awal.</p>
+            </article>
+            <article class="feature-box feature-box-wide">
+              <h3>Langkah penggunaan</h3>
+              <ol class="feature-steps">
+                <li>Masukkan file ke workspace dengan drag-and-drop atau pilih folder/file.</li>
+                <li>Pilih file yang ingin diproses, atau gunakan select all untuk batch penuh.</li>
+                <li>Pastikan provider AI, model, dan pengaturan output sudah sesuai.</li>
+                <li>Klik Generate untuk mulai membuat metadata.</li>
+                <li>Tinjau hasil di panel metadata, lalu edit jika perlu sebelum lanjut.</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-section alt" id="review">
+        <div class="container">
+          <div class="feature-section-header">
+            <span class="feature-number">02</span>
+            <div>
+              <h2>Review & Edit Metadata</h2>
+              <p>Tempat untuk memastikan hasil AI tetap layak pakai, relevan, dan sesuai standar kerja kamu sebelum file dianggap siap.</p>
+            </div>
+          </div>
+          <div class="feature-detail-grid">
+            <article class="feature-box">
+              <h3>Fungsi utamanya</h3>
+              <p>Kamu bisa memeriksa judul, merapikan urutan keyword, mengganti deskripsi, dan menyesuaikan kategori langsung dari workspace yang sama.</p>
+            </article>
+            <article class="feature-box">
+              <h3>Nilai praktisnya</h3>
+              <ul class="feature-list">
+                <li>AI menjadi titik awal, bukan hasil final yang kaku</li>
+                <li>Keyword bisa diprioritaskan ulang sesuai strategi upload</li>
+                <li>Bulk edit memudahkan penyesuaian untuk banyak file sekaligus</li>
+              </ul>
+            </article>
+            <article class="feature-box feature-box-wide">
+              <h3>Alur singkat</h3>
+              <ol class="feature-steps">
+                <li>Buka hasil generate pada file yang ingin dicek.</li>
+                <li>Edit judul, deskripsi, dan keyword bila ada bagian yang kurang pas.</li>
+                <li>Simpan hasil revisi ke sesi kerja.</li>
+                <li>Lanjutkan ke embed metadata, ekspor CSV, atau upload.</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-section" id="describe">
+        <div class="container">
+          <div class="feature-section-header">
+            <span class="feature-number">03</span>
+            <div>
+              <h2>Describe</h2>
+              <p>Ubah gambar referensi menjadi arahan visual yang jelas untuk dipakai lagi sebagai prompt produksi konten baru.</p>
+            </div>
+          </div>
+          <div class="feature-detail-grid">
+            <article class="feature-box">
+              <h3>Apa gunanya</h3>
+              <p>Describe membantu membaca gaya visual sebuah gambar: subjek, komposisi, mood, pencahayaan, warna, dan elemen pendukung lain.</p>
+            </article>
+            <article class="feature-box">
+              <h3>Untuk siapa fitur ini paling berguna</h3>
+              <p>Cocok untuk kreator yang ingin membangun variasi prompt dari karya atau referensi yang sudah terbukti menarik secara visual.</p>
+            </article>
+            <article class="feature-box feature-box-wide">
+              <h3>Cara pakai</h3>
+              <ol class="feature-steps">
+                <li>Buka tab Describe.</li>
+                <li>Masukkan gambar referensi.</li>
+                <li>Jalankan analisis visual.</li>
+                <li>Salin hasil deskripsi untuk dipakai di tool AI generatif lain.</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-section alt" id="cleanup">
+        <div class="container">
+          <div class="feature-section-header">
+            <span class="feature-number">04</span>
+            <div>
+              <h2>Delete Metadata</h2>
+              <p>Bersihkan metadata lama dari file sebelum generate ulang, sebelum distribusi, atau saat kamu ingin memulai dari kondisi yang benar-benar bersih.</p>
+            </div>
+          </div>
+          <div class="feature-detail-grid">
+            <article class="feature-box">
+              <h3>Apa yang dibersihkan</h3>
+              <p>Informasi EXIF, IPTC, XMP, dan data lain yang tertanam di file, termasuk data yang tidak lagi relevan untuk workflow baru.</p>
+            </article>
+            <article class="feature-box">
+              <h3>Kenapa ini berguna</h3>
+              <ul class="feature-list">
+                <li>Mencegah metadata lama bercampur dengan hasil baru</li>
+                <li>Membantu menghapus jejak data teknis atau informasi pribadi</li>
+                <li>Memberi titik awal yang lebih aman untuk proses ulang</li>
+              </ul>
+            </article>
+            <article class="feature-box feature-box-wide">
+              <h3>Cara pakai</h3>
+              <ol class="feature-steps">
+                <li>Buka tab Delete Metadata.</li>
+                <li>Pilih file yang ingin dibersihkan.</li>
+                <li>Tentukan jenis metadata yang ingin dihapus.</li>
+                <li>Jalankan proses, lalu lanjutkan ke workflow berikutnya jika perlu.</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-section" id="national-day">
+        <div class="container">
+          <div class="feature-section-header">
+            <span class="feature-number">05</span>
+            <div>
+              <h2>National Day</h2>
+              <p>Kalender ide musiman untuk membantu kamu merencanakan produksi konten berdasarkan momen, hari besar, dan peluang editorial tertentu.</p>
+            </div>
+          </div>
+          <div class="feature-detail-grid">
+            <article class="feature-box">
+              <h3>Fungsi utamanya</h3>
+              <p>Memberi daftar event dan hari peringatan yang bisa dipakai sebagai dasar ide produksi konten stock sepanjang tahun.</p>
+            </article>
+            <article class="feature-box">
+              <h3>Manfaat bisnisnya</h3>
+              <p>Kamu bisa menyiapkan konten lebih awal sebelum momen ramai, sehingga aset punya waktu untuk terindeks sebelum permintaan naik.</p>
+            </article>
+            <article class="feature-box feature-box-wide">
+              <h3>Alur penggunaan</h3>
+              <ol class="feature-steps">
+                <li>Buka tab National Day.</li>
+                <li>Pilih negara, pasar, atau periode waktu yang ingin dipantau.</li>
+                <li>Pilih event yang paling relevan untuk niche kamu.</li>
+                <li>Gunakan insight tersebut untuk planning prompt, produksi, dan metadata.</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-section alt" id="market-trends">
+        <div class="container">
+          <div class="feature-section-header">
+            <span class="feature-number">06</span>
+            <div>
+              <h2>Market Trends</h2>
+              <p>Modul untuk membaca arah pasar dan melihat topik mana yang sedang menarik, mulai jenuh, atau punya celah yang masih terbuka.</p>
+            </div>
+          </div>
+          <div class="feature-detail-grid">
+            <article class="feature-box">
+              <h3>Apa yang bisa dibaca</h3>
+              <p>Keyword populer, peluang tren, ringkasan AI terhadap arah pasar, dan insight yang membantu keputusan produksi jadi lebih berbasis data.</p>
+            </article>
+            <article class="feature-box">
+              <h3>Kenapa penting</h3>
+              <ul class="feature-list">
+                <li>Mengurangi tebakan saat memilih topik produksi</li>
+                <li>Membantu memvalidasi ide sebelum produksi skala besar</li>
+                <li>Memberi konteks apakah niche tertentu mulai padat atau masih terbuka</li>
+              </ul>
+            </article>
+            <article class="feature-box feature-box-wide">
+              <h3>Cara memanfaatkannya</h3>
+              <ol class="feature-steps">
+                <li>Buka tab Market Trends.</li>
+                <li>Telusuri keyword, kategori, atau topik yang relevan.</li>
+                <li>Baca ringkasan dan indikasi peluang yang tersedia.</li>
+                <li>Pakai hasilnya untuk menentukan konsep konten dan strategi metadata.</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-section" id="keyword-analyzer">
+        <div class="container">
+          <div class="feature-section-header">
+            <span class="feature-number">07</span>
+            <div>
+              <h2>Keyword Analyzer</h2>
+              <p>Analisis kedalaman keyword untuk membantu menilai tingkat persaingan, peluang, dan arah optimasi sebelum metadata dipakai lebih luas.</p>
+            </div>
+          </div>
+          <div class="feature-detail-grid">
+            <article class="feature-box">
+              <h3>Yang bisa kamu lakukan</h3>
+              <p>Mengecek keyword tunggal, membandingkan beberapa keyword, melihat keyword terkait, dan memahami medan persaingan dari topik yang kamu incar.</p>
+            </article>
+            <article class="feature-box">
+              <h3>Nilai tambahnya</h3>
+              <p>Keyword Analyzer membantu memilih kata yang bukan hanya relevan, tapi juga lebih punya peluang tampil di pasar yang kompetitif.</p>
+            </article>
+            <article class="feature-box feature-box-wide">
+              <h3>Contoh alur pakai</h3>
+              <ol class="feature-steps">
+                <li>Masukkan keyword utama yang ingin diuji.</li>
+                <li>Bandingkan dengan keyword turunan atau alternatif.</li>
+                <li>Baca indikator kompetisi dan peluang.</li>
+                <li>Gunakan hasil terbaik ke workflow Generate atau Review.</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-section alt" id="png-to-psd">
+        <div class="container">
+          <div class="feature-section-header">
+            <span class="feature-number">08</span>
+            <div>
+              <h2>PNG to PSD</h2>
+              <p>Alat konversi untuk membantu menyiapkan file PNG menjadi PSD berlapis sesuai kebutuhan workflow tertentu.</p>
+            </div>
+          </div>
+          <div class="feature-detail-grid">
+            <article class="feature-box">
+              <h3>Kegunaan utamanya</h3>
+              <p>Mempermudah transisi file raster ke format kerja PSD saat dibutuhkan untuk submission, pengarsipan, atau tahapan produksi berikutnya.</p>
+            </article>
+            <article class="feature-box">
+              <h3>Kapan dipakai</h3>
+              <p>Saat kamu punya batch PNG yang perlu dipindahkan ke format PSD tanpa repot membuka dan menyimpan satu per satu secara manual.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-section" id="mj-splitter">
+        <div class="container">
+          <div class="feature-section-header">
+            <span class="feature-number">09</span>
+            <div>
+              <h2>MJ Splitter</h2>
+              <p>Memisahkan grid Midjourney menjadi file individual agar lebih cepat masuk ke tahap seleksi, editing, dan metadata.</p>
+            </div>
+          </div>
+          <div class="feature-detail-grid">
+            <article class="feature-box">
+              <h3>Masalah yang diselesaikan</h3>
+              <p>Grid hasil AI sering perlu dipotong manual sebelum dipakai lebih lanjut. MJ Splitter mempercepat proses itu dengan langkah yang jauh lebih praktis.</p>
+            </article>
+            <article class="feature-box">
+              <h3>Alur singkat</h3>
+              <ol class="feature-steps">
+                <li>Masukkan file grid Midjourney.</li>
+                <li>Jalankan proses split.</li>
+                <li>Ambil hasil potongan individual untuk diproses di workflow lain.</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-section alt" id="ftp-upload">
+        <div class="container">
+          <div class="feature-section-header">
+            <span class="feature-number">10</span>
+            <div>
+              <h2>FTP Upload</h2>
+              <p>Modul distribusi untuk mengirim file yang sudah siap langsung ke server atau agency tanpa memecah workflow ke aplikasi lain.</p>
+            </div>
+          </div>
+          <div class="feature-detail-grid">
+            <article class="feature-box">
+              <h3>Yang bisa diatur</h3>
+              <p>Server FTP tersimpan, preset agency, queue upload, batas transfer global, dan opsi pemindahan file setelah upload berhasil.</p>
+            </article>
+            <article class="feature-box">
+              <h3>Kenapa ini penting</h3>
+              <ul class="feature-list">
+                <li>Mengurangi perpindahan kerja antar aplikasi</li>
+                <li>Membantu menjaga alur submit tetap konsisten</li>
+                <li>Lebih nyaman untuk batch upload dalam jumlah banyak</li>
+              </ul>
+            </article>
+            <article class="feature-box feature-box-wide">
+              <h3>Langkah penggunaan</h3>
+              <ol class="feature-steps">
+                <li>Siapkan konfigurasi server atau pilih preset agency.</li>
+                <li>Tentukan file yang ingin dikirim.</li>
+                <li>Atur queue dan opsi transfer bila diperlukan.</li>
+                <li>Jalankan upload dan pantau status progresnya dari MetaFast.</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-section" id="ai-assistant">
+        <div class="container">
+          <div class="feature-section-header">
+            <span class="feature-number">11</span>
+            <div>
+              <h2>MetaFast AI Assistant</h2>
+              <p>Asisten di dalam aplikasi yang membantu menjelaskan fitur, membaca konteks workflow, dan memberi arahan langkah berikutnya berdasarkan kondisi workspace.</p>
+            </div>
+          </div>
+          <div class="feature-detail-grid">
+            <article class="feature-box">
+              <h3>Kelebihannya</h3>
+              <p>Assistant tidak hanya menjawab secara umum, tetapi bisa memberi arahan yang lebih relevan berdasarkan tab aktif, jumlah file yang dipilih, dan status proses yang sedang berjalan.</p>
+            </article>
+            <article class="feature-box">
+              <h3>Kapan terasa berguna</h3>
+              <p>Saat pengguna baru butuh onboarding cepat, saat sedang bingung di tengah workflow, atau saat ingin meminta saran langkah kerja berikutnya tanpa keluar dari aplikasi.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-section alt" id="settings">
+        <div class="container">
+          <div class="feature-section-header">
+            <span class="feature-number">12</span>
+            <div>
+              <h2>Settings & Runtime Control</h2>
+              <p>Pusat pengaturan untuk menyesuaikan provider AI, model, API key, worker, delay request, ekspor, negative keywords, dan perilaku workflow lainnya.</p>
+            </div>
+          </div>
+          <div class="feature-detail-grid">
+            <article class="feature-box">
+              <h3>Apa yang bisa dikonfigurasi</h3>
+              <ul class="feature-list">
+                <li>Provider AI dan model yang aktif</li>
+                <li>API key dan validasinya</li>
+                <li>Jumlah worker dan jeda request</li>
+                <li>Platform ekspor dan aturan metadata</li>
+                <li>Negative keywords, rename, auto embed, dan preferensi sesi</li>
+              </ul>
+            </article>
+            <article class="feature-box">
+              <h3>Nilai praktisnya</h3>
+              <p>MetaFast bisa disesuaikan dengan ritme kerja yang berbeda: dari setup yang ringan untuk pengguna baru sampai workflow yang lebih agresif untuk batch besar.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="workflow-section" id="alur">
+        <div class="container">
+          <div class="section-heading compact-center">
+            <p class="section-kicker">Cara Pakai MetaFast</p>
+            <h2 class="section-title">Alur penggunaan yang paling mudah dipahami untuk pengguna baru</h2>
+            <p class="section-description">
+              Kalau kamu ingin menjelaskan MetaFast ke calon pengguna dengan cepat, gunakan alur di bawah ini. Ini adalah bentuk paling sederhana dari workflow utama yang terjadi di aplikasi.
+            </p>
+          </div>
+
+          <div class="workflow-steps-grid">
+            <article class="workflow-step-card">
+              <span>Langkah 1</span>
+              <h3>Masukkan file ke workspace</h3>
+              <p>Tambahkan gambar, video, atau vektor yang ingin dikelola. File akan tampil dalam daftar kerja dan siap dipilih.</p>
+            </article>
+            <article class="workflow-step-card">
+              <span>Langkah 2</span>
+              <h3>Atur provider dan preferensi</h3>
+              <p>Tentukan AI provider, model, keyword count, deskripsi, kategori, dan pengaturan output sesuai kebutuhan.</p>
+            </article>
+            <article class="workflow-step-card">
+              <span>Langkah 3</span>
+              <h3>Generate metadata</h3>
+              <p>Jalankan proses AI untuk membuat metadata batch, lalu tunggu hasilnya masuk ke panel review.</p>
+            </article>
+            <article class="workflow-step-card">
+              <span>Langkah 4</span>
+              <h3>Review dan rapikan</h3>
+              <p>Edit judul, keyword, atau deskripsi bila perlu agar hasil akhir lebih sesuai strategi submit kamu.</p>
+            </article>
+            <article class="workflow-step-card">
+              <span>Langkah 5</span>
+              <h3>Ekspor atau upload</h3>
+              <p>Setelah siap, metadata bisa di-embed, diekspor ke CSV, atau file dikirim lewat FTP sesuai workflow yang kamu pakai.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="screenshots-section" id="screenshots">
+        <div class="container">
+          <div class="section-heading compact-center">
+            <p class="section-kicker">Area Screenshot</p>
+            <h2 class="section-title">Tempat yang siap kamu isi dengan screenshot penggunaan asli</h2>
+            <p class="section-description">
+              Bagian ini sengaja dibuat agar kamu gampang menambahkan screenshot sendiri. Jadi halaman fitur ini tidak cuma menjelaskan, tapi juga bisa benar-benar menunjukkan cara penggunaan secara visual.
+            </p>
+          </div>
+
+          <div class="screenshot-grid">
+            <article class="screenshot-card">
+              <div class="screenshot-placeholder">Screenshot 1</div>
+              <h3>Tampilan dashboard / workspace utama</h3>
+              <p>Gunakan screenshot area file list, toolbar, dan panel utama untuk menjelaskan titik awal penggunaan MetaFast.</p>
+            </article>
+            <article class="screenshot-card">
+              <div class="screenshot-placeholder">Screenshot 2</div>
+              <h3>Proses generate metadata</h3>
+              <p>Tunjukkan posisi tombol generate, pilihan file, dan hasil status proses agar calon pengguna langsung paham alurnya.</p>
+            </article>
+            <article class="screenshot-card">
+              <div class="screenshot-placeholder">Screenshot 3</div>
+              <h3>Panel review metadata</h3>
+              <p>Isi dengan screenshot edit keyword, judul, dan deskripsi untuk memperlihatkan bahwa hasil AI tetap bisa dikendalikan.</p>
+            </article>
+            <article class="screenshot-card">
+              <div class="screenshot-placeholder">Screenshot 4</div>
+              <h3>Settings provider AI</h3>
+              <p>Cocok untuk menunjukkan pengaturan model, API key, worker, delay, dan fitur runtime lain yang membedakan MetaFast.</p>
+            </article>
+            <article class="screenshot-card">
+              <div class="screenshot-placeholder">Screenshot 5</div>
+              <h3>Market Trends / Keyword Analyzer</h3>
+              <p>Tambahkan visual yang memperlihatkan bahwa MetaFast tidak berhenti di generate, tapi juga membantu riset dan keputusan produksi.</p>
+            </article>
+            <article class="screenshot-card">
+              <div class="screenshot-placeholder">Screenshot 6</div>
+              <h3>FTP Upload atau modul lanjutan</h3>
+              <p>Gunakan untuk memperlihatkan bahwa workflow MetaFast bisa berlanjut sampai tahap distribusi atau automation akhir.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing-section">
+        <div class="container closing-card">
+          <p class="section-kicker">Kesimpulan</p>
+          <h2 class="section-title">MetaFast dibuat untuk membuat pekerjaan stock terasa lebih terstruktur, bukan sekadar lebih cepat.</h2>
+          <p class="section-description">
+            Kalau halaman ini dipakai sebagai halaman produk, pembaca harus langsung paham bahwa MetaFast membantu di tiga area utama:
+            produksi metadata, kualitas hasil, dan kelancaran workflow setelah metadata selesai. Itu sebabnya setiap fitur di sini
+            dijelaskan berdasarkan manfaat nyata, bukan hanya nama menunya.
+          </p>
+          <div class="hero-actions center-actions">
+            <a href="index.html#download" class="btn btn-primary">Coba MetaFast</a>
+            <a href="https://wa.me/6287823047486?text=Halo%2C%20saya%20ingin%20lihat%20fitur%20lengkap%20MetaFast." target="_blank" class="btn btn-secondary">Tanya via WhatsApp</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

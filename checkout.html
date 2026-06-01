@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - MetaFast</title>
+  <meta
+    name="description"
+    content="Halaman pembelian langganan MetaFast dengan pembayaran aman melalui Midtrans. Tersedia QRIS, transfer bank, virtual account, dan e-wallet."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" href="images/favicon.ico?v=2" sizes="any" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .checkout-page {
+      padding: 84px 0 68px;
+      min-height: 80vh;
+    }
+
+    .checkout-shell {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      gap: 24px;
+    }
+
+    .checkout-intro {
+      padding: 28px 30px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top right, rgba(13, 155, 120, 0.09), transparent 26%),
+        var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .checkout-kicker {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(13, 155, 120, 0.08);
+      color: var(--accent-dark);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .checkout-intro h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 2rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .checkout-intro p {
+      color: var(--text-soft);
+      max-width: 760px;
+      line-height: 1.7;
+    }
+
+    .checkout-top-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .checkout-form-card,
+    .checkout-summary-card {
+      padding: 32px;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-md);
+    }
+
+    .checkout-form-card h2,
+    .checkout-summary-card h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.45rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .checkout-form-subtitle,
+    .checkout-summary-subtitle {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .checkout-section-label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--navy);
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(13, 155, 120, 0.08);
+    }
+
+    .form-hint {
+      color: var(--text-faint);
+      font-size: 0.83rem;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .package-options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .package-option {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      border: 2px solid var(--line);
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+
+    .package-option:hover {
+      border-color: rgba(13, 155, 120, 0.48);
+      transform: translateY(-1px);
+    }
+
+    .package-option.selected {
+      border-color: var(--accent);
+      background: rgba(13, 155, 120, 0.06);
+    }
+
+    .package-option input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+    }
+
+    .pkg-info {
+      display: grid;
+      gap: 4px;
+    }
+
+    .pkg-name {
+      font-weight: 800;
+      color: var(--navy);
+      font-size: 0.98rem;
+    }
+
+    .pkg-meta {
+      color: var(--text-soft);
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    .pkg-price {
+      text-align: right;
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 1.08rem;
+      white-space: nowrap;
+    }
+
+    .inline-notice {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background: rgba(13, 155, 120, 0.06);
+      border: 1px solid rgba(13, 155, 120, 0.14);
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .error-msg {
+      display: none;
+      margin-top: 14px;
+      padding: 13px 15px;
+      border-radius: var(--radius-sm);
+      background: rgba(220, 38, 38, 0.08);
+      border: 1px solid rgba(220, 38, 38, 0.16);
+      color: #c53030;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .error-msg.show {
+      display: block;
+    }
+
+    .btn-checkout {
+      width: 100%;
+      margin-top: 22px;
+      min-height: 56px;
+      font-size: 1rem;
+    }
+
+    .loading {
+      opacity: 0.62;
+      pointer-events: none;
+    }
+
+    .summary-package {
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: rgba(39, 70, 109, 0.05);
+      border: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+
+    .summary-package-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .summary-package-name {
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .summary-package-bonus {
+      color: var(--text-soft);
+      font-size: 0.86rem;
+      margin-top: 4px;
+    }
+
+    .summary-package-price {
+      text-align: right;
+      color: var(--accent);
+      font-size: 1.25rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .summary-benefits {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .summary-benefit {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .summary-benefit strong {
+      color: var(--text);
+    }
+
+    .summary-flow,
+    .summary-payment {
+      padding: 20px 22px;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .summary-flow {
+      margin-bottom: 16px;
+    }
+
+    .summary-flow h3,
+    .summary-payment h3 {
+      margin-bottom: 12px;
+      color: var(--navy);
+      font-size: 1rem;
+    }
+
+    .summary-steps {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .summary-steps li {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      align-items: start;
+    }
+
+    .summary-step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: rgba(13, 155, 120, 0.08);
+      color: var(--accent-dark);
+      font-weight: 800;
+      font-size: 0.82rem;
+    }
+
+    .payment-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .payment-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 13px;
+      border-radius: 999px;
+      background: rgba(200, 154, 75, 0.12);
+      border: 1px solid rgba(200, 154, 75, 0.18);
+      color: var(--navy);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .summary-payment p {
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    html[data-theme="dark"] .checkout-intro,
+    html[data-theme="dark"] .checkout-form-card,
+    html[data-theme="dark"] .checkout-summary-card,
+    html[data-theme="dark"] .summary-package,
+    html[data-theme="dark"] .summary-flow,
+    html[data-theme="dark"] .summary-payment,
+    html[data-theme="dark"] .package-option,
+    html[data-theme="dark"] .inline-notice,
+    html[data-theme="dark"] .error-msg {
+      border-color: var(--line);
+    }
+
+    html[data-theme="dark"] .checkout-intro,
+    html[data-theme="dark"] .checkout-form-card,
+    html[data-theme="dark"] .checkout-summary-card,
+    html[data-theme="dark"] .summary-flow,
+    html[data-theme="dark"] .summary-payment {
+      background: var(--surface);
+    }
+
+    html[data-theme="dark"] .summary-package,
+    html[data-theme="dark"] .inline-notice {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    html[data-theme="dark"] .payment-badge {
+      background: rgba(205, 166, 96, 0.16);
+      border-color: rgba(227, 190, 126, 0.26);
+      color: #f4d7a1;
+    }
+
+    html[data-theme="dark"] .checkout-kicker,
+    html[data-theme="dark"] .summary-step-number {
+      background: rgba(43, 199, 160, 0.16);
+      color: #8ef2d4;
+    }
+
+    @media (max-width: 980px) {
+      .checkout-top-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .checkout-page {
+        padding: 72px 0 56px;
+      }
+
+      .checkout-intro,
+      .checkout-form-card,
+      .checkout-summary-card {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .checkout-intro h1 {
+        font-size: 1.72rem;
+      }
+
+      .package-option {
+        grid-template-columns: auto 1fr;
+      }
+
+      .pkg-price {
+        grid-column: 2;
+        text-align: left;
+      }
+
+      .summary-package-top {
+        flex-direction: column;
+      }
+
+      .summary-package-price {
+        text-align: left;
+      }
+    }
+  </style>
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem("metafast-theme");
+      const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = savedTheme || (systemPrefersDark ? "dark" : "light");
+    })();
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a href="index.html" class="brand-mark">
+        <img src="images/logo-nav.png" alt="Logo MetaFast" class="brand-logo brand-logo-light" />
+        <img src="images/logo-nav-dark.png" alt="Logo MetaFast" class="brand-logo brand-logo-dark" />
+        <span>MetaFast</span>
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Beranda</a>
+        <a href="fitur.html">Fitur</a>
+        <a href="index.html#pricing">Harga</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="checkout-page">
+    <div class="container">
+      <div class="checkout-shell">
+        <section class="checkout-intro">
+          <span class="checkout-kicker">Pembelian aman</span>
+          <h1>Selesaikan pembelian MetaFast dengan mudah.</h1>
+          <p>
+            Di halaman ini pelanggan memilih paket, mengisi nama dan email aktif, lalu menyelesaikan pembayaran melalui Midtrans.
+            Setelah pembayaran dikonfirmasi, lisensi dikirim ke email yang didaftarkan.
+          </p>
+        </section>
+
+        <div class="checkout-top-grid">
+          <section class="checkout-form-card">
+            <h2>Lengkapi data pembelian</h2>
+            <p class="checkout-form-subtitle">
+              Pastikan nama dan email yang diisi sudah benar. Email ini digunakan untuk pengiriman lisensi dan informasi pembelian.
+            </p>
+
+            <form id="checkoutForm">
+              <div class="form-group">
+                <label for="name">Nama lengkap</label>
+                <input type="text" id="name" name="name" placeholder="Nama pelanggan" required minlength="2" />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email aktif</label>
+                <input type="email" id="email" name="email" placeholder="email@contoh.com" required />
+                <p class="form-hint">Lisensi MetaFast dan panduan penggunaan akan dikirim ke email ini setelah pembayaran selesai.</p>
+              </div>
+
+              <div class="form-group">
+                <span class="checkout-section-label">Pilih durasi paket</span>
+                <div class="package-options">
+                  <label class="package-option" data-pkg="1month">
+                    <input type="radio" name="package" value="1month" />
+                    <div class="pkg-info">
+                      <div class="pkg-name">1 Bulan</div>
+                      <div class="pkg-meta">Cocok untuk mulai mencoba alur kerja MetaFast.</div>
+                    </div>
+                    <div class="pkg-price">Rp 55.000</div>
+                  </label>
+
+                  <label class="package-option" data-pkg="3month">
+                    <input type="radio" name="package" value="3month" checked />
+                    <div class="pkg-info">
+                      <div class="pkg-name">3 Bulan</div>
+                      <div class="pkg-meta">Paket paling sering dipilih, bonus 2 minggu tambahan.</div>
+                    </div>
+                    <div class="pkg-price">Rp 150.000</div>
+                  </label>
+
+                  <label class="package-option" data-pkg="6month">
+                    <input type="radio" name="package" value="6month" />
+                    <div class="pkg-info">
+                      <div class="pkg-name">6 Bulan</div>
+                      <div class="pkg-meta">Lebih panjang untuk kebutuhan produksi yang rutin, bonus 1 bulan.</div>
+                    </div>
+                    <div class="pkg-price">Rp 300.000</div>
+                  </label>
+
+                  <label class="package-option" data-pkg="1year">
+                    <input type="radio" name="package" value="1year" />
+                    <div class="pkg-info">
+                      <div class="pkg-name">1 Tahun</div>
+                      <div class="pkg-meta">Durasi paling panjang untuk penggunaan berkelanjutan, bonus 2 bulan.</div>
+                    </div>
+                    <div class="pkg-price">Rp 600.000</div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="inline-notice">
+                Semua harga ditampilkan dalam Rupiah. Setelah memilih lanjut bayar, pelanggan dapat menyelesaikan pembayaran melalui Midtrans dengan metode yang tersedia.
+              </div>
+
+              <p class="error-msg" id="errorMsg"></p>
+
+              <button type="submit" class="btn btn-primary btn-checkout" id="submitBtn">
+                Lanjutkan Pembayaran
+              </button>
+            </form>
+          </section>
+
+          <aside class="checkout-summary-card">
+            <h2>Ringkasan pembelian</h2>
+            <p class="checkout-summary-subtitle">
+              Ringkasan ini membantu pelanggan memastikan paket, harga, dan tahapan pembelian sebelum melanjutkan.
+            </p>
+
+            <div class="summary-package">
+              <div class="summary-package-top">
+                <div>
+                  <div class="summary-package-name" id="summaryPackageName">3 Bulan</div>
+                  <div class="summary-package-bonus" id="summaryPackageBonus">Bonus 2 minggu tambahan</div>
+                </div>
+                <div class="summary-package-price" id="summaryPackagePrice">Rp 150.000</div>
+              </div>
+
+              <div class="summary-benefits">
+                <div class="summary-benefit">
+                  <strong>Produk:</strong>
+                  <span>Langganan aplikasi desktop MetaFast untuk pengelolaan metadata stock.</span>
+                </div>
+                <div class="summary-benefit">
+                  <strong>Lisensi:</strong>
+                  <span>Lisensi dikirim ke email aktif setelah pembayaran berhasil dikonfirmasi.</span>
+                </div>
+                <div class="summary-benefit">
+                  <strong>Mata uang:</strong>
+                  <span>Semua harga ditampilkan dalam Rupiah Indonesia.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-flow">
+              <h3>Tahapan pembelian</h3>
+              <ol class="summary-steps">
+                <li>
+                  <span class="summary-step-number">01</span>
+                  <span>Pilih paket MetaFast sesuai durasi yang diinginkan.</span>
+                </li>
+                <li>
+                  <span class="summary-step-number">02</span>
+                  <span>Isi nama dan email aktif untuk menerima lisensi MetaFast.</span>
+                </li>
+                <li>
+                  <span class="summary-step-number">03</span>
+                  <span>Selesaikan pembayaran di Midtrans dengan QRIS, transfer bank, virtual account, atau e-wallet.</span>
+                </li>
+                <li>
+                  <span class="summary-step-number">04</span>
+                  <span>Setelah pembayaran berhasil, lisensi dikirim ke email pelanggan.</span>
+                </li>
+              </ol>
+            </div>
+
+            <div class="summary-payment">
+              <h3>Metode pembayaran yang tersedia</h3>
+              <div class="payment-methods">
+                <span class="payment-badge">QRIS</span>
+                <span class="payment-badge">Virtual Account</span>
+                <span class="payment-badge">Transfer Bank</span>
+                <span class="payment-badge">GoPay</span>
+                <span class="payment-badge">OVO</span>
+                <span class="payment-badge">ShopeePay</span>
+              </div>
+              <p>
+                Pembayaran dilakukan melalui Midtrans. Setelah menekan tombol lanjutkan pembayaran, pelanggan akan masuk ke halaman pembayaran untuk memilih metode yang diinginkan.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-shell">
+      <div>
+        <a href="index.html" class="brand-mark footer-brand">
+          <img src="images/logo-nav.png" alt="Logo MetaFast" class="brand-logo brand-logo-light" />
+          <img src="images/logo-nav-dark.png" alt="Logo MetaFast" class="brand-logo brand-logo-dark" />
+          <span>MetaFast</span>
+        </a>
+        <p class="footer-copy">&copy; 2026 MetaFast. Seluruh hak cipta dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const runtimeApiBase = (window.METAFAST_PAYMENT_API_BASE || "").trim();
+    const queryApiBase = (new URLSearchParams(window.location.search).get("apiBase") || "").trim();
+    const API_BASE = queryApiBase || runtimeApiBase || window.location.origin;
+
+    const packageCatalog = {
+      "1month": {
+        name: "1 Bulan",
+        priceLabel: "Rp 55.000",
+        bonus: "Langganan dasar untuk mulai memakai MetaFast."
+      },
+      "3month": {
+        name: "3 Bulan",
+        priceLabel: "Rp 150.000",
+        bonus: "Bonus 2 minggu tambahan."
+      },
+      "6month": {
+        name: "6 Bulan",
+        priceLabel: "Rp 300.000",
+        bonus: "Bonus 1 bulan tambahan."
+      },
+      "1year": {
+        name: "1 Tahun",
+        priceLabel: "Rp 600.000",
+        bonus: "Bonus 2 bulan tambahan."
+      }
+    };
+
+    const form = document.getElementById("checkoutForm");
+    const errorMsg = document.getElementById("errorMsg");
+    const submitBtn = document.getElementById("submitBtn");
+    const packageOptions = document.querySelectorAll(".package-option");
+    const summaryPackageName = document.getElementById("summaryPackageName");
+    const summaryPackageBonus = document.getElementById("summaryPackageBonus");
+    const summaryPackagePrice = document.getElementById("summaryPackagePrice");
+
+    function updateSummary(packageKey) {
+      const currentPackage = packageCatalog[packageKey] || packageCatalog["3month"];
+      summaryPackageName.textContent = currentPackage.name;
+      summaryPackageBonus.textContent = currentPackage.bonus;
+      summaryPackagePrice.textContent = currentPackage.priceLabel;
+    }
+
+    function selectPackage(packageKey) {
+      packageOptions.forEach((option) => {
+        const isSelected = option.dataset.pkg === packageKey;
+        option.classList.toggle("selected", isSelected);
+        const radio = option.querySelector('input[type="radio"]');
+        radio.checked = isSelected;
+      });
+
+      updateSummary(packageKey);
+    }
+
+    packageOptions.forEach((option) => {
+      option.addEventListener("click", () => {
+        selectPackage(option.dataset.pkg);
+      });
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const packageFromUrl = params.get("package");
+    if (packageFromUrl && packageCatalog[packageFromUrl]) {
+      selectPackage(packageFromUrl);
+    } else {
+      updateSummary("3month");
+    }
+
+    if (params.get("status") === "failed") {
+      errorMsg.textContent = "Pembayaran dibatalkan atau belum diselesaikan. Silakan ulangi saat sudah siap.";
+      errorMsg.classList.add("show");
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      errorMsg.classList.remove("show");
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const selectedPackage = form.package.value;
+
+      if (!name || name.length < 2) {
+        errorMsg.textContent = "Nama lengkap perlu diisi minimal 2 karakter.";
+        errorMsg.classList.add("show");
+        return;
+      }
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errorMsg.textContent = "Email aktif belum valid. Periksa kembali alamat email pelanggan.";
+        errorMsg.classList.add("show");
+        return;
+      }
+
+      submitBtn.textContent = "Membuka halaman pembayaran...";
+      form.classList.add("loading");
+
+      try {
+        const checkoutEndpoint = `${API_BASE.replace(/\/$/, "")}/api/checkout`;
+        const response = await fetch(checkoutEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            email,
+            package: selectedPackage
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Pembelian belum dapat diproses saat ini.");
+        }
+
+        const paymentUrl = (data.redirect_url || data.invoice_url || "").trim();
+
+        if (!paymentUrl) {
+          throw new Error("URL pembayaran dari Midtrans tidak ditemukan.");
+        }
+
+        window.location.href = paymentUrl;
+      } catch (error) {
+        errorMsg.textContent = error.message || "Gagal membuat pembayaran. Silakan coba lagi.";
+        errorMsg.classList.add("show");
+        submitBtn.textContent = "Lanjutkan Pembayaran";
+        form.classList.remove("loading");
+      }
+    });
+  </script>
+</body>
+</html>

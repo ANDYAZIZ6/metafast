@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pembayaran Berhasil - MetaFast</title>
+  <meta
+    name="description"
+    content="Pembayaran langganan MetaFast berhasil. License key akan dikirim ke email setelah transaksi terkonfirmasi."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" href="images/favicon.ico?v=2" sizes="any" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .success-page {
+      padding: 116px 0 80px;
+      min-height: 72vh;
+    }
+
+    .success-shell {
+      max-width: 920px;
+      margin: 0 auto;
+      display: grid;
+      gap: 22px;
+    }
+
+    .success-card {
+      padding: 44px 40px;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+
+    .success-icon {
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      background: rgba(13, 155, 120, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .success-card h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.95rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .success-card p {
+      color: var(--text-soft);
+      font-size: 1rem;
+      line-height: 1.72;
+    }
+
+    .success-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .success-panel {
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .success-panel h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.16rem;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .success-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .success-list li {
+      color: var(--text-soft);
+      line-height: 1.62;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .success-list strong {
+      color: var(--text);
+    }
+
+    .success-meta {
+      display: grid;
+      gap: 14px;
+    }
+
+    .success-meta-item {
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(39, 70, 109, 0.05);
+      border: 1px solid var(--line);
+    }
+
+    .success-meta-label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text-faint);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .success-meta-value {
+      color: var(--navy);
+      font-size: 0.98rem;
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .success-note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(13, 155, 120, 0.06);
+      border: 1px solid rgba(13, 155, 120, 0.14);
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .success-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 28px;
+    }
+
+    html[data-theme="dark"] .success-card,
+    html[data-theme="dark"] .success-panel,
+    html[data-theme="dark"] .success-meta-item,
+    html[data-theme="dark"] .success-note {
+      border-color: var(--line);
+    }
+
+    html[data-theme="dark"] .success-card,
+    html[data-theme="dark"] .success-panel {
+      background: var(--surface);
+    }
+
+    html[data-theme="dark"] .success-meta-item,
+    html[data-theme="dark"] .success-note {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    @media (max-width: 860px) {
+      .success-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .success-page {
+        padding: 86px 0 56px;
+      }
+
+      .success-card,
+      .success-panel {
+        padding: 24px;
+      }
+
+      .success-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem("metafast-theme");
+      const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = savedTheme || (systemPrefersDark ? "dark" : "light");
+    })();
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a href="index.html" class="brand-mark">
+        <img src="images/logo-nav.png" alt="Logo MetaFast" class="brand-logo brand-logo-light" />
+        <img src="images/logo-nav-dark.png" alt="Logo MetaFast" class="brand-logo brand-logo-dark" />
+        <span>MetaFast</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="success-page">
+    <div class="container">
+      <div class="success-shell">
+        <section class="success-card">
+          <div class="success-icon">&#10003;</div>
+          <h1>Pembayaran berhasil.</h1>
+          <p>
+            Terima kasih sudah menyelesaikan pembayaran langganan MetaFast. Setelah pembayaran dikonfirmasi,
+            lisensi MetaFast akan dikirim ke email pelanggan yang digunakan saat pembelian.
+          </p>
+
+          <div class="success-actions">
+            <a href="index.html#download" class="btn btn-primary">Unduh MetaFast</a>
+            <a href="https://wa.me/6287823047486?text=Halo%2C%20saya%20sudah%20membayar%20MetaFast%20dan%20ingin%20mengecek%20status%20license%20key." target="_blank" class="btn btn-secondary">Hubungi Support</a>
+          </div>
+        </section>
+
+        <div class="success-grid">
+          <section class="success-panel">
+            <h2>Apa yang terjadi setelah pembayaran</h2>
+            <ul class="success-list">
+              <li><span>&#10003;</span><span>Pembayaran telah dikonfirmasi melalui <strong>Midtrans</strong>.</span></li>
+              <li><span>&#10003;</span><span>Lisensi MetaFast disiapkan sesuai paket yang dipilih.</span></li>
+              <li><span>&#10003;</span><span>Lisensi dikirim ke <strong>email pelanggan</strong> yang digunakan saat pembelian.</span></li>
+              <li><span>&#10003;</span><span>Lisensi dapat langsung dipakai di aplikasi desktop MetaFast.</span></li>
+            </ul>
+
+            <div class="success-note">
+              Jika email belum diterima dalam 10 menit, pelanggan disarankan memeriksa folder spam atau menghubungi tim support agar bisa segera dibantu.
+            </div>
+          </section>
+
+          <section class="success-panel">
+            <h2>Ringkasan untuk pelanggan</h2>
+            <div class="success-meta">
+              <div class="success-meta-item">
+                <span class="success-meta-label">Produk</span>
+                <div class="success-meta-value">Langganan aplikasi desktop MetaFast</div>
+              </div>
+              <div class="success-meta-item">
+                <span class="success-meta-label">Mata uang</span>
+                <div class="success-meta-value">Semua harga dan pembayaran menggunakan Rupiah Indonesia</div>
+              </div>
+              <div class="success-meta-item">
+                <span class="success-meta-label">Pembayaran</span>
+                <div class="success-meta-value">Pembayaran tersedia melalui Midtrans dengan QRIS, transfer bank, virtual account, dan e-wallet</div>
+              </div>
+              <div class="success-meta-item">
+                <span class="success-meta-label">Aktivasi</span>
+                <div class="success-meta-value">Lisensi dikirim melalui email setelah pembayaran berhasil dikonfirmasi</div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-shell">
+      <div>
+        <a href="index.html" class="brand-mark footer-brand">
+          <img src="images/logo-nav.png" alt="Logo MetaFast" class="brand-logo brand-logo-light" />
+          <img src="images/logo-nav-dark.png" alt="Logo MetaFast" class="brand-logo brand-logo-dark" />
+          <span>MetaFast</span>
+        </a>
+        <p class="footer-copy">&copy; 2026 MetaFast. Seluruh hak cipta dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
