@@ -376,6 +376,26 @@
         0 18px 34px rgba(0, 0, 0, 0.24);
     }
 
+    .checkout-robot-head::before,
+    .checkout-robot-head::after {
+      content: "";
+      position: absolute;
+      top: 34px;
+      width: 10px;
+      height: 28px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(121, 232, 209, 0.88), rgba(71, 171, 228, 0.42));
+      box-shadow: 0 0 18px rgba(96, 213, 255, 0.18);
+    }
+
+    .checkout-robot-head::before {
+      left: -6px;
+    }
+
+    .checkout-robot-head::after {
+      right: -6px;
+    }
+
     .checkout-robot-face {
       position: relative;
       padding: 18px 18px 20px;
@@ -424,8 +444,113 @@
       animation: mouthBounce 1.8s ease-in-out infinite;
     }
 
+    .checkout-robot-body {
+      position: relative;
+      width: 118px;
+      margin: 10px auto 0;
+      padding: 16px 18px 18px;
+      border-radius: 24px 24px 30px 30px;
+      background: linear-gradient(180deg, rgba(19, 43, 74, 0.98), rgba(11, 29, 53, 0.98));
+      border: 1px solid rgba(122, 214, 255, 0.18);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 16px 24px rgba(0, 0, 0, 0.16);
+    }
+
+    .checkout-robot-core {
+      width: 28px;
+      height: 28px;
+      margin: 0 auto 12px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, #ffffff, #83f0d3 44%, #34be9a 100%);
+      box-shadow:
+        0 0 0 8px rgba(73, 206, 172, 0.12),
+        0 0 28px rgba(91, 249, 206, 0.36);
+      animation: corePulse 1.8s ease-in-out infinite;
+    }
+
+    .checkout-robot-panel {
+      display: grid;
+      gap: 7px;
+    }
+
+    .checkout-robot-panel span {
+      display: block;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(110, 246, 214, 0.78), rgba(87, 168, 255, 0.72));
+      opacity: 0.78;
+    }
+
+    .checkout-robot-panel span:nth-child(2) {
+      width: 72%;
+    }
+
+    .checkout-robot-arms {
+      position: absolute;
+      inset: 64px -30px auto;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .checkout-robot-arm {
+      position: relative;
+      width: 34px;
+      height: 86px;
+      transform-origin: top center;
+    }
+
+    .checkout-robot-arm::before,
+    .checkout-robot-arm::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(127, 241, 220, 0.92), rgba(67, 157, 224, 0.42));
+    }
+
+    .checkout-robot-arm::before {
+      top: 0;
+      width: 10px;
+      height: 58px;
+    }
+
+    .checkout-robot-arm::after {
+      bottom: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 14px 14px 16px 16px;
+      box-shadow: 0 0 16px rgba(93, 198, 255, 0.16);
+    }
+
+    .checkout-robot-arm-left {
+      animation: armWaveLeft 1.8s ease-in-out infinite;
+    }
+
+    .checkout-robot-arm-right {
+      animation: armWaveRight 2.1s ease-in-out infinite;
+    }
+
+    .checkout-robot-feet {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 8px;
+    }
+
+    .checkout-robot-feet span {
+      width: 24px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(107, 229, 197, 0.92), rgba(82, 154, 255, 0.42));
+      opacity: 0.78;
+    }
+
     .checkout-loading-title,
     .checkout-loading-copy,
+    .checkout-loading-package,
     .checkout-loading-status,
     .checkout-loading-tip {
       position: relative;
@@ -445,6 +570,24 @@
       color: rgba(228, 241, 255, 0.78);
       line-height: 1.72;
       font-size: 0.96rem;
+    }
+
+    .checkout-loading-package {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #d7f6ec;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .checkout-loading-package strong {
+      color: #92f3d8;
     }
 
     .checkout-loading-status {
@@ -514,6 +657,45 @@
 
       50% {
         transform: scaleX(1.05) translateY(1px);
+      }
+    }
+
+    @keyframes corePulse {
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow:
+          0 0 0 8px rgba(73, 206, 172, 0.12),
+          0 0 28px rgba(91, 249, 206, 0.36);
+      }
+
+      50% {
+        transform: scale(1.08);
+        box-shadow:
+          0 0 0 12px rgba(73, 206, 172, 0.08),
+          0 0 32px rgba(91, 249, 206, 0.46);
+      }
+    }
+
+    @keyframes armWaveLeft {
+      0%,
+      100% {
+        transform: rotate(22deg);
+      }
+
+      50% {
+        transform: rotate(40deg) translateY(-1px);
+      }
+    }
+
+    @keyframes armWaveRight {
+      0%,
+      100% {
+        transform: rotate(-16deg);
+      }
+
+      50% {
+        transform: rotate(-34deg) translateY(-2px);
       }
     }
 
@@ -720,6 +902,15 @@
       .checkout-robot {
         width: 152px;
       }
+
+      .checkout-robot-arms {
+        inset: 58px -22px auto;
+      }
+
+      .checkout-robot-arm {
+        width: 26px;
+        height: 72px;
+      }
     }
 
     @media (max-width: 640px) {
@@ -750,6 +941,9 @@
       .checkout-loading-dot,
       .checkout-robot-antenna,
       .checkout-robot-mouth,
+      .checkout-robot-core,
+      .checkout-robot-arm-left,
+      .checkout-robot-arm-right,
       .checkout-loading-progress-bar {
         animation: none !important;
         transition: none !important;
@@ -972,17 +1166,33 @@
             <div class="checkout-robot-mouth"></div>
           </div>
         </div>
+        <div class="checkout-robot-arms">
+          <div class="checkout-robot-arm checkout-robot-arm-left"></div>
+          <div class="checkout-robot-arm checkout-robot-arm-right"></div>
+        </div>
+        <div class="checkout-robot-body">
+          <div class="checkout-robot-core"></div>
+          <div class="checkout-robot-panel">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div class="checkout-robot-feet"><span></span><span></span></div>
       </div>
 
-      <h2 class="checkout-loading-title">Robot checkout lagi siap-siap.</h2>
-      <p class="checkout-loading-copy">
+      <h2 class="checkout-loading-title" id="loadingTitle">Robot checkout lagi siap-siap.</h2>
+      <p class="checkout-loading-copy" id="loadingCopy">
         Mohon tunggu bentar ya. Kami lagi menyiapkan jalur aman ke Midtrans, mengecek paket yang kamu pilih, dan membuka halaman pembayaran secepat mungkin.
       </p>
+      <div class="checkout-loading-package" id="loadingPackageBadge">
+        Paket yang dipilih: <strong id="loadingPackageName">3 Bulan</strong>
+      </div>
       <div class="checkout-loading-status" id="loadingStatus">Menghubungkan ke gerbang pembayaran...</div>
       <div class="checkout-loading-progress" aria-hidden="true">
         <div class="checkout-loading-progress-bar"></div>
       </div>
-      <p class="checkout-loading-tip">
+      <p class="checkout-loading-tip" id="loadingTip">
         Kalau kursor kamu digerakkan, robotnya ikut nengok. Tenang, ini cuma hiburan kecil sambil pembayaran diproses.
       </p>
     </div>
@@ -1025,19 +1235,36 @@
     const summaryPackageBonus = document.getElementById("summaryPackageBonus");
     const summaryPackagePrice = document.getElementById("summaryPackagePrice");
     const loadingOverlay = document.getElementById("loadingOverlay");
+    const loadingTitle = document.getElementById("loadingTitle");
+    const loadingCopy = document.getElementById("loadingCopy");
+    const loadingPackageName = document.getElementById("loadingPackageName");
     const loadingStatus = document.getElementById("loadingStatus");
+    const loadingTip = document.getElementById("loadingTip");
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const loadingMessages = [
-      "Menghubungkan ke gerbang pembayaran...",
-      "Merapikan detail paket supaya tidak keliru...",
-      "Membuka halaman Midtrans dengan aman...",
-      "Sebentar lagi kamu lanjut ke pilihan metode bayar..."
-    ];
     let loadingMessageTimer = null;
     let loadingMessageIndex = 0;
+    let loadingReassureTimer = null;
     let robotAnimationFrame = null;
     let robotLookCurrent = { x: 0, y: 0 };
     let robotLookTarget = { x: 0, y: 0 };
+
+    function buildLoadingExperience(packageKey) {
+      const currentPackage = packageCatalog[packageKey] || packageCatalog["3month"];
+
+      return {
+        packageName: currentPackage.name,
+        title: `Robot checkout lagi menyiapkan paket ${currentPackage.name}.`,
+        copy: `Mohon tunggu bentar ya. Kami lagi menyiapkan jalur aman ke Midtrans untuk paket ${currentPackage.name.toLowerCase()}, mengecek detail pesananmu, lalu membuka halaman pembayaran secepat mungkin.`,
+        tip: "Kalau kursor kamu digerakkan, robotnya ikut nengok. Tenang, ini cuma hiburan kecil sambil pembayaran diproses.",
+        reassure: `Kalau pindah halamannya agak lama, jangan khawatir. Biasanya robot kami lagi memastikan paket ${currentPackage.name} masuk dengan benar sebelum Midtrans dibuka.`,
+        messages: [
+          `Sip, paket ${currentPackage.name} lagi aku cek dulu...`,
+          "Merapikan detail pesanan supaya tidak keliru...",
+          "Menghubungkan ke Midtrans lewat jalur aman...",
+          "Sebentar lagi kamu lanjut ke pilihan metode bayar..."
+        ]
+      };
+    }
 
     function setRobotLook(x, y) {
       document.documentElement.style.setProperty("--robot-look-x", `${x}px`);
@@ -1071,17 +1298,26 @@
       robotLookTarget = { x: offsetX, y: offsetY };
     }
 
-    function showLoadingOverlay() {
+    function showLoadingOverlay(packageKey) {
+      const experience = buildLoadingExperience(packageKey);
       loadingMessageIndex = 0;
-      loadingStatus.textContent = loadingMessages[loadingMessageIndex];
+      loadingTitle.textContent = experience.title;
+      loadingCopy.textContent = experience.copy;
+      loadingPackageName.textContent = experience.packageName;
+      loadingTip.textContent = experience.tip;
+      loadingStatus.textContent = experience.messages[loadingMessageIndex];
       loadingOverlay.classList.add("is-visible");
       loadingOverlay.setAttribute("aria-hidden", "false");
       document.body.classList.add("checkout-busy");
 
       loadingMessageTimer = window.setInterval(() => {
-        loadingMessageIndex = (loadingMessageIndex + 1) % loadingMessages.length;
-        loadingStatus.textContent = loadingMessages[loadingMessageIndex];
+        loadingMessageIndex = (loadingMessageIndex + 1) % experience.messages.length;
+        loadingStatus.textContent = experience.messages[loadingMessageIndex];
       }, 1600);
+
+      loadingReassureTimer = window.setTimeout(() => {
+        loadingTip.textContent = experience.reassure;
+      }, 4200);
 
       if (!prefersReducedMotion.matches) {
         document.addEventListener("pointermove", handleRobotPointerMove);
@@ -1097,6 +1333,11 @@
       if (loadingMessageTimer) {
         clearInterval(loadingMessageTimer);
         loadingMessageTimer = null;
+      }
+
+      if (loadingReassureTimer) {
+        clearTimeout(loadingReassureTimer);
+        loadingReassureTimer = null;
       }
 
       stopRobotTracking();
@@ -1172,7 +1413,7 @@
 
       submitBtn.textContent = "Membuka halaman pembayaran...";
       form.classList.add("loading");
-      showLoadingOverlay();
+      showLoadingOverlay(selectedPackage);
 
       try {
         const checkoutEndpoint = `${API_BASE.replace(/\/$/, "")}/api/checkout`;
